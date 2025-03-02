@@ -134,12 +134,21 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 app.get('/getdummy', async (req, res) => {
-  res.send(Dummy)
+let dummy = []
+  const response =  dummy.map((e => {
+    const item = {
+      id: e.id,
+      name:e.name,
+      price: e.price,
+      description: e.description,
+    }
+    
+  }))
+  res.send(response)
 });
 
 app.get('/allcategories',async(req,res) => {
   await client.connect();
-  console.log('Dummy connected to MongoDB');
   const db = client.db(Database);
   const Categories_Collection = db.collection(Collection_1);
   const Product_Collection = db.collection(Collection_2);
