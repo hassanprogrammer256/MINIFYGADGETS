@@ -100,47 +100,6 @@ async function main() {
   })
 
 
-app.post('/submitorder', (req, res) => {
-  const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
-
-  const orderDetails = {
-      "NAME": name,
-      "PHONE NUMBER": number,
-      "EMAIL": email,
-      "LOCATION": location,
-      "PAYMENT METHOD": paymentMethod,
-      "CUSTOMER ORDER": CustomerOrder
-  };
-
-  sendingotp(email).then(result => {
-   if (sendingotp){
-    const otpInfo = {
-      "NAME": name,
-      "PHONE NUMBER": number,
-      "EMAIL": email,
-      "LOCATION": location,
-      "PAYMENT METHOD": paymentMethod,
-      "OTP": result.password,
-      "EXPIRES": result.expiry // assuming result.expiry is a timestamp
-  };
-  res.json({message: 'sent'})
-   }else{
-    res.json({message: 'not sent'})
-   }
-
-      // Store the OTP information in the emailVerifications array
-      emailVerifications.push(otpInfo);
-
-      // Respond with the order details and OTP (but not the OTP value for security reasons)
-      res.json({
-          message: "OTP sent",
-          orderDetails: orderDetails
-      });
-  }).catch(err => {
-      console.error("Error sending OTP:", err);
-      res.status(500).json({ message: "Error sending OTP" });
-  });
-});
 
 app.post('/feedback', (req, res) => {
   const { name, phonenumber, email, subject,message } = req.body;
@@ -195,6 +154,47 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 
+app.post('/submitorder', (req, res) => {
+  const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
+
+  const orderDetails = {
+      "NAME": name,
+      "PHONE NUMBER": number,
+      "EMAIL": email,
+      "LOCATION": location,
+      "PAYMENT METHOD": paymentMethod,
+      "CUSTOMER ORDER": CustomerOrder
+  };
+
+  sendingotp(email).then(result => {
+   if (sendingotp){
+    const otpInfo = {
+      "NAME": name,
+      "PHONE NUMBER": number,
+      "EMAIL": email,
+      "LOCATION": location,
+      "PAYMENT METHOD": paymentMethod,
+      "OTP": result.password,
+      "EXPIRES": result.expiry // assuming result.expiry is a timestamp
+  };
+  res.json({message: 'sent'})
+   }else{
+    res.json({message: 'not sent'})
+   }
+
+      // Store the OTP information in the emailVerifications array
+      emailVerifications.push(otpInfo);
+
+      // Respond with the order details and OTP (but not the OTP value for security reasons)
+      res.json({
+          message: "OTP sent",
+          orderDetails: orderDetails
+      });
+  }).catch(err => {
+      console.error("Error sending OTP:", err);
+      res.status(500).json({ message: "Error sending OTP" });
+  });
+});
 
 main().catch(console.error);
 
