@@ -43,11 +43,7 @@ async function main() {
   //  ================CATEGORIES===================
 
   //2-get all categories
-  app.get('/allcategories', async (req, res) => {
-    const all_Categories = await Categories_Collection.find({}).toArray();
-    // const categories = all_Categories.map(l => l.name);
-    res.json(all_Categories.slice(0,10))
-  });
+ 
 
   // Find Data by ID
   app.get('/get_pdt_id/:id', async (req, res) => {
@@ -137,7 +133,11 @@ app.get('/',(req,res) => {
 res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
-app.get('/getdummy',async(req,res) => {
+app.get('/getdummy', async (req, res) => {
+  res.send(Dummy)
+});
+
+app.get('/allcategories',async(req,res) => {
   await client.connect();
   console.log('Dummy connected to MongoDB');
   const db = client.db(Database);
