@@ -146,6 +146,33 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 
+app.post('/confirmcode', (req, res) => {
+  const { code, email } = req.body;
+
+  // Find the verification entry for the provided email
+  const verification = emailVerifications.find(obj => obj.EMAIL === email);
+  
+  if (verification) {
+      // Check if the code matches and is still valid
+      if (verification.OTP === code) {
+          if (verification.EXPIRES >= Date.now()) {
+              // OTP accepted
+              res.json({ message: "OTP is accepted" });
+          } else {
+              // OTP expired
+              res.json({ message: "Code expired" });
+          }
+      } else {
+          // Incorrect OTP
+          res.json({ message: "Incorrect OTP" });
+      }
+  } else {
+      // No verification found for the provided email
+      res.json({ message: "No verification found for this email" });
+  }
+});
+ 
+
 
 
 app.get('/getdummy',(req,res) => {
@@ -178,9 +205,10 @@ app.post('/submitorder', (req, res) => {
       "OTP": result.password,
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
-  res.json({message: 'sent'})
+  emailVerifications.push(otpInfo)
+  res.send({message:"success",})
    }else{
-    res.json({message: 'not sent'})
+    res.send({message: 'not sent'})
    }
 
       // Store the OTP information in the emailVerifications array
