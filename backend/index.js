@@ -134,17 +134,8 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 app.get('/getdummy', async (req, res) => {
-let dummy = []
-  const response =  dummy.map((e => {
-    const item = {
-      id: e.id,
-      name:e.name,
-      price: e.price,
-      description: e.description,
-    }
-    
-  }))
-  res.send(response)
+const data = Dummy.products
+  res.send(data)
 });
 
 app.get('/allcategories',async(req,res) => {
