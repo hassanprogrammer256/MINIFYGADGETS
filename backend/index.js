@@ -43,7 +43,11 @@ async function main() {
   //  ================CATEGORIES===================
 
   //2-get all categories
- 
+  app.get('/allcategories', async (req, res) => {
+    const all_Categories = await Categories_Collection.find({}).toArray();
+    // const categories = all_Categories.map(l => l.name);
+    res.json(all_Categories.slice(0,10))
+  });
 
   // Find Data by ID
   app.get('/get_pdt_id/:id', async (req, res) => {
@@ -127,46 +131,28 @@ app.post('/confirmcode', (req, res) => {
       res.json({ message: "No verification found for this email" });
   }
 });
+  // else{
+  //   if ( verification.EXPIRES < Date.now()){
+  //     emailverifications = emailverifications.filter(obj => obj.EMAIL!== email)
+  //     res.json({message: "OTP expired"})
+  //     return 0;
+  //   }
+  //   res.json({message: "Invalid OTP"})
+  // }
 }
 app.get('/',(req,res) => {
 
 res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
-app.get('/getdummy', async (req, res) => {
-const data = Dummy.products
-  res.send(data)
-});
-
-app.get('/allcategories',async(req,res) => {
-  await client.connect();
-  const db = client.db(Database);
-  const Categories_Collection = db.collection(Collection_1);
-  const Product_Collection = db.collection(Collection_2);
-
-  const data = await Categories_Collection.find({}).toArray();
-const categories_only =  data.map(obj => ({
-  id:obj._id,
-  name: obj.name,
-  categories: obj.subCategories.map(category => ({
-    id:category.id,
-      name: category.name
-  }))
-}));
-
-const phoneCategories = data.slice(0,30).flatMap(obj => 
-  obj.subCategories
-      .filter(category => 
-          category.name.toLowerCase().includes("phones")
-      )
-      .map(category => ({
-          name: category.name
-      }))
-);
 
 
 
-res.send(phoneCategories.slice(0,10))
+app.get('/getdummy',(req,res) => {
+  const data = [];
+const response = Dummy.default.products
+
+res.send(response)
 })
 
 app.post('/submitorder', (req, res) => {
