@@ -37,11 +37,11 @@ async function sendingotp(reciever) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email</title>
+    <title>Minify||Gadgets</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f9fafb; /* Background color */
+            background-color: #0f172a; /* Background color */
         }
         .container {
             max-width: 600px;
@@ -52,12 +52,12 @@ async function sendingotp(reciever) {
 <body>
     <div class="container mx-auto p-6 bg-slate-900 shadow-md rounded-lg mt-10">
         <div class="text-center">
-            <img src="./images/Minify_Logo.png" alt="Logo" class="mx-auto mb-6"> <!-- Placeholder for the logo -->
+            <img src="images/Minify_Logo.png" alt="Logo" class="mx-auto mb-6">
             <h1 class="text-3xl font-bold text-purple-900">MINIFY GADGETS</h1>
         </div>
         
         <div class="mt-8 text-center">
-            <p class="text-lg text-gray-800 dark:text-gray-200">Your OTP code is:</p>
+            <p class="text-lg :text-gray-200">Your OTP code is:</p>
             <span class="text-4xl font-extrabold text-amber-500">${otp.password}</span> 
         </div>
 
