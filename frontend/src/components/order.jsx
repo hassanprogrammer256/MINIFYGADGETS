@@ -101,7 +101,8 @@ const Order = () => {
       try {
         setisLoading(true);
         const res = await axios.post(`${API_URL}/submitorder`, { name, number, email, location, paymentMethod, CustomerOrder });
-        if (res.status === 200) {
+        console.log(res);
+        if (res.message === 'sent') {
           alert('Order placed successfully');
           setcustomer_email(email);
           setCustomerOrder([]);
