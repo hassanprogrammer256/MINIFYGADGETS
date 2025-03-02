@@ -199,6 +199,3 @@ app.post('/submitorder', (req, res) => {
 
 main().catch(console.error);
 
-app.listen(PORT, () => {
-    console.log(`SERVER IS RUNNING ON PORT ${process.env.PORT || PORT}`)
-})

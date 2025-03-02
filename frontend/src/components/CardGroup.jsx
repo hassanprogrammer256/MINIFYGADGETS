@@ -48,7 +48,7 @@ breakpoints={{
 }}
 className="mySwiper py-5"
       >
-        {products.map((e,index) => <SwiperSlide key={index}><Mycard c_qtty={1} id = {e.id} description={e.description} name={e.title} price={e.price}/></SwiperSlide>)}
+        {products.map((e,index) => <SwiperSlide key={index}><Mycard c_qtty={1} id = {e.id} description={e.description.substring(0,50)} name={e.title} price={e.price}/></SwiperSlide>)}
       </Swiper>
     </motion.div>
 
