@@ -13,7 +13,7 @@ return (
 className='py-4'
 >
 <Card
-className="md:max-w-2xl max-w-lg shadow-card cursor-pointer relative"
+className="md:max-w-2xl max-w-lg max-h-max shadow-card cursor-pointer relative"
 >
 <div className="bg-blue-100">
     <a href="/veiwproduct"><img src={All_Images.headphones_100} alt="" className='rounded cursor-pointer  scale-95 hover:scale-100 transition-all shadow-card'/></a>
