@@ -8,7 +8,7 @@ import MySidebar from './components/MySidebar'
 import MyToast from './components/MyToast'
 import Veiwcart from './components/Veiwcart'
 import Order from './components/order'
-import Confirmorder from './components/confirmPayment'
+import Confirmorder from './components/confirmpayment'
 
 
 const App =() => {
