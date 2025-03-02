@@ -1,0 +1,24 @@
+# Ignore the .env file in the backend folder
+backend/.env
+
+# Ignore node_modules directory if using Node.js
+backend/node_modules
+frontend/node_modules
+
+# Ignore logs 
+*.log
+
+# Ignore build directories (if applicable for frontend)
+dist/
+build/
+
+# Ignore any other sensitive or unnecessary files
+*.env
+*.local
+*.tmp
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Consider adding any other project-specific files or directories that should be ignored
