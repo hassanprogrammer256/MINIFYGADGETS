@@ -131,28 +131,30 @@ app.post('/confirmcode', (req, res) => {
       res.json({ message: "No verification found for this email" });
   }
 });
-  // else{
-  //   if ( verification.EXPIRES < Date.now()){
-  //     emailverifications = emailverifications.filter(obj => obj.EMAIL!== email)
-  //     res.json({message: "OTP expired"})
-  //     return 0;
-  //   }
-  //   res.json({message: "Invalid OTP"})
-  // }
 }
 app.get('/',(req,res) => {
 
 res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
+app.get('/getdummy',async(req,res) => {
+  await client.connect();
+  console.log('Dummy connected to MongoDB');
+  const db = client.db(Database);
+  const Categories_Collection = db.collection(Collection_1);
+  const Product_Collection = db.collection(Collection_2);
 
+  const data = await Categories_Collection.find({}).toArray();
+const categories_only =  data.map(obj => ({
+  id:obj._id,
+  name: obj.name,
+  categories: obj.subCategories.map(category => ({
+    id:category.id,
+      name: category.name
+  }))
+}));
 
-
-app.get('/getdummy',(req,res) => {
-  const data = [];
-const response = Dummy.default.products
-
-res.send(response)
+res.send(categories_only.slice(0,10))
 })
 
 app.post('/submitorder', (req, res) => {
