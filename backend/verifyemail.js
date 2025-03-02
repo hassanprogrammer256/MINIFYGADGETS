@@ -41,24 +41,26 @@ async function sendingotp(reciever) {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #0f172a; /* Background color */
+            background-color: #fafafa; /* Background color */
         }
         .container {
             max-width: 600px;
             margin: auto;
         }
+            .heading{color: #581c87}
+            .mini-body{background-color: #0f172a;}
+            .otp{color: #f59e0b}
     </style>
 </head>
 <body>
-    <div class="container mx-auto p-6 bg-slate-900 shadow-md rounded-lg mt-10">
+    <div class="container mx-auto p-6 bg-slate-900 shadow-md rounded-lg mt-10 mini-body">
         <div class="text-center">
-            <img src="images/Minify_Logo.png" alt="Logo" class="mx-auto mb-6">
-            <h1 class="text-3xl font-bold text-purple-900">MINIFY GADGETS</h1>
+            <h1 class="text-3xl font-bold text-purple-900 heading">MINIFY GADGETS</h1>
         </div>
         
         <div class="mt-8 text-center">
             <p class="text-lg :text-gray-200">Your OTP code is:</p>
-            <span class="text-4xl font-extrabold text-amber-500">${otp.password}</span> 
+            <span class="text-4xl font-extrabold text-amber-500 otp">${otp.password}</span> 
         </div>
 
         <div class="mt-10 text-center">
