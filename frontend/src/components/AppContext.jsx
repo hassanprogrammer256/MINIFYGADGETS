@@ -34,7 +34,7 @@ const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
 // const API_URL = 'https://minifygadgets.onrender.com'
-const API_URL = 'https://minifygadgets.vercel.app/'
+const API_URL = 'https://minifygadgets.vercel.app'
 // LOCATION_API_ID = 'H8SA7Oy1hcO7Jv3RbcjA'
 // LOCATION_API_KEY = 'fn5NwK13TLc3vnPLt47c2Y9U2TvysfiZecNxJy8CQpA'
 const getData = useCallback(() => {
