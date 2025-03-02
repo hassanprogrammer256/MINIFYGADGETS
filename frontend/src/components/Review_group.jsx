@@ -4,7 +4,7 @@ import {Swiper,SwiperSlide} from 'swiper/react';
 import {motion} from "framer-motion";
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Brands, Categories, Products } from '../assets';
+import { Brands, Categories, Products } from '../../public';
 
 
 const Review_group = () => {

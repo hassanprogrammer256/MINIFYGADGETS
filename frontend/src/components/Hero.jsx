@@ -1,7 +1,7 @@
 import React from 'react'
 import {ArrowRight, Instagram,Facebook,Mail} from "react-feather";
 import {FaMapMarkerAlt,FaGoogle} from "react-icons/fa";
-import { All_Images} from '../assets/index';
+import { All_Images} from '../../public/index';
 import {motion} from "framer-motion";
 const Hero = () => {
   return (

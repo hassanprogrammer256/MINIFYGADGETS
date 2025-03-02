@@ -1,6 +1,6 @@
 import {React, useContext} from 'react'
 import { Card } from "flowbite-react";
-import { All_Images } from "../assets/index";
+import { All_Images } from "../../public/index";
 import { AppContext } from './AppContext';
 import { motion } from "framer-motion";
 import { ShoppingCart } from 'react-feather';

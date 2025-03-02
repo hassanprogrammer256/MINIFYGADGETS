@@ -1,7 +1,7 @@
 // IMPORTING REQUIRED MODULES
 import  React, {createContext,useRef,useState ,useEffect, useCallback} from "react";
 import { useLocation} from "react-router-dom";
-import { Products } from "../assets";
+import { Products } from "../../public";
 
 // CREATING A CONTEXT
 export const AppContext = createContext();

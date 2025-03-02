@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import MyCarousel from '../components/MyCarousel'
 import { AppContext } from '../components/AppContext';
 import CardGroup from '../components/CardGroup';
-import { Categories } from '../assets';
+import { Categories } from '../../public';
 import Shop_Hero from '../components/Shop_Hero';
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Avatar, Rating} from "flowbite-react";
 import {} from "react-feather";
-import { All_Images} from '../assets/index';
+import { All_Images} from '../../public/index';
 import {motion} from "framer-motion";
 
 const Review = () => {

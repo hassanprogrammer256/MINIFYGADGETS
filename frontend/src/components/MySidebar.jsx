@@ -5,7 +5,7 @@ import { HiCloudDownload, HiInbox, HiOutlineAdjustments, HiUserCircle } from "re
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { AppContext } from "./AppContext";
-import { All_Images,NavMenu} from '../assets';
+import { All_Images,NavMenu} from '../../public';
 import { X } from 'react-feather';
 
 

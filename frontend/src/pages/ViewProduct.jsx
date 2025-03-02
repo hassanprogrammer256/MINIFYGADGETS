@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { All_Images } from '../assets';
+import { All_Images } from '../../public';
 import { Table } from "flowbite-react";
 import CardGroup from '../components/CardGroup';
 import Shop from './Shop';

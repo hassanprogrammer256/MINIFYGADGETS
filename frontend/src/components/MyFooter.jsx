@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import {Footer} from 'flowbite-react'
-import { All_Images, NavLinks } from '../assets/index.js'
+import { All_Images, NavLinks } from '../../public/index.js'
 import { AppContext } from './AppContext.jsx'
 import '../assets/style.css'
 import Review_group from './Review_group.jsx'

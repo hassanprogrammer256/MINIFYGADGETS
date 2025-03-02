@@ -2,7 +2,7 @@ import React from 'react'
 import { ArrowRight } from 'react-feather'
 import { Label, TextInput } from "flowbite-react";
 import { HiMail,HiSearch } from "react-icons/hi";
-import { All_Images } from '../assets';
+import { All_Images } from '../../public';
 
 const Shop_Hero = () => {
   return (

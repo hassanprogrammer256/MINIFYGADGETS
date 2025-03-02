@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 // import required modules
 import Mycard from './MyCard';
-import { Categories } from '../assets';
+import { Categories } from '../../public';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles

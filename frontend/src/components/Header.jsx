@@ -1,6 +1,6 @@
 import {React, useContext, useState} from 'react'
 import {X,ShoppingCart,Menu} from 'react-feather'
-import {All_Images,NavMenu} from '../assets/index.js'
+import {All_Images,NavMenu} from '../../public/index.js'
 import { AppContext } from './AppContext.jsx';
 const Header = () => {
   const {ToggleMobileView,activeMenu, setactiveMenu,setveiwcart,ToggleOverflow,cartItems} = useContext(AppContext)
