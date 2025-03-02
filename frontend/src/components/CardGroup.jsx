@@ -30,8 +30,8 @@ const {products} = useContext(AppContext)
         }}
 breakpoints={{
 300:{
-  slidesPerView: 1,
-    spaceBetween:50
+  slidesPerView: 2,
+    spaceBetween:10
 },
 576:{
     slidesPerView: 2,
