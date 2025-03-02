@@ -145,6 +145,15 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 
+
+
+app.get('/getdummy',(req,res) => {
+  const data = [];
+const response = Dummy.default.products
+
+res.send(response)
+})
+
 app.post('/submitorder', (req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
 
@@ -186,13 +195,6 @@ app.post('/submitorder', (req, res) => {
       res.status(500).json({ message: "Error sending OTP" });
   });
 });
-
-app.get('/getdummy',(req,res) => {
-  const data = [];
-const response = Dummy.default.products
-
-res.send(response)
-})
 
 main().catch(console.error);
 
