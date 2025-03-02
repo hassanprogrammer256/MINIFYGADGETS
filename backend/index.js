@@ -106,31 +106,7 @@ if(name.toLower()==="hassan"){res.json({message: 'sent'})}else{res.json({message
 
    });
 
-app.post('/confirmcode', (req, res) => {
-  const { code, email } = req.body;
 
-  // Find the verification entry for the provided email
-  const verification = emailVerifications.find(obj => obj.EMAIL === email);
-  
-  if (verification) {
-      // Check if the code matches and is still valid
-      if (verification.OTP === code) {
-          if (verification.EXPIRES >= Date.now()) {
-              // OTP accepted
-              res.json({ message: "OTP is accepted" });
-          } else {
-              // OTP expired
-              res.json({ message: "Code expired" });
-          }
-      } else {
-          // Incorrect OTP
-          res.json({ message: "Incorrect OTP" });
-      }
-  } else {
-      // No verification found for the provided email
-      res.json({ message: "No verification found for this email" });
-  }
-});
   // else{
   //   if ( verification.EXPIRES < Date.now()){
   //     emailverifications = emailverifications.filter(obj => obj.EMAIL!== email)
@@ -145,7 +121,6 @@ app.get('/',(req,res) => {
 res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
-
 app.post('/confirmcode', (req, res) => {
   const { code, email } = req.body;
 
@@ -171,8 +146,6 @@ app.post('/confirmcode', (req, res) => {
       res.json({ message: "No verification found for this email" });
   }
 });
- 
-
 
 
 app.get('/getdummy',(req,res) => {
@@ -206,9 +179,9 @@ app.post('/submitorder', (req, res) => {
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
   emailVerifications.push(otpInfo)
-  res.send({message:"success",})
+  res.json({message: 'sent'})
    }else{
-    res.send({message: 'not sent'})
+    res.json({message: 'not sent'})
    }
 
       // Store the OTP information in the emailVerifications array
@@ -227,3 +200,6 @@ app.post('/submitorder', (req, res) => {
 
 main().catch(console.error);
 
+app.listen(PORT, () => {
+    console.log(`SERVER IS RUNNING ON PORT ${process.env.PORT || PORT}`)
+})
