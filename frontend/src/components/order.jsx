@@ -102,7 +102,7 @@ const Order = () => {
         setisLoading(true);
         const res = await axios.post(`${API_URL}/submitorder`, { name, number, email, location, paymentMethod, CustomerOrder });
         console.log(res);
-        if (res.message === 'sent') {
+        if (res.data.message === 'sent') {
           alert('Order placed successfully');
           setcustomer_email(email);
           setCustomerOrder([]);
@@ -117,7 +117,7 @@ const Order = () => {
   };
 
   return (
-    isLoading ? <Preloader /> : <motion.div 
+    isLoading ? <Loading /> : <motion.div 
       initial={{ y: 500, opacity: 0, visibility: 'hidden' }}
       animate={{ y: payment ? 0 : -500, opacity: payment ? 1 : 0, visibility: payment ? 'visible' : 'hidden' }}
       transition={{ type: 'tween', duration: .5 }}
