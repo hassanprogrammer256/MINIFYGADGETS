@@ -8,8 +8,9 @@ const app = express()
 const PORT = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({
-  origin: 'https://minifygadgets.netlify.app',
-  methods:['GET','POST'] // Adjust this according to your frontend origin
+  // origin: 'https://minifygadgets.netlify.app',
+  methods:['GET','POST'],
+  credentials:true// Adjust this according to your frontend origin
 }));
 // app.use(cors({origin:'https://localhost:5173',methods:['POST','GET'],credentials:true}))
 let emailVerifications = [];
