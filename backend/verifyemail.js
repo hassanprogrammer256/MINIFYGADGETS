@@ -50,15 +50,15 @@ async function sendingotp(reciever) {
     </style>
 </head>
 <body>
-    <div class="container mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <div class="container mx-auto p-6 bg-slate-900 shadow-md rounded-lg mt-10">
         <div class="text-center">
-            <img src="https://via.placeholder.com/150" alt="Logo" class="mx-auto mb-6"> <!-- Placeholder for the logo -->
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200">MINIFY GADGETS</h1>
+            <img src="./images/Minify_Logo.png" alt="Logo" class="mx-auto mb-6"> <!-- Placeholder for the logo -->
+            <h1 class="text-3xl font-bold text-purple-900">MINIFY GADGETS</h1>
         </div>
         
         <div class="mt-8 text-center">
             <p class="text-lg text-gray-800 dark:text-gray-200">Your OTP code is:</p>
-            <span class="text-4xl font-extrabold text-blue-500">${otp.password}</span> <!-- Replace '123456' with the actual OTP dynamically -->
+            <span class="text-4xl font-extrabold text-amber-500">${otp.password}</span> 
         </div>
 
         <div class="mt-10 text-center">
@@ -70,7 +70,7 @@ async function sendingotp(reciever) {
 
         <div class="mt-4 text-center">
             <p class="text-sm text-gray-600 dark:text-gray-300">
-                © 2023 Minify Gadgets. All Rights Reserved.
+                © Minify Gadgets. All Rights Reserved.
             </p>
         </div>
     </div>
