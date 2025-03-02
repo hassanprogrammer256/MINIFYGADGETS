@@ -26,11 +26,11 @@ min="1"
 value={quantity[id] || '' } 
 onChange={(e) => handleQuantityChange(id,e.target.value)} 
 className="border p-1 rounded text-black font-black quantity"
-placeholder='1'
+
 />
 </div>
 </td>
-<td>{(price * (quantity[id] || price)).toFixed(2)}</td>
+<td>{(price * (quantity[id] )|| 0).toFixed(2)}</td>
 <td>
 <FaTrash 
 size={20} 

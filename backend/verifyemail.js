@@ -31,56 +31,47 @@ async function sendingotp(reciever) {
       from: process.env.SENDER, // sender address
       to: reciever, // list of receivers
       subject: "MINIFY GADGETS", 
-      html: `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Your OTP Code</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 20px;
-            }
-            .container {
-                max-width: 500px;
-                margin: auto;
-                background: white;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-            .otp {
-                font-size: 24px;
-                font-weight: bold;
-                color: #333;
-                text-align: center;
-                margin: 20px 0;
-            }
-            .footer {
-                text-align: center;
-                margin-top: 20px;
-                font-size: 12px;
-                color: #888;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Welcome!</h1>
-            <p>Your One-Time Password (OTP) is:</p>
-            <div class="otp">${otp.password}</div>
-            <p>Please enter this code to verify your account. This code is valid for 10 minutes.</p>
-            <div class="footer">
-                <p>&copy; MINIFY GADGETS</p>
-            </div>
+      html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9fafb;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+        <h1 class="text-3xl font-bold text-center text-blue-600">MINIFY GADGETS</h1>
+        
+        <div class="mt-8 text-center">
+            <p class="text-lg">Your OTP code is:</p>
+            <span class="text-4xl font-extrabold text-blue-500">${otp}</span>
         </div>
-    </body>
-    </html>
-    `, 
+
+        <div class="mt-10 text-center">
+            <p class="text-sm text-gray-600">
+                If you did not request this code, please ignore this message.
+                You can visit our <a href="https://minifygadget.com/help" class="text-blue-600 underline">Help Center</a> for more information.
+            </p>
+        </div>
+
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-600">
+                © Minify Gadgets. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>`, 
     })
     
 return otp;
