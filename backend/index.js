@@ -154,8 +154,8 @@ const categories_only =  data.map(obj => ({
   }))
 }));
 
-const phoneCategories = data.flatMap(obj => 
-  obj.categories
+const phoneCategories = data.slice(0,30).flatMap(obj => 
+  obj.subCategories
       .filter(category => 
           category.name.toLowerCase().includes("phones")
       )
