@@ -41,26 +41,28 @@ async function sendingotp(reciever) {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #fafafa; /* Background color */
+            background-color: #f3f4f6;padding:15px
+         
         }
         .container {
             max-width: 600px;
             margin: auto;
         }
-            .heading{color: #581c87}
+            .heading{color: #581c87,font-weight: bolder; text-align:center}
             .mini-body{background-color: #0f172a;}
-            .otp{color: #f59e0b}
+            .otp{color: #f59e0b,font-weight: bold,text-align:center;font-size:26px}
+            .otp-box{display:flex;flex-direction: column;align-items: center;justify-content: center}
     </style>
 </head>
 <body>
-    <div class="container mx-auto p-6 bg-slate-900 shadow-md rounded-lg mt-10 mini-body">
+    <div class="container mx-auto p-6 bg-slate-900shadow-md rounded-lg mt-10 mini-body">
         <div class="text-center">
             <h1 class="text-3xl font-bold text-purple-900 heading">MINIFY GADGETS</h1>
         </div>
         
-        <div class="mt-8 text-center">
+        <div class="mt-8 text-center otp-box">
             <p class="text-lg :text-gray-200">Your OTP code is:</p>
-            <span class="text-4xl font-extrabold text-amber-500 otp">${otp.password}</span> 
+            <span class="text-4xl font-extrabold otp">${otp.password}</span> 
         </div>
 
         <div class="mt-10 text-center">
