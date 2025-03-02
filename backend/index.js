@@ -185,6 +185,10 @@ app.post('/confirmcode', (req, res) => {
   //   res.json({message: "Invalid OTP"})
   // }
 }
+app.get('/',(req,res) => {
+
+res.send("WELCOME TO MINIFY GADGETS SERVER")
+})
 
 app.get('/getdummy',(req,res) => {
   const data = [];
