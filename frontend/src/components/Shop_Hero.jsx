@@ -12,8 +12,8 @@ const Shop_Hero = () => {
 <div className="flex justify-center px-4 lg:py-2">
 <div className="form-group w-[50%] relative ">
 <input className="text-center px-3 rounded-3xl" name="contact-name" id="contact-name" />
-<HiSearch size={30} className='absolute top-2 end-0 text-purple-900 font-black cursor-pointer hidden md:flex'/>
-<HiSearch size={20} className='absolute top-2 end-0 text-purple-900 font-black cursor-pointer flex md:hidden'/>
+{/* <HiSearch size={30} className='absolute top-2 end-0 text-purple-900 font-black cursor-pointer hidden md:flex'/>
+<HiSearch size={20} className='absolute top-2 end-0 text-purple-900 font-black cursor-pointer flex md:hidden'/> */}
 
 </div>
 
