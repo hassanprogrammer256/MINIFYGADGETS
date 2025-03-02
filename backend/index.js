@@ -13,7 +13,7 @@ app.use(cors({
 }));
 // app.use(cors({origin:'https://localhost:5173',methods:['POST','GET'],credentials:true}))
 let emailVerifications = [];
-
+const FRONTEND_URL = 'https://minifygadgets.netlify.app'
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
 const Collection_2 ='Products';

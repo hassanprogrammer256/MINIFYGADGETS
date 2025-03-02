@@ -40,7 +40,7 @@ async function sendingotp(reciever) {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f9fafb;
+            background-color: #f9fafb; /* Background color */
         }
         .container {
             max-width: 600px;
@@ -50,23 +50,26 @@ async function sendingotp(reciever) {
 </head>
 <body>
     <div class="container mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
-        <h1 class="text-3xl font-bold text-center text-blue-600">MINIFY GADGETS</h1>
+        <div class="text-center">
+            <img src="https://via.placeholder.com/150" alt="Logo" class="mx-auto mb-6"> <!-- Placeholder for the logo -->
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200">MINIFY GADGETS</h1>
+        </div>
         
         <div class="mt-8 text-center">
-            <p class="text-lg">Your OTP code is:</p>
-            <span class="text-4xl font-extrabold text-blue-500">${otp}</span>
+            <p class="text-lg text-gray-800 dark:text-gray-200">Your OTP code is:</p>
+            <span class="text-4xl font-extrabold text-blue-500">${otp.password}</span> <!-- Replace '123456' with the actual OTP dynamically -->
         </div>
 
         <div class="mt-10 text-center">
-            <p class="text-sm text-gray-600">
+            <p class="text-sm text-gray-600 dark:text-gray-300">
                 If you did not request this code, please ignore this message.
-                You can visit our <a href="https://minifygadget.com/help" class="text-blue-600 underline">Help Center</a> for more information.
+                You can visit our <a href=${FRONTEND_URL}/#contacts" class="text-blue-600 underline">Help Center</a> for more information.
             </p>
         </div>
 
         <div class="mt-4 text-center">
-            <p class="text-sm text-gray-600">
-                © Minify Gadgets. All Rights Reserved.
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+                © 2023 Minify Gadgets. All Rights Reserved.
             </p>
         </div>
     </div>

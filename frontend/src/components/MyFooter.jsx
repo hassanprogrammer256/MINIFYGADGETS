@@ -69,7 +69,7 @@ if (name && phonenumber && subject && email && message) {
 <div className="contact-form-wrapper">
 <div className="introduce">
 
-<form className="rnt-contact-form rwt-dynamic-form row " id="" onSubmit={HandleSubmit}>
+<form className="rnt-contact-form rwt-dynamic-form row " id="contacts" onSubmit={HandleSubmit}>
 
 <div className="col-lg-6">
 <div className="form-group">
