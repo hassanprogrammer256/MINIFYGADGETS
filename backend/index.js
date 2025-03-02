@@ -92,7 +92,14 @@ async function main() {
     res.json({ message: 'Deleted successfully' });
   })
 
+  app.get('/getdummy',(req,res) => {
+    const data = [];
+  const response = Dummy.default.products
   
+  res.send(response)
+  })
+
+
 app.post('/submitorder', (req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
 
@@ -187,12 +194,7 @@ app.get('/',(req,res) => {
 res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
-app.get('/getdummy',(req,res) => {
-  const data = [];
-const response = Dummy.default.products
 
-res.send(response)
-})
 
 main().catch(console.error);
 
