@@ -154,7 +154,19 @@ const categories_only =  data.map(obj => ({
   }))
 }));
 
-res.send(categories_only.slice(0,10))
+const phoneCategories = data.flatMap(obj => 
+  obj.categories
+      .filter(category => 
+          category.name.toLowerCase().includes("phones")
+      )
+      .map(category => ({
+          name: category.name
+      }))
+);
+
+
+
+res.send(phoneCategories.slice(0,10))
 })
 
 app.post('/submitorder', (req, res) => {
