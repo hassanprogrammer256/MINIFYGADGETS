@@ -36,47 +36,34 @@ async function sendingotp(reciever) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minify||Gadgets</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>OTP Verification</title>
     <style>
         body {
-            background-color: #f3f4f6;padding:15px
-         
+            background-color: #121212; /* Dark background */
+            color: #ffffff; /* Light text */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
+        .otp-code {
+            font-size: 2em;
+            font-weight: bold;
+            color: #FFA500; /* Orange color for OTP code */
         }
-            .heading{color: #581c87,font-weight: bolder; text-align:center}
-            .mini-body{background-color: #0f172a;}
-            .otp{color: #f59e0b,font-weight: bold,text-align:center;font-size:26px}
-            .otp-box{display:flex;flex-direction: column;align-items: center;justify-content: center}
+        .help-link {
+            color: #ffffff; /* Light color for the link */
+            text-decoration: none;
+        }
+        .help-link:hover {
+            color: #FFC107; /* Amber color on hover */
+        }
     </style>
 </head>
 <body>
-    <div class="container mx-auto p-6 bg-slate-900shadow-md rounded-lg mt-10 mini-body">
-        <div class="text-center">
-            <h1 class="text-3xl font-bold text-purple-900 heading">MINIFY GADGETS</h1>
-        </div>
-        
-        <div class="mt-8 text-center otp-box">
-            <p class="text-lg :text-gray-200">Your OTP code is:</p>
-            <span class="text-4xl font-extrabold otp">${otp.password}</span> 
-        </div>
-
-        <div class="mt-10 text-center">
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-                If you did not request this code, please ignore this message.
-                You can visit our <a href="${process.env.FRONTEND_URL}/#contacts" class="text-blue-600 underline">Help Center</a> for more information.
-            </p>
-        </div>
-
-        <div class="mt-4 text-center">
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-                © Minify Gadgets. All Rights Reserved.
-            </p>
-        </div>
-    </div>
+    <h1>Your OTP Code</h1>
+    <p>We have sent you a One-Time Password (OTP) for verification.</p>
+    <p class="otp-code">${otp.password}/p> 
+    <p>If you did not request this code, please let us know by visiting our <a href="${process.env.FRONTEND}" class="help-link">Help Center</a>.</p>
 </body>
 </html>`, 
     })
@@ -86,5 +73,4 @@ return otp;
   }
     catch(e){console.log("UNABLE TO SEND EMAIL");return false}
 }
-
 module.exports=sendingotp;
