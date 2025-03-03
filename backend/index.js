@@ -119,7 +119,7 @@ app.post('/confirmcode', (req, res) => {
   const { code, email } = req.body;
 
   // Find the verification entry for the provided email
-  const verification = emailVerifications.find(obj => obj.EMAIL === email);
+const verification = emailVerifications.find(obj => obj.EMAIL === email);
   
   if (verification) {
       // Check if the code matches and is still valid
