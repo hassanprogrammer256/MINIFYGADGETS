@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
-const FRONTEND_URL = 'https://minifygadgets.netlify.app'
+
+const FRONTEND_URL = process.env.FRONTEND_URL
 require('dotenv').config()
 
 const generateOTP = () => {

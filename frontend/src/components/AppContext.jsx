@@ -34,10 +34,9 @@ const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
 // const API_URL = 'https://minifygadgets.onrender.com'
-const API_URL = 'https://minifygadgets.vercel.app'
+// const API_URL = 'https://minifygadgets.vercel.app'
+const API_URL = 'https://localhost:3000'
 
-// LOCATION_API_ID = 'H8SA7Oy1hcO7Jv3RbcjA'
-// LOCATION_API_KEY = 'fn5NwK13TLc3vnPLt47c2Y9U2TvysfiZecNxJy8CQpA'
 const getData = useCallback(() => {
   setisLoading(true);
   fetch(`${API_URL}/getdummy`)
@@ -131,7 +130,7 @@ const SubmittingOrder = () => {
 
 // ALL CONTEXT VALUES
 
-const AppContextValues = {getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email}
+const AppContextValues = {getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setSearchTerm}
 
 
 // RETURNING AND EXPORTING THE REQUIRED MODULES

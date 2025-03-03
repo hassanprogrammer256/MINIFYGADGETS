@@ -40,7 +40,7 @@ setveiwcart(false);
     </h1>
 
 <h2 className="text-center font-bold text-xl text-gray-400 text-ellipsis text-wrap break-words mb-4">
-    Minify Gadgets has sent an OTP(One Time Password) on your phone Number, please Enter the 6 digit password to verify your Number
+    Minify Gadgets has sent an OTP(One Time Password) on your email, please  Check your email and enter the 6 digit password to verify your order
 </h2>
 <div className="flex justify-center">
 <form className=" md:px-4 px-2 flex justify-between"onSubmit={() => {handleSubmit()}}>

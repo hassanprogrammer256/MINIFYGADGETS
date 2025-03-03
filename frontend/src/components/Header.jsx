@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <>
 
-    <div className='  justify-between lg:px-5 p-2 top-0 fixed w-full z-10 lg:flex flex-col  backdrop-blur-3xl md:backdrop-blur-lg'>
+    <div className='  justify-between lg:px-5 p-2 top-0 fixed w-full z-10 lg:flex flex-col bg-slate-950'>
       <div className="container:lg flex flex-col">
         <div className="upper flex justify-between mb-0 pb-0 ">
   

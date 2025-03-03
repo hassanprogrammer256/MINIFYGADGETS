@@ -5,20 +5,15 @@ const mongoose = require('mongoose');
 const sendingotp = require('./verifyemail')
 const otp = require('./verifyemail')
 const app = express()
+require('dotenv').config()
 const PORT = process.env.PORT || 3000
 app.use(express.json());
-app.use(cors({
-  // origin: 'https://minifygadgets.netlify.app',
-  methods:['GET','POST'],
-  credentials:true// Adjust this according to your frontend origin
-}));
-// app.use(cors({origin:'https://localhost:5173',methods:['POST','GET'],credentials:true}))
+// app.use(cors({origin:'https://localhost:5173',methods:['POST','GET'],credentials:true}))/
+app.use(cors())
 let emailVerifications = [];
-const FRONTEND_URL = 'https://minifygadgets.netlify.app'
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
 const Collection_2 ='Products';
-// test server = https://minifyserver.onrender.com/getdummy
 
 const { MongoClient, ServerApiVersion,ObjectId } = require('mongodb');
 const uri = "mongodb+srv://MINIFY_GADGETS:Hommie256@minifygadgets.8gpiu.mongodb.net/?retryWrites=true&w=majority&appName=MINIFYGADGETS";
@@ -30,7 +25,6 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,}
 });
-
 
 async function main() {
   // Connect to the MongoDB client
@@ -147,13 +141,9 @@ app.post('/confirmcode', (req, res) => {
   }
 });
 
-
 app.get('/getdummy',(req,res) => {
-  const data = [];
 const response = Dummy.default.products
-
-res.send(response)
-})
+res.send(response)})
 
 app.post('/submitorder', (req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
@@ -198,7 +188,7 @@ app.post('/submitorder', (req, res) => {
   });
 });
 
-main().catch(console.error);
+// main().catch(console.error);
 
 app.listen(PORT, () => {
     console.log(`SERVER IS RUNNING ON PORT ${process.env.PORT || PORT}`)
