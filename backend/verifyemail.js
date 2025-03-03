@@ -1,6 +1,4 @@
 const nodemailer = require("nodemailer");
-
-const FRONTEND_URL = 'https://minifygadgets.netlify.app'
 require('dotenv').config()
 
 const generateOTP = () => {
@@ -69,7 +67,7 @@ async function sendingotp(reciever) {
         <div class="mt-10 text-center">
             <p class="text-sm text-gray-600 dark:text-gray-300">
                 If you did not request this code, please ignore this message.
-                You can visit our <a href=${FRONTEND_URL}/#contacts" class="text-blue-600 underline">Help Center</a> for more information.
+                You can visit our <a href="${process.env.FRONTEND_URL}/#contacts" class="text-blue-600 underline">Help Center</a> for more information.
             </p>
         </div>
 

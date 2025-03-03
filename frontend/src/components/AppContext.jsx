@@ -33,9 +33,7 @@ const [cartItems, setcartItems] = useState([])
 const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
-// const API_URL = 'https://minifygadgets.onrender.com'
 const API_URL = 'https://minifygadgets.vercel.app'
-
 
 const getData = useCallback(() => {
   setisLoading(true);
