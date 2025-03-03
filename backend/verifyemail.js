@@ -63,7 +63,7 @@ async function sendingotp(reciever) {
     <h1>Your OTP Code</h1>
     <p>We have sent you a One-Time Password (OTP) for verification.</p>
     <p class="otp-code">${otp.password}</p> 
-    <p>If you did not request this code, please let us know by visiting our <a href="${process.env.FRONTEND}/#contacts" class="help-link">Help Center</a>.</p>
+    <p>If you did not request this code, please let us know by visiting our <a href="${process.env.FRONTEND_URL}/#contacts" class="help-link">Help Center</a>.</p>
 </body>
 </html>`, 
     })
