@@ -8,8 +8,8 @@ const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
 app.use(express.json());
-// app.use(cors({origin:'https://localhost:5173',methods:['POST','GET'],credentials:true}))/
-app.use(cors())
+app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials:true}))
+
 let emailVerifications = [];
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
