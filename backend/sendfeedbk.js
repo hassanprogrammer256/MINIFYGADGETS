@@ -1,16 +1,5 @@
 const nodemailer = require("nodemailer");
 require('dotenv').config()
-
-const generateOTP = () => {
-  // Generate a random 6 digit number
-  const password = Math.floor(1000 + Math.random() * 900000);
-  const expiry = Date.now() + 10 * 60 * 1000; 
-  let otpData = { password, expiry }; 
-return otpData; 
-}
-
-
-    // HTML body with OTP
    
 const transporter = nodemailer.createTransport({
 service:'gmail',
@@ -24,19 +13,18 @@ service:'gmail',
 });
 
 // async..await is not allowed in global scope, must use a wrapper
-async function sendingotp(reciever) {
-  const otp = generateOTP();
+async function sendingfeedback(sender,subject,message,name,phonenumber) {
   try{  // send mail with defined transport object
     const info = await transporter.sendMail({
-      from: process.env.SENDER, // sender address
-      to: reciever, // list of receivers
-      subject: "MINIFY GADGETS", 
+      from: sender, // sender address
+      to: process.env.LAUBEN_EMAIL, // list of receivers
+      subject:'CUSTOMER FEEDBACK', 
       html: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTP Verification</title>
+    <title>Minify||Gadgets</title>
     <style>
         body {
             background-color: #121212; /* Dark background */
@@ -45,32 +33,30 @@ async function sendingotp(reciever) {
             text-align: center;
             padding: 20px;
         }
-        .otp-code {
+        h1 {
             font-size: 2em;
             font-weight: bold;
             color: #FFA500; /* Orange color for OTP code */
         }
-        .help-link {
-            color: #ffffff; /* Light color for the link */
-            text-decoration: none;
-        }
-        .help-link:hover {
-            color: #FFC107; /* Amber color on hover */
-        }
+            .flex{display: flex;}
+            .text-black{color: #000000}
+            .font-black{font-weight:600}
+            .text-blue{color: #0000FF}
     </style>
 </head>
 <body>
-    <h1>MINIFY GADGETS</h1>
-    <p>Hello. Please enter the OTP code to verify your email and confirm your Order</p>
-    <p class="otp-code">${otp.password}</p> 
-    <p>If you did not request this code, please let us know by visiting our <a href="${process.env.FRONTEND_URL}/#contacts" class="help-link">Help Center</a>.</p>
+    <h1>${subject}</h1>
+    <p>${message}</p> 
+    
+    <h4>sender:</<h4><span class = 'text-black font-black'>${name}</span>
+    <h4>email:</<h4><span class = 'text-blue font-black'>${sender}</span>
+    <h4>phone number:</<h4><span class = 'text-black font-black'>${phonenumber}</span>
 </body>
 </html>`, 
     })
     
-return otp;
   
   }
     catch(e){console.log("UNABLE TO SEND EMAIL");return false}
 }
-module.exports=sendingotp;
+module.exports=sendingfeedback;

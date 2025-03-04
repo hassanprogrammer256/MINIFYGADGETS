@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const Dummy = require('./Dummy')
+const Dummy = require('./data.json')
 const mongoose = require('mongoose');
 const sendingotp = require('./verifyemail')
+const sendingfeedback = require('./sendfeedbk')
 const otp = require('./verifyemail')
 const app = express()
 require('dotenv').config()
@@ -87,20 +88,6 @@ async function main() {
     res.json({ message: 'Deleted successfully' });
   })
 
-app.post('/feedback', (req, res) => {
-  const { name, phonenumber, email, subject,message } = req.body;
-
-  const CustomerFeedback = {
-      "NAME": name,
-      "PHONE NUMBER": phonenumber,
-      "EMAIL": email,
-      "SUBJECT": subject,
-      "MESSAGE": message};
-if(name.toLower()==="hassan"){res.json({message: 'sent'})}else{res.json({message: 'not sent'})}
-
-   });
-
-
   // else{
   //   if ( verification.EXPIRES < Date.now()){
   //     emailverifications = emailverifications.filter(obj => obj.EMAIL!== email)
@@ -141,9 +128,6 @@ const verification = emailVerifications.find(obj => obj.EMAIL === email);
   }
 });
 
-app.get('/getdummy',(req,res) => {
-const response = Dummy.default.products
-res.send(response)})
 
 app.post('/submitorder', (req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
@@ -187,6 +171,55 @@ app.post('/submitorder', (req, res) => {
       res.status(500).json({ message: "Error sending OTP" });
   });
 });
+
+app.post('/sendfeedback', (req, res) => {
+  const { name, phonenumber, email, subject,message } = req.body;
+
+if(name !=="" && phonenumber !=="" && email !== "" && subject !== "" && message !== ""){
+ sendingfeedback(email, subject, message,name,phonenumber).then(result => {
+  res.json({message: 'Feedback sent successfully'})
+ })
+  }else{res.json({message: 'not sent'})}
+
+   });
+
+app.post('/search', async (req, res) => {
+  const searchValue = req.body.q; // Retrieve the search term from the request body
+
+  if (!searchValue) {
+      return res.status(400).json({ error: 'Search value is required' });
+  }
+
+  try {
+      await client.connect();
+      const database = client.db(Database);
+      
+      const collection = database.collection(Collection_1);
+
+      const query = { name: { $regex: searchValue, $options: 'i' } }; // Match the search term in the 'name' field
+      const results = await collection.find(query).toArray();
+      res.json(results);
+  } catch (error) {
+      console.error('Error occurred while searching:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  } finally{await client.close()}
+});
+
+app.post('/getdummy', async(req,res) => {
+  const val = req.body.q
+  if (!val) {
+    return res.status(400).json({ error: 'Search value is required' });
+}
+
+try {
+
+    res.json(Dummy.filter(d =>d.category === val));
+} catch (error) {
+    console.error('Error occurred while searching:', error);
+    res.status(500).json({ error: 'Internal server error' });
+} finally{await client.close()}
+
+})
 
 // main().catch(console.error);
 

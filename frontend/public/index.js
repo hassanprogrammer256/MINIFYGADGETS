@@ -20,7 +20,7 @@ export const Categories = ['All','UK-Used','Best Deals','Trending','Brand-New']
 
 export const NavLinks = ['home','shop','viewProduct']
 
-export  const All_Images = {min_logo,headphones_1,banner_bg,contacts,headphones_100,hassan,tab_icon,}
+export  const All_Images = {min_logo,headphones_1,banner_bg,contacts,headphones_100,hassan,tab_icon,tv_icon,repair_icon,speakers_icon,laptop_icon,gamepad_icon,accessories_icon,home_appliances_icon}
 
 export const Products = [
 {

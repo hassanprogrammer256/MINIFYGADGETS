@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { X } from 'react-feather';
 import axios from 'axios';
 import Loading from './Loading';
-import Preloader from './Preloader';
+
 
 const Order = () => {
-  const {
+  const {setfullpageloading,
     customer_email,
     setcustomer_email,
     API_URL,
@@ -99,7 +99,7 @@ const Order = () => {
 
     if (name && email && location && paymentMethod && number) {
       try {
-        setisLoading(true);
+        setfullpageloading(true);
         const res = await axios.post(`${API_URL}/submitorder`, { name, number, email, location, paymentMethod, CustomerOrder });
         if (res.status === 200) {
           alert('Order placed successfully');
@@ -110,7 +110,7 @@ const Order = () => {
           setconfirmpayment(true);
         }} catch (err) {console.error('some thing went wrong');
       } finally {
-        setisLoading(false);
+        setfullpageloading(false);
       }
     } 
   };

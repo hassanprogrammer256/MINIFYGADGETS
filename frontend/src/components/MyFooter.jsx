@@ -2,16 +2,15 @@ import React, { useContext, useState } from 'react'
 import {Footer} from 'flowbite-react'
 import { All_Images, NavLinks } from '../../public/index.js'
 import { AppContext } from './AppContext.jsx'
-import '../assets/style.css'
 import Review_group from './Review_group.jsx'
 import axios from 'axios'
 
 const MyFooter = () => {
-  const {API_URL,activemenu, setactivemenu} = useContext(AppContext)
+  const {API_URL,activemenu, setactivemenu,messagesent, setmessagesent,setistoast} = useContext(AppContext)
   const [sendingMessage, setsendingMessage] = useState(false)
   const HandleSubmit = async(event) => {
 event.preventDefault();
-const name  = document.getElementById('contact-name').value;
+const name  = document.getElementById('contact-fullnames').value;
 const phonenumber  = document.getElementById('contact-phone').value;
 const email  = document.getElementById('contact-email').value;
 const subject  = document.getElementById('subject').value;
@@ -21,9 +20,11 @@ if (name && phonenumber && subject && email && message) {
   try {
     setsendingMessage(true)
     const res = await axios.post(`${API_URL}/sendfeedback`, {name, phonenumber, email, message, subject});
+    console.log({name, phonenumber, email, message, subject})
     if (res.status === 200) {
-      console.log('SENT');}else{
-        console.log('FAILED');
+setistoast(true)}
+else{
+  seta;
       }
     } catch (err) {console.error(err);
   }finally {
@@ -74,7 +75,7 @@ if (name && phonenumber && subject && email && message) {
 <div className="col-lg-6">
 <div className="form-group">
 <label htmlFor="contact-name">Your Name</label>
-<input className="form-control form-control-lg" name="contact-name" id="contact-name" type="text" required />
+<input className="form-control form-control-lg" name="contact-name" id="contact-fullnames" type="text" required />
 </div>
 </div>
 

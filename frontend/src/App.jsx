@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from './components/Header'
 import Pages from './components/Pages'
 import MyFooter from './components/MyFooter'
@@ -9,9 +9,14 @@ import MyToast from './components/MyToast'
 import Veiwcart from './components/Veiwcart'
 import Order from './components/order'
 import Confirmorder from './components/confirmpayment'
+import Note from './components/alert'
+import { AppContext } from './components/AppContext'
+import Loading from './components/Loading'
+
 
 
 const App =() => {
+  const {addingitem, setaddingitem,alert,fullpageloading, messagesent, setmessagesent,istoast,setistoast} = useContext(AppContext)
   return (
   <>
   <div className="bg-web">
@@ -19,8 +24,19 @@ const App =() => {
 <Pages />
 <MyFooter />
   </div>
-<MySidebar /><MyToast /> <Veiwcart /><Order /><Confirmorder />
-
+<MySidebar /><MyToast
+  message={
+    istoast && (
+      messagesent ? 'Message Sent Successfully' : 'Item Added Successfully'
+    )
+  }
+  action={
+    istoast && (
+      messagesent ? '' : 'View Cart'
+    )
+  }
+/><Veiwcart /><Order /><Confirmorder /><Note message={alert ? 'Item already in Cart' : 'Operation not succesfull, please try again'} />
+{fullpageloading ?<Loading />:null}
   </>
   )
 }

@@ -16,10 +16,12 @@ const currentLocation = useLocation().pathname
 // ====== START OF ALL USESTATES=====
 const [active_Brand, setactive_Brand] = useState(0)
 const [active_Product, setactive_Product] = useState(0)
-
-const [searchTerm, setSearchTerm] = useState("phones")
+const [alert,setalert] = useState(false)
+const [searchTerm, setsearchTerm] = useState("phones")
 const [products, setproducts] = useState([])
 const [categories, setcategories] = useState([])
+const [addingitem, setaddingitem] = useState(false)
+const [fullpageloading,setfullpageloading] = useState(false)
 const [isLoading, setisLoading] = useState(false)
 const [mobileMenuOpen, setmobileMenuOpen] = useState(false)
 const [overflow_y, setoverflow_y] = useState(true)
@@ -30,30 +32,34 @@ const [payment, setpayment] = useState(false)
 const [confirmpayment, setconfirmpayment] = useState(false)
 const [cartItems, setcartItems] = useState([])
  const [quantity, setQuantity] = useState({});
+ const [messagesent, setmessagesent] = useState(false);
 const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
 const API_URL = 'https://minifygadgets.vercel.app'
+ const STANDARD_UGX_RATE = 4648.7483
 
-const getData = useCallback(() => {
-  setisLoading(true);
-  fetch(`${API_URL}/getdummy`)
-    .then(response => response.json())
-    .then(responseData => {
-      // const sliced = responseData.slice(0, 10);
-      setproducts(responseData);
-      
-      setisLoading(false); // Update loading state
-    })
-    .catch(err => {
-      console.error(err); // Log any error that occurs during fetching
-      setisLoading(false); // It's good practice to stop loading on error
-    });
-}, []);
+const getData = async () => {
+try {
+  setfullpageloading(true)
+      const response = await fetch(`${API_URL}/getdummy`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ q: Products[active_Product].name }), // Send search term in the body
+      });
+      setproducts(data)
+    }catch (err) {
+      console.error('Error fetching data:', err);
+    setfullpageloading(false);
+  }
+      finally{setfullpageloading(false);}
+};
 
 useEffect(() => {
   getData();
-}, [getData]);
+}, [active_Product]);
 
 // ====== START OF ALL FUNCTIONS=====
 const ToggleOverflow = () => {
@@ -81,19 +87,18 @@ const decreaseqtty = (id)=> {
 }
 
 const AddItems = (name, id, price) => {
-
-    const item = {
+  setaddingitem(true)
+const item = {
       id:id,
       name: name, 
       price: price,
   };
 if (cartItems.find(obj => obj.id === item.id)) {
-  alert('Item already in cart');}else{
+setalert(true)
+}else{
   setcartItems(prevItems => [...prevItems, item]);
-  setistoast(true);
-  
-}
-  
+  setistoast(true);}
+  setaddingitem(false)
 
   
 };
@@ -128,7 +133,7 @@ const SubmittingOrder = () => {
 
 // ALL CONTEXT VALUES
 
-const AppContextValues = {getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setSearchTerm}
+const AppContextValues = {STANDARD_UGX_RATE,getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alert,setalert,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent}
 
 
 // RETURNING AND EXPORTING THE REQUIRED MODULES

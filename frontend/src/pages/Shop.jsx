@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { motion } from "framer-motion";
@@ -10,7 +10,9 @@ import Shop_Hero from '../components/Shop_Hero';
 
 
 const Shop = () => {
-  const {active_Product,setactive_Product,active_Brand,setactive_Brand,currentLocation} = useContext(AppContext)
+  const {API_URL,active_Product,setactive_Product,active_Brand,setactive_Brand,currentLocation,searchTerm, setsearchTerm} = useContext(AppContext)
+
+
   return (
     <div >
       {currentLocation == '/' ? <h1 className="text-center font-black text-ellipsis break-words text-wrap text-white lg:text-6xl uppercase mb-0 sm:text-5xl text-3xl">WE OFFER VARIETY OF PRODUCTS</h1> : 

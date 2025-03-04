@@ -10,7 +10,16 @@ const MyCarousel = () => {
 
     // Get products from the AppContext and filter brands for unique ones
 const {active_Product,setactive_Product,active_Brand,setactive_Brand,products} = useContext(AppContext);
+
 const brands = []
+
+products.forEach(product =>{
+    if (brands.includes(product.subcategory)){
+        null
+    }else{
+        brands.push(product.subcategory)
+    }
+})
 
     return (
 <>
@@ -37,10 +46,10 @@ breakpoints={{
     spaceBetween:40
     },
 }}
-className="mySwiper shadow-lg lg:h-30"
+className="mySwiper shadow-lg lg:h-30"key={index}
 >
-{Products.map((each,index) => <SwiperSlide key={index} className={active_Product === index ? 'bg-gray-300 my-1 flex justify-center align-content-center shadow-active-state  lg:pt-3' : 'flex justify-center align-content-center  rounded lg:pt-3 hover:bg-slate-500'}>
-    <div className="flex justify-center align-content-center rounded-circle cursor-pointer " onClick = {() => setactive_Product(index)}>
+{Products.map((each,index) => <SwiperSlide key={each.id} className={active_Product === index ? 'bg-gray-300 my-1 flex justify-center align-content-center shadow-active-state  lg:pt-3' : 'flex justify-center align-content-center  rounded lg:pt-3 hover:bg-slate-500'} onClick = {() => setactive_Product(index)}>
+    <div className="flex justify-center align-content-center rounded-circle cursor-pointer " >
 
         <img src = {each.image} className="w-20 max-w-10 max-h-10 rounded cursor-pointer shadow-xl hidden lg:flex" /></div>
         <p className="text-center font-bold cursor-pointer text-black text-xl lg:text-2xl">{each.name}</p>
