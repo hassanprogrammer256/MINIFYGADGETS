@@ -2,6 +2,7 @@
 import  React, {createContext,useRef,useState ,useEffect, useCallback} from "react";
 import { useLocation} from "react-router-dom";
 import { Products } from "../../public";
+import axios from 'axios';
 
 // CREATING A CONTEXT
 export const AppContext = createContext();
@@ -38,25 +39,24 @@ const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
 const API_URL = 'https://minifygadgets.vercel.app'
  const STANDARD_UGX_RATE = 4648.7483
+ const getData = async () => {
+  try {
+    setfullpageloading(true);
+    
+    const response = await axios.post(`${API_URL}/getdummy`, {
+      q: Products[active_Product].name, // Send search term in the body
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
 
-const getData = async () => {
-try {
-  setfullpageloading(true)
-      const response = await fetch(`${API_URL}/getdummy`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ q: Products[active_Product].name }), // Send search term in the body
-      });
-      const data = await response.json();
-      console.log(data.message);
-      setproducts(data)
-    }catch (err) {
-      console.error('Error fetching data:', err);
+    setproducts(response.data); // Axios automatically parses the JSON response
+  } catch (err) {
+    console.error('Error fetching data:', err);
+  } finally {
     setfullpageloading(false);
   }
-      finally{setfullpageloading(false);}
 };
 
 useEffect(() => {
