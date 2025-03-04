@@ -27,76 +27,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,}
 });
 
-async function main() {
-  // Connect to the MongoDB client
-  await client.connect();
-  console.log('Connected to MongoDB');
-  const db = client.db(Database);
-  const Categories_Collection = db.collection(Collection_1);
-  const Product_Collection = db.collection(Collection_2);
-
-  //  ================CATEGORIES===================
-
-  //2-get all categories
-  app.get('/allcategories', async (req, res) => {
-    const all_Categories = await Categories_Collection.find({}).toArray();
-    // const categories = all_Categories.map(l => l.name);
-    res.json(all_Categories.slice(0,10))
-  });
-
-  // Find Data by ID
-  app.get('/get_pdt_id/:id', async (req, res) => {
-    const id = req.params.id;
-    const data = await collection.findOne({ _id: new ObjectId(id) });
-    if (!data) {
-      return res.status(404).json({ message: 'Not found' });
-    }
-    res.json(data);
-  });
-
-  // Update All Data
-  app.put('/data', async (req, res) => {
-    const updateData = req.body;
-    const result = await collection.updateMany({}, { $set: updateData });
-    res.json({ updatedCount: result.modifiedCount });
-  });
-
-  // Update Data by ID
-  app.patch('/change_pdt_id/:id', async (req, res) => {
-    const id = req.params.id;
-    const updates = req.body;
-    const result = await collection.updateOne({ _id: new ObjectId(id) }, { $set: updates });
-    if (result.matchedCount === 0) {
-      return res.status(404).json({ message: 'Not found' });
-    }
-    res.json({ modifiedCount: result.modifiedCount });
-  });
-
-  // Delete All Data
-  app.delete('/data', async (req, res) => {
-    const result = await collection.deleteMany({});
-    res.json({ deletedCount: result.deletedCount });
-  });
-
-  // Delete Data by ID
-  app.delete('/data/:id', async (req, res) => {
-    const id = req.params.id;
-    const result = await collection.deleteOne({ _id: new ObjectId(id) });
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ message: 'Not found' });
-    }
-    res.json({ message: 'Deleted successfully' });
-  })
-
-  // else{
-  //   if ( verification.EXPIRES < Date.now()){
-  //     emailverifications = emailverifications.filter(obj => obj.EMAIL!== email)
-  //     res.json({message: "OTP expired"})
-  //     return 0;
-  //   }
-  //   res.json({message: "Invalid OTP"})
-  // }
-}
 app.get('/',(req,res) => {
 
 res.send("WELCOME TO MINIFY GADGETS SERVER")
@@ -204,7 +134,7 @@ app.post('/search', async (req, res) => {
   } finally{await client.close()}
 });
 
-app.post('/getdummy', async(req,res) => {
+app.post('/allproducts', async(req,res) => {
   const val = req.body.q
   if (!val) {
     return res.status(400).json({ error: 'Search value is required' });
@@ -220,7 +150,6 @@ try {
 
 })
 
-// main().catch(console.error);
 
 app.listen(PORT, () => {
     console.log(`SERVER IS RUNNING ON PORT ${process.env.PORT || PORT}`)

@@ -43,7 +43,7 @@ const API_URL = 'https://minifygadgets.vercel.app'
   try {
     setfullpageloading(true);
     
-    const response = await axios.post(`${API_URL}/getdummy`, {
+    const response = await axios.post(`${API_URL}/allproducts`, {
       q: Products[active_Product].name, // Send search term in the body
     }, {
       headers: {
