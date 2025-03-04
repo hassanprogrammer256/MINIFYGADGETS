@@ -14,7 +14,7 @@ let pdt = products.find(p => p.id === id);
     <>
 <div className="flex flex-col gap-4 pt-48 lg:grid lg-grid-cols-12">
 <div className="flex md:grid-cols-[30%_70%] bg-gray-100 relative">
-  <img src= {All_Images.min_logo} className=' w-[40%] md:w-[20%] h-[70%] lg:max-h-[70%] mx-3 '/>
+  <img src= {pdt.image} className=' w-[40%] md:w-[20%] h-[70%] lg:max-h-[70%] mx-3 '/>
   <div className="flex flex-col max-w-[90%] gap-6">
 <h1 className="text-black text-3xl font-black text-center">{pdt.name}</h1>
 <h3 className="text-gray-800 break-words text-ellipsis text-wrap">
