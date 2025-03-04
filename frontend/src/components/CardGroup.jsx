@@ -57,7 +57,7 @@ const CardGroup = () => {
                 name={(e.name).length > 20 ? (e.name).substring(0, 20) :e.name}
                 price={(e.price * STANDARD_UGX_RATE).toFixed(0)}
                 shipping_fee={(e.shipping * STANDARD_UGX_RATE).toFixed(0) }
-                img={e.image && active_Product === 0 ?All_Images.tab_icon : active_Product === 1 ? All_Images.tv_icon: active_Product === 2 ? All_Images.tab_icon  : active_Product === 3 ? All_Images.speakers_icon : active_Product === 4 ? All_Images.tab_icon :  active_Product === 5 ? All_Images.laptop_icon : active_Product === 6 ? All_Images.gamepad_icon : active_Product === 7 ? All_Images.home_appliances_icon : All_Images.accessories_icon}
+                img={e.image}
               />
             </SwiperSlide>
           ))}
