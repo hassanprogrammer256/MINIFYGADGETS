@@ -9,7 +9,8 @@ export const AppContext = createContext();
 
 // CONTEXT FUNCTION
 const AppContextProvider = (props) => {
-// const API_URL = 
+  const API_URL = 'https://minifygadgets.vercel.app'
+  const STANDARD_UGX_RATE = 4648.7483
 
 // ======START OF ALL CONSTANTS AND VARIABLES DECLARED======
 const currentLocation = useLocation().pathname
@@ -37,21 +38,27 @@ const [cartItems, setcartItems] = useState([])
 const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
-const API_URL = 'https://minifygadgets.vercel.app'
- const STANDARD_UGX_RATE = 4648.7483
- const getData = async () => {
+
+const getData = async () => {
   try {
     setfullpageloading(true);
     
-    const response = await axios.post(`${API_URL}/allproducts`, {
-      q: Products[active_Product].name, // Send search term in the body
-    }, {
+    const response = await fetch(`${API_URL}/allproducts`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify({
+        q: Products[active_Product].name, // Send search term in the body
+      })
     });
 
-    setproducts(response.data); // Axios automatically parses the JSON response
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json(); // Parse the JSON response
+    setproducts(data); // Set products with the fetched data
   } catch (err) {
     console.error('Error fetching data:', err);
   } finally {
