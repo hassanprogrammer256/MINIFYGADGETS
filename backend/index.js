@@ -217,7 +217,7 @@ try {
 } catch (error) {
     console.error('Error occurred while searching:', error);
     res.status(500).json({ error: 'Internal server error' });
-} finally{await client.close()}
+}
 
 })
 
