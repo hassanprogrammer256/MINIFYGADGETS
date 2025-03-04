@@ -9,7 +9,7 @@ import MyToast from './components/MyToast'
 import Veiwcart from './components/Veiwcart'
 import Order from './components/order'
 import Confirmorder from './components/confirmpayment'
-import Note from './components/alert'
+import Note from './components/Alert'
 import { AppContext } from './components/AppContext'
 import Loading from './components/Loading'
 
