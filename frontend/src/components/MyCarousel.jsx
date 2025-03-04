@@ -46,7 +46,7 @@ breakpoints={{
     spaceBetween:40
     },
 }}
-className="mySwiper shadow-lg lg:h-30"key={index}
+className="mySwiper shadow-lg lg:h-30"
 >
 {Products.map((each,index) => <SwiperSlide key={each.id} className={active_Product === index ? 'bg-gray-300 my-1 flex justify-center align-content-center shadow-active-state  lg:pt-3' : 'flex justify-center align-content-center  rounded lg:pt-3 hover:bg-slate-500'} onClick = {() => setactive_Product(index)}>
     <div className="flex justify-center align-content-center rounded-circle cursor-pointer " >
