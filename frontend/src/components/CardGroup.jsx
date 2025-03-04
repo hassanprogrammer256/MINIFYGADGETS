@@ -57,7 +57,7 @@ const CardGroup = () => {
                 name={(e.name).length > 20 ? (e.name).substring(0, 20) :e.name}
                 price={(e.price * STANDARD_UGX_RATE).toFixed(0)}
                 shipping_fee={(e.shipping * STANDARD_UGX_RATE).toFixed(0) }
-                img={e.image}
+                img={e.image && All_Images.min_logo}
               />
             </SwiperSlide>
           ))}
