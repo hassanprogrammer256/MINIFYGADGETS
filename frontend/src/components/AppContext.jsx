@@ -49,6 +49,8 @@ try {
           },
           body: JSON.stringify({ q: Products[active_Product].name }), // Send search term in the body
       });
+      const data = await response.json();
+      console.log(data.message);
       setproducts(data)
     }catch (err) {
       console.error('Error fetching data:', err);
