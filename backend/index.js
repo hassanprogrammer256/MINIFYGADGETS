@@ -205,21 +205,21 @@ app.post('/search', async (req, res) => {
   } finally{await client.close()}
 });
 
-app.post('/getdummy', async(req,res) => {
-  const val = req.body.q
+app.get('/getdummy', async (req, res) => {
+  const val = req.query.q; // Get the query parameter 'q'
   if (!val) {
     return res.status(400).json({ error: 'Search value is required' });
-}
+  }
 
-try {
-
-    res.json(Dummy.filter(d =>d.category === val));
-} catch (error) {
+  try {
+    // Filter Dummy based on the category
+    const filteredResults = Dummy.filter(d => d.category === val);
+    res.json(filteredResults); // Send back the filtered results
+  } catch (error) {
     console.error('Error occurred while searching:', error);
     res.status(500).json({ error: 'Internal server error' });
-}
-
-})
+  }
+});
 
 // main().catch(console.error);
 

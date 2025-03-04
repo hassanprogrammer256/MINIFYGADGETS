@@ -42,10 +42,12 @@ const API_URL = 'https://minifygadgets.vercel.app'
  const getData = async () => {
   try {
     setfullpageloading(true);
-    
-    const response = await axios.post(`${API_URL}/getdummy`, {
-      q: Products[active_Product].name, // Send search term in the body
-    }, {
+
+    // Using a query parameter for the search term
+    const response = await axios.get(`${API_URL}/getdummy`, {
+      params: {
+        q: Products[active_Product].name, // Send search term as a query parameter
+      },
       headers: {
         'Content-Type': 'application/json',
       }
