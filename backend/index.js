@@ -128,7 +128,6 @@ const verification = emailVerifications.find(obj => obj.EMAIL === email);
   }
 });
 
-
 app.post('/submitorder', (req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
 
@@ -205,21 +204,21 @@ app.post('/search', async (req, res) => {
   } finally{await client.close()}
 });
 
-app.get('/getdummy', async (req, res) => {
-  const val = req.query.q; // Get the query parameter 'q'
+app.post('/getdummy', async(req,res) => {
+  const val = req.body.q
   if (!val) {
     return res.status(400).json({ error: 'Search value is required' });
-  }
+}
 
-  try {
-    // Filter Dummy based on the category
-    const filteredResults = Dummy.filter(d => d.category === val);
-    res.json(filteredResults); // Send back the filtered results
-  } catch (error) {
+try {
+
+    res.json(Dummy.filter(d =>d.category === val));
+} catch (error) {
     console.error('Error occurred while searching:', error);
     res.status(500).json({ error: 'Internal server error' });
-  }
-});
+}
+
+})
 
 // main().catch(console.error);
 
