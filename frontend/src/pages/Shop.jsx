@@ -81,14 +81,15 @@ const Shop = () => {
     >
       {pdtData.slice(0,10).map((e, index) => (
        <SwiperSlide key={index} className="swiper-slide-custom">
-       <Mycard
+      { pdtData.products.map((e) => <Mycard
+      key={e.id}
            id={e.id}
            description={(e.description).length > 50 ? (e.description).substring(0, 50) + '...' : e.description}
            name={(e.name).length > 20 ? (e.name).substring(0, 20) + '...' : e.name}
            price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting price with commas
            shipping_fee={Number((e.shipping * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting shipping fee with commas
            img={e.image ? e.image : All_Images.min_logo}
-       />
+       />)}
    </SwiperSlide>
       ))}
     </Swiper>
