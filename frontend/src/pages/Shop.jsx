@@ -80,17 +80,21 @@ const Shop = () => {
       className="mySwiper py-5"
     >
       {pdtData.map((e, index) => (
-       <SwiperSlide key={index} className="swiper-slide-custom">
-      { pdtData.products.slice(0,10).map((e) => <Mycard
-      key={e.id}
+      
+      pdtData.products.slice(0,10).map((e) =>
+        <SwiperSlide key={index} className="swiper-slide-custom"    key={e.id}>
+         <Mycard
+   
            id={e.id}
            description={(e.description).length > 50 ? (e.description).substring(0, 50) + '...' : e.description}
            name={(e.name).length > 20 ? (e.name).substring(0, 20) + '...' : e.name}
            price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting price with commas
            shipping_fee={Number((e.shipping * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting shipping fee with commas
            img={e.image ? e.image : All_Images.min_logo}
-       />)}
-   </SwiperSlide>
+       />
+       </SwiperSlide>
+      )
+ 
       ))}
     </Swiper>
 
