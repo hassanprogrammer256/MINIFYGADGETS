@@ -79,9 +79,9 @@ const Shop = () => {
       }}
       className="mySwiper py-5"
     >
-      {pdtData.slice(0,10).map((e, index) => (
+      {pdtData.map((e, index) => (
        <SwiperSlide key={index} className="swiper-slide-custom">
-      { pdtData.products.map((e) => <Mycard
+      { pdtData.products.slice(0,10).map((e) => <Mycard
       key={e.id}
            id={e.id}
            description={(e.description).length > 50 ? (e.description).substring(0, 50) + '...' : e.description}
