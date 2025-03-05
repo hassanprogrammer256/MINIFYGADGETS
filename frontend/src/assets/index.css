@@ -14501,8 +14501,8 @@ body.white-version {
 }
 
 .image-container {
-  width: 300px; /* Set the desired width of the container */
-  height: 200px; /* Set the desired height of the container */
+  width: 1300px; /* Set the desired width of the container */
+  height: 900px; /* Set the desired height of the container */
   overflow: hidden; /* Ensure the image doesn't overflow the container */
   display: flex;
   justify-content: center;
