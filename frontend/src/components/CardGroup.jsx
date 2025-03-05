@@ -55,8 +55,8 @@ const CardGroup = () => {
                 id={e.id}
                 description={(e.description).length > 50 ? (e.description).substring(0, 50) :e.description}
                 name={(e.name).length > 20 ? (e.name).substring(0, 20) :e.name}
-                price={((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US', { style: 'currency', currency: 'UGX' })}
-                shipping_fee={((e.shipping * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US', { style: 'currency', currency: 'UGX' }) }
+                price={((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US', { style: 'decimal' })}
+                shipping_fee={((e.shipping * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US', { style: 'decimal'}) }
                 img={e.image ? e.image :All_Images.min_logo}
               />
             </SwiperSlide>
