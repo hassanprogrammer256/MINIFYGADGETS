@@ -68,7 +68,7 @@ const Shop = () => {
                       spaceBetween: 10
                     },
                     576: {
-                      slidesPerView: 2,
+                      slidesPerView: 3,
                       spaceBetween: 20
                     },
                     768: {
@@ -76,7 +76,7 @@ const Shop = () => {
                       spaceBetween: 30
                     },
                     1024: {
-                      slidesPerView: 4,
+                      slidesPerView: 5,
                       spaceBetween: 10
                     },
                   }}
