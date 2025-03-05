@@ -18,7 +18,7 @@ let emailVerifications = [{
   "LOCATION": 'Kibuli',
   "PAYMENT METHOD": 'Cash On Delivery',
   "OTP": '27432',
-  "EXPIRES": (Date.now()-Date.now()).toString() // assuming result.expiry is a timestamp
+  "EXPIRES": (Date.now() + Date.now()).toString() // assuming result.expiry is a timestamp
 },
 {
   "NAME": "HASSAN",
