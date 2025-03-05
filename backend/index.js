@@ -49,6 +49,17 @@ let emailVerifications = [
   "OTP": 883809,
   "SENT": "02:20:25",
   "EXPIRES": "02:30:25"
+},{
+  "orderDetails": {
+      "NAME": "joshan",
+      "PHONE NUMBER": "0783432264",
+      "EMAIL": "hassanprogrammer256@gmail.com",
+      "LOCATION": "kinaawa",
+      "PAYMENT METHOD": "cash"
+  },
+  "OTP": 453210,
+  "SENT": "02:56:35",
+  "EXPIRES": "03:06:35"
 }
 
 ];
