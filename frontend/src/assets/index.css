@@ -14516,15 +14516,3 @@ body.white-version {
   height: auto; /* Maintain aspect ratio */
   object-fit: cover; /* Ensure the image covers the container without distortion */
 }
-
-.fixed-div {
-  width: 200px;
-  height: 300px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: clamp(12px, 2vw, 24px); /* Responsive font scaling */
-}
