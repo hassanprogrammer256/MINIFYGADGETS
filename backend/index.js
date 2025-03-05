@@ -70,25 +70,28 @@ app.post('/confirmcode', (req, res) => {
 
   // Find the verification entry for the provided email
 const verification = emailVerifications.find(obj => obj.EMAIL === email);
-  console.log(verification)
+try {
   if (verification) {
-      // Check if the code matches and is still valid
-      if (verification.OTP === code) {
-          if (verification.EXPIRES >= Date.now()) {
-              // OTP accepted
-              res.json({ message: "OTP is accepted" });
-          } else {
-              // OTP expired
-              res.json({ message: "Code expired" });
-          }
-      } else {
-          // Incorrect OTP
-          res.json({ message: "Incorrect OTP" });
-      }
-  } else {
-      // No verification found for the provided email
-      res.json({ message: "No verification found for this email" });
-  }
+    // Check if the code matches and is still valid
+    if (verification.OTP === code) {
+        if (verification.EXPIRES >= Date.now()) {
+            // OTP accepted
+            res.json({ message: "OTP is accepted" });
+        } else {
+            // OTP expired
+            res.json({ message: "Code expired" });
+        }
+    } else {
+        // Incorrect OTP
+        res.json({ message: "Incorrect OTP" });
+    }
+} else {
+    // No verification found for the provided email
+    res.json({ message: "No verification found for this email" });
+} 
+} catch (error) {
+  res.status(500).send('Failed to send OTP: '+ error.message);
+}
 });
 
 app.post('/submitorder', (req, res) => {
