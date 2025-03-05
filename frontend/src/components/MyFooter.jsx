@@ -39,7 +39,6 @@ else{
 
   {/* =========CONTACT ME===================== */}
   <div className="bg-slate-950 text-white" id="contacts">
-<div className="">
 <div className="row">
 <div className="col-lg-12">
 <div className="section-title text-center">
@@ -115,7 +114,7 @@ else{
 </div>
 </div>
 </div>
-</div>
+
  {/* ================FOOTER================= */}
    <Footer className='bg-slate-950 rounded pt-3'>
 <div className = 'w-full px-4 lg:px-24'>
