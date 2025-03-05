@@ -10,14 +10,13 @@ import MyCard from '../components/MyCard';
 import { All_Images } from '../../public';
 
 const Shop = () => {
-  const { STANDARD_UGX_RATE,API_URL, active_Product, setactive_Product, active_Brand, setactive_Brand, currentLocation, searchTerm, setsearchTerm, products } = useContext(AppContext);
+  const { STANDARD_UGX_RATE, API_URL, active_Product, setactive_Product, active_Brand, setactive_Brand, currentLocation, searchTerm, setsearchTerm, products } = useContext(AppContext);
 
   const pdtData = [];
 
   // Categorize products by subcategory
   products.forEach(pt => {
     const pdts = products.filter(obj => obj.subcategory === pt.subcategory);
-
     if (!pdtData.some(el => el.category === pt.subcategory)) {
       pdtData.push({ category: pt.subcategory, products: pdts });
     }
@@ -25,8 +24,6 @@ const Shop = () => {
 
   // Check if there are no products available
   const hasProducts = pdtData.length > 0;
-
-  console.log(pdtData);
 
   return (
     <div>
@@ -85,17 +82,27 @@ const Shop = () => {
                   }}
                   className="mySwiper py-5"
                 >
-                  {/* Map through products within the same category */}
-                  {el.products.slice(0, 10).map((e) => (
-                    <SwiperSlide key={e.id} className="swiper-slide-custom">
-                      <MyCard
-                        id={e.id}
-                        description={e.description.length > 50 ? e.description.substring(0, 50) + '...' : e.description}
-                        name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
-                        price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} 
-                        shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
-                        img={e.image ? e.image : All_Images.min_logo} 
-                      />
+                  {/* Group products in rows of up to 10 */}
+                  {el.products.reduce((acc, curr, index) => {
+                    // Create groups of 10 products
+                    if (index % 10 === 0) acc.push([curr]); // Start a new group
+                    else acc[acc.length - 1].push(curr); // Push to current group
+                    return acc;
+                  }, []).map((group, groupIndex) => (
+                    <SwiperSlide key={groupIndex} className="swiper-slide-custom">
+                      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"> {/* Control the responsive layout */}
+                        {group.map((e) => (
+                          <MyCard
+                            key={e.id}
+                            id={e.id}
+                            description={e.description.length > 50 ? e.description.substring(0, 50) + '...' : e.description}
+                            name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
+                            price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} 
+                            shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
+                            img={e.image ? e.image : All_Images.min_logo} 
+                          />
+                        ))}
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
