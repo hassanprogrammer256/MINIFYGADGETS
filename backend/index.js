@@ -11,7 +11,15 @@ const PORT = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials:true}))
 
-let emailVerifications = [];
+let emailVerifications = [{
+  "NAME": 'HASSAN',
+  "PHONE NUMBER": '0740297633',
+  "EMAIL": 'hassanprogrammer256@gmail.com',
+  "LOCATION": 'Kibuli',
+  "PAYMENT METHOD": 'Cash On Delivery',
+  "OTP": '27432',
+  "EXPIRES": Date.now().toString() // assuming result.expiry is a timestamp
+}];
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
 const Collection_2 ='Products';
@@ -37,7 +45,7 @@ app.post('/confirmcode', (req, res) => {
 
   // Find the verification entry for the provided email
 const verification = emailVerifications.find(obj => obj.EMAIL === email);
-  
+  console.log(verification)
   if (verification) {
       // Check if the code matches and is still valid
       if (verification.OTP === code) {
