@@ -91,12 +91,7 @@ app.post('/submitorder', (req, res) => {
   sendingotp(email).then(result => {
    if (sendingotp){
     const otpInfo = {
-      "NAME": name,
-      "PHONE NUMBER": number,
-      "EMAIL": email,
-      "LOCATION": location,
-      "PAYMENT METHOD": paymentMethod,
-      "OTP": result.password,
+"ORDER DETAILS":orderDetails,
       "SENT":result.sent,
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
