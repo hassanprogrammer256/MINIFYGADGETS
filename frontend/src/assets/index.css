@@ -4268,7 +4268,7 @@ input[type="radio"] ~ label::after {
   border-radius: 50%; }
 
 .form-group {
-  margin-bottom: 20px; }
+  margin-bottom: 5px; }
   .form-group label {
     margin-bottom: 6px;
     font-size: 14px;
@@ -4278,7 +4278,7 @@ input[type="radio"] ~ label::after {
     border: 0 none;
     border-radius: 4px;
     transition: var(--transition);
-    padding: 0 20px;
+    padding: 0 10px;
     background-color: var(--color-lightest);
     border: 1px solid transparent;
     transition: var(--transition); }
