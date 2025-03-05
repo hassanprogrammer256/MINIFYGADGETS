@@ -13,26 +13,21 @@ app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials
 
 let emailVerifications = [
   {
-    "NAME": "HASSAN",
-    "PHONE NUMBER": "0740297633",
-    "EMAIL": "hassanprog256@gmail.com",
-    "LOCATION": "Kibuli",
-    "PAYMENT METHOD": "cash",
-    "OTP": 349164,
-    "SENT": "02:06:05",
-    "EXPIRES": "02:16:05"
-},{
-  "orderDetails": {
-      "NAME": "BOYKA",
-      "PHONE NUMBER": "0740297633",
-      "EMAIL": "hassanprogrammer256@gmail.com",
-      "LOCATION": "Kibuli",
-      "PAYMENT METHOD": "cash",
-      "CUSTOMER ORDER": []
-  },
-  "SENT": "02:10:59",
-  "EXPIRES": "02:20:59"
-}
+    "orderDetails": {
+        "NAME": "SHEENA",
+        "PHONE NUMBER": "074843214",
+        "EMAIL": "sheenapro@gmail.com",
+        "LOCATION": "mbale",
+        "PAYMENT METHOD": "mobile money",
+        "CUSTOMER ORDER": [
+            "laptop",
+            "iphone"
+        ]
+    },
+    " OTP": 141721,
+    "SENT": "02:16:42",
+    "EXPIRES": "02:26:42"
+},
 
 ];
 const Database = 'MINIFY_DATABASE';
