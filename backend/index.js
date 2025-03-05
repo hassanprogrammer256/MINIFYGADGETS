@@ -86,6 +86,7 @@ app.post('/submitorder', (req, res) => {
    if (sendingotp){
     const otpInfo = {
 orderDetails,
+" OTP":result.password,
       "SENT":result.sent,
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
