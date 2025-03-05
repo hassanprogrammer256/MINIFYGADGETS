@@ -13,15 +13,24 @@ const handleSubmit = async(e) => {
 
           await axios.post(`${API_URL}/confirmcode`, {code,email})
                 .then(res => {
-             if (res.message === 'OTP accepted' || res.status === 2000){
-alert('EMAIL VERIFIED');
- setcustomer_email('');
- code = ''
-setconfirmpayment(false);
-setpayment(false);
-setveiwcart(false);
-setemailVerified(true)
-             }
+if (res.message === 'OTP accepted' || res.status === 200){
+      alert('EMAIL VERIFIED');
+      setcustomer_email('');
+      code = ''
+      setconfirmpayment(false);
+      setpayment(false);
+      setveiwcart(false);
+      setemailVerified(true)}
+if (res.message === 'OTP expired' || res.status === 500){
+  setemailVerified(false)
+        alert('CODE EXPIRED');
+        code = ''
+        setconfirmpayment(false);
+      }
+if (res.message === 'OTP Incorrrect' || res.status === 404){
+          setemailVerified(false)
+                alert('INCORRECT CODE');
+                code = ''}
                 })
                 .catch(error => {
                     alert('There was an error!', error);

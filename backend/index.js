@@ -101,7 +101,7 @@ try {
         }
     } else {
         // Incorrect OTP
-        res.status(500).json({message:'OTP is Incorrect'});
+        res.status(404).json({message:'OTP is Incorrect'});
     }
 } else {
     // No verification found for the provided email
