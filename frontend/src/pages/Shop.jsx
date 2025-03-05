@@ -2,13 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { motion } from "framer-motion";
+import {Swiper,SwiperSlide} from "swiper/react";
+import {Pagination} from "swiper/modules";
 import MyCarousel from '../components/MyCarousel'
 import { AppContext } from '../components/AppContext';
 import Shop_Hero from '../components/Shop_Hero';
-import Mycard from './MyCard';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { All_Images,} from "../../public/index";
+
 
 
 const Shop = () => {
