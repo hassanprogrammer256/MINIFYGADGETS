@@ -44,7 +44,7 @@ else{
 <div className="section-title text-center">
 <h2 className="title">Contact  Us On: </h2>
 </div>
-<div className="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm flex">
+<div className="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm">
 <div className="col-lg-5">
 <div className="contact-about-area">
 <div className="thumbnail">
