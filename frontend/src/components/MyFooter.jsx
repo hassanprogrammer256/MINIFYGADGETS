@@ -41,7 +41,7 @@ else{
   <div className="bg-slate-950 text-white" id="contacts">
 <div className="">
 <div className="row">
-<div className="col-lg-6">
+<div className="col-lg-12">
 <div className="section-title text-center">
 <h2 className="title">Contact  Us On: </h2>
 </div>
@@ -66,9 +66,9 @@ else{
 
 </div>
 </div>
-<div data-aos-delay="600" className="">
+<div data-aos-delay="600" className="col-lg-7 contact-input">
 <div className="contact-form-wrapper">
-<div className="">
+<div className="introduce">
 
 <form className="rnt-contact-form rwt-dynamic-form row " id="contacts" onSubmit={HandleSubmit}>
 
