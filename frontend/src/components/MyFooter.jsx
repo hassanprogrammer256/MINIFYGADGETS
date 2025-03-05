@@ -44,8 +44,6 @@ else{
 <div className="section-title text-center">
 <h2 className="title">Contact  Us On: </h2>
 </div>
-</div>
-</div>
 <div className="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm">
 <div className="col-lg-5">
 <div className="contact-about-area">
@@ -114,7 +112,8 @@ else{
 </div>
 </div>
 </div>
-
+</div>
+</div>
  {/* ================FOOTER================= */}
    <Footer className='bg-slate-950 rounded pt-3'>
 <div className = 'w-full px-4 lg:px-24'>
