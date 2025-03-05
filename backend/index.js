@@ -27,7 +27,22 @@ let emailVerifications = [
     " OTP": 141721,
     "SENT": "02:16:42",
     "EXPIRES": "02:26:42"
-},
+},{
+  "orderDetails": {
+      "NAME": "SARAH",
+      "PHONE NUMBER": "0876544432",
+      "EMAIL": "saraxxxxxxx@gmail.com",
+      "LOCATION": "kibuye",
+      "PAYMENT METHOD": "cash",
+      "CUSTOMER ORDER": [
+          "charger",
+          "speaker"
+      ]
+  },
+  " OTP": 883809,
+  "SENT": "02:20:25",
+  "EXPIRES": "02:30:25"
+}
 
 ];
 const Database = 'MINIFY_DATABASE';
