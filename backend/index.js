@@ -94,14 +94,14 @@ try {
     if (verification.OTP === code) {
         if (verification.EXPIRES >= getCurrentTime()) {
             // OTP accepted
-            res.json({ message: "OTP is accepted" });
+            res.status(200).json({message:'OTP accepted'});
         } else {
             // OTP expired
-            res.json({ message: "Code expired" });
+            res.status(500).json({message:'OTP expired'});
         }
     } else {
         // Incorrect OTP
-        res.json({ message: "Incorrect OTP" });
+        res.status(500).json({message:'OTP is Incorrect'});
     }
 } else {
     // No verification found for the provided email
