@@ -23,7 +23,7 @@ const Shop = () => {
             products: pdts
           }
 pdtData.forEach(el => {
-  if(el.categegory === item.category){
+  if(el.category === item.category){
     null
   }else{
     pdtData.push(item)
