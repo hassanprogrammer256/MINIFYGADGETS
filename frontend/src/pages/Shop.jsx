@@ -14,24 +14,26 @@ import Mycard from '../components/MyCard';
 const Shop = () => {
   const {API_URL,active_Product,setactive_Product,active_Brand,setactive_Brand,currentLocation,searchTerm, setsearchTerm,products} = useContext(AppContext)
 
-   const pdtData = []
-  
-  products.forEach(pt =>{
-          let pdts = products.filter(obj => obj.subcategory === pt.subcategory)
-          const item = {
-            category: pt.subcategory,
-            products: pdts
-          }
-pdtData.forEach(el => {
-  if(el.category === item.category){
-    null
-  }else{
-    pdtData.push(item)
-  }
-})
-  })
-  console.log(pdtData);
+  const pdtData = [];
 
+  products.forEach(pt => {
+    // Use filter to get all products in the same subcategory
+    const pdts = products.filter(obj => obj.subcategory === pt.subcategory);
+  
+    // Check if the category already exists in pdtData
+    const exists = pdtData.some(el => el.category === pt.subcategory);
+  
+    // If it does not exist, push the new item to pdtData
+    if (!exists) {
+      const item = {
+        category: pt.subcategory,
+        products: pdts
+      };
+      pdtData.push(item);
+    }
+  });
+  
+  console.log(pdtData);
   return (
     <div >
       {currentLocation == '/' ? <h1 className="text-center font-black text-ellipsis break-words text-wrap text-white lg:text-6xl uppercase mb-0 sm:text-5xl text-3xl">WE OFFER VARIETY OF PRODUCTS</h1> : 
