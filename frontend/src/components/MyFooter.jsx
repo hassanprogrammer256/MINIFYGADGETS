@@ -41,7 +41,7 @@ else{
   <div className="bg-slate-950 text-white" id="contacts">
 <div className="">
 <div className="row">
-<div className="col-lg-12">
+<div className="col-lg-6">
 <div className="section-title text-center">
 <h2 className="title">Contact  Us On: </h2>
 </div>
