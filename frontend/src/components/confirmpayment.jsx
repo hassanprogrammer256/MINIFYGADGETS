@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import axios from 'axios';
 
 const Confirmorder = () => {
-const {customer_email, setcustomer_email,getData,API_URL,CustomerOrder,setCustomerOrder, setveiwcart,payment,setpayment,isLoading,setisLoading} = useContext(AppContext)
+const {customer_email, setcustomer_email,getData,API_URL,setemailVerified, setveiwcart,setpayment} = useContext(AppContext)
 const handleSubmit = async(e) => {
   e.preventDefault(); // Prevent the form from submitting the traditional way
           
@@ -13,11 +13,14 @@ const handleSubmit = async(e) => {
 
           await axios.post(`${API_URL}/confirmcode`, {code,email})
                 .then(res => {
-             if (res.status){
+             if (res.message === 'OTP accepted' || res.status === 2000){
 alert('EMAIL VERIFIED');
+ setcustomer_email('');
+ code = ''
 setconfirmpayment(false);
 setpayment(false);
 setveiwcart(false);
+setemailVerified(true)
              }
                 })
                 .catch(error => {

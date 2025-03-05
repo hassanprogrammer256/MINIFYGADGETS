@@ -12,7 +12,7 @@ const MyToast = ({message,action}) => {
     useEffect(() => {
         let progressInterval;
 
-        if (istoast || messagesent) {
+        if (istoast) {
             setProgressWidth(0); // Reset progress width
             progressInterval = setInterval(() => {
                 setProgressWidth((prev) => {
@@ -31,8 +31,8 @@ const MyToast = ({message,action}) => {
 
     return (
                    <motion.div
-            initial={{ x: istoast || messagesent ? 500 : 0, opacity: istoast || messagesent ? 0 : 1, visibility: 'hidden' }}
-            animate={{ x: istoast || messagesent ? 0 : 500, opacity: istoast || messagesent ? 1 : 0, visibility: istoast || messagesent ? 'visible' : 'hidden'}}
+            initial={{ x: istoast ? 500 : 0, opacity: istoast ? 0 : 1, visibility: 'hidden' }}
+            animate={{ x: istoast ? 0 : 500, opacity: istoast ? 1 : 0, visibility: istoast ? 'visible' : 'hidden'}}
             transition={{ type: 'tween', delay: 0, duration: .5 }}
             className='fixed top-[20%] md:w-[70%] xs:w-[90%] lg:w-[40%] z-20 bg-green-800 end-0 rounded-s-2xl '
         >

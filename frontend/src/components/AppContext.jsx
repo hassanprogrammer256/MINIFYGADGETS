@@ -35,6 +35,7 @@ const [confirmpayment, setconfirmpayment] = useState(false)
 const [cartItems, setcartItems] = useState([])
  const [quantity, setQuantity] = useState({});
  const [messagesent, setmessagesent] = useState(false);
+ const [emailVerified, setemailVerified] = useState(false);
 const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
@@ -142,7 +143,7 @@ const SubmittingOrder = () => {
 
 // ALL CONTEXT VALUES
 
-const AppContextValues = {STANDARD_UGX_RATE,getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alert,setalert,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent}
+const AppContextValues = {STANDARD_UGX_RATE,getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alert,setalert,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,emailVerified, setemailVerified}
 
 
 // RETURNING AND EXPORTING THE REQUIRED MODULES
