@@ -18,7 +18,7 @@ let emailVerifications = [{
   "LOCATION": 'Kibuli',
   "PAYMENT METHOD": 'Cash On Delivery',
   "OTP": '27432',
-  "EXPIRES": (Date.now() + Date.now()).toString() // assuming result.expiry is a timestamp
+  "EXPIRES": (Date.now() + Date.now())// assuming result.expiry is a timestamp
 },
 {
   "NAME": "HASSAN",
@@ -97,6 +97,7 @@ app.post('/submitorder', (req, res) => {
       "LOCATION": location,
       "PAYMENT METHOD": paymentMethod,
       "OTP": result.password,
+      "SENT":result.sent,
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
   emailVerifications.push(otpInfo)

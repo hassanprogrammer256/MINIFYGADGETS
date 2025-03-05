@@ -18,16 +18,13 @@ function addTenMinutes() {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-// Usage
-console.log("Current Time:", getCurrentTime()); // E.g., "Current Time: 14:35:09"
-console.log("Time after adding 10 minutes:", addTenMinutes()); // E.g., "Time after adding 10 minutes: 14:45:09"
-
 
 const generateOTP = () => {
   // Generate a random 6 digit number
   const password = Math.floor(1000 + Math.random() * 900000);
   const expiry = addTenMinutes() 
-  let otpData = { password, expiry }; 
+  const sent = getCurrentTime()
+  let otpData = { password, expiry,sent }; 
 return otpData; 
 }
 
