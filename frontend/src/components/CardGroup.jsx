@@ -12,7 +12,7 @@ import { All_Images,} from "../../public/index";
 import 'swiper/css/pagination';
 
 
-const CardGroup = () => {
+const CardGroup = ({pdtsarr}) => {
   const { products,active_Product, setactive_Product,STANDARD_UGX_RATE} = useContext(AppContext);
 
 ;
@@ -49,7 +49,7 @@ const CardGroup = () => {
           }}
           className="mySwiper py-5"
         >
-          {products.slice(0,10).map((e, index) => (
+          {pdtsarr.slice(0,10).map((e, index) => (
            <SwiperSlide key={index} className="swiper-slide-custom">
            <Mycard
                id={e.id}

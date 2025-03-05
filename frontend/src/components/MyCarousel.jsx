@@ -11,15 +11,6 @@ const MyCarousel = () => {
     // Get products from the AppContext and filter brands for unique ones
 const {active_Product,setactive_Product,active_Brand,setactive_Brand,products} = useContext(AppContext);
 
-const brands = []
-
-products.forEach(product =>{
-    if (brands.includes(product.subcategory)){
-        null
-    }else{
-        brands.push(product.subcategory)
-    }
-})
 
     return (
 <>
@@ -57,30 +48,6 @@ className="mySwiper shadow-lg lg:h-30"
 </SwiperSlide> )}
 </Swiper>
 
-<Swiper
-slidesPerView={1}
-spaceBetween={10}
-pagination = {{clickable:true}}
-breakpoints={{
-300:{
-    slidesPerView: 5,
-    spaceBetween:10
-    },
-768:{
-    slidesPerView: 7,
-    spaceBetween:40
-    },
-1024:{
-    slidesPerView: 10,
-    spaceBetween:40
-    },
-}}
-className="mySwiper bg-slate-900 h-12 md:rounded "
->
-
-{brands.map((each,index) => <SwiperSlide key = {each.id} className='lg:px-3 '><li className={active_Brand === index ?"text-amber-400 underline font-medium  cursor-pointer text-center text-xl lg:text-3xl ": "text-slate-400 font-normal hover:text-amber-500 cursor-pointer  hover:underline text-xl lg:text-3xl" } onClick={() => setactive_Brand(index)}>{each}
-</li></SwiperSlide>)}  
-</Swiper>
 </motion.div>
 
 </>
