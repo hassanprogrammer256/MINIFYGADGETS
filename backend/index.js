@@ -4,7 +4,7 @@ const Dummy = require('./data.json')
 const mongoose = require('mongoose');
 const sendingotp = require('./verifyemail')
 const sendingfeedback = require('./sendfeedbk')
-const otp = require('./verifyemail')
+const getCurrentTime = require('./verifyemail')
 const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
@@ -39,7 +39,7 @@ let emailVerifications = [
           "speaker"
       ]
   },
-  " OTP": 883809,
+  "OTP": 883809,
   "SENT": "02:20:25",
   "EXPIRES": "02:30:25"
 }
@@ -74,7 +74,7 @@ try {
   if (verification) {
     // Check if the code matches and is still valid
     if (verification.OTP === code) {
-        if (verification.EXPIRES >= Date.now()) {
+        if (verification.EXPIRES >= getCurrentTime()) {
             // OTP accepted
             res.json({ message: "OTP is accepted" });
         } else {
