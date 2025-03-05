@@ -6,149 +6,205 @@ import Review_group from './Review_group.jsx'
 import axios from 'axios'
 
 const MyFooter = () => {
-  const {API_URL, activemenu, setactivemenu, setistoast} = useContext(AppContext)
+  const {API_URL,activemenu, setactivemenu,messagesent, setmessagesent,setistoast} = useContext(AppContext)
   const [sendingMessage, setsendingMessage] = useState(false)
-  
   const HandleSubmit = async(event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const {name, phonenumber, email, subject, message} = Object.fromEntries(formData);
+event.preventDefault();
+const name  = document.getElementById('contact-fullnames').value;
+const phonenumber  = document.getElementById('contact-phone').value;
+const email  = document.getElementById('contact-email').value;
+const subject  = document.getElementById('subject').value;
+const message  = document.getElementById('contact-message').value;
 
-    if (name && phonenumber && subject && email && message) {
-      try {
-        setsendingMessage(true)
-        const res = await axios.post(`${API_URL}/sendfeedback`, {name, phonenumber, email, message, subject});
-        if (res.status === 200) setistoast(true)
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setsendingMessage(false);
+if (name && phonenumber && subject && email && message) {
+  try {
+    setsendingMessage(true)
+    const res = await axios.post(`${API_URL}/sendfeedback`, {name, phonenumber, email, message, subject});
+    console.log({name, phonenumber, email, message, subject})
+    if (res.status === 200) {
+setistoast(true)}
+else{
+  seta;
       }
-    } 
-  };
-
+    } catch (err) {console.error(err);
+  }finally {
+    setsendingMessage(false);
+  }
+} 
+};
+  
   return (
-    <>
-      <Review_group />
+  <>
+<Review_group />
 
-      {/* Contact Section */}
-      <div className="bg-slate-950 text-white" id="contacts">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold">Contact Us On:</h2>
-          </div>
-          
-          <div className="row">
-            <div className="col-md-5 mb-8">
-              <div className="contact-about-area">
-                <img src={All_Images.contacts} alt="contact-img" className="img-fluid mb-4" />
-                <h4 className="text-2xl font-bold mb-2">MINIFY||GADGETS</h4>
-                <p className="text-amber-300 text-lg mb-4">Discover Gadgets That Speak to Your Soul</p>
-                <p className="mb-4">
-                  We prioritize quality by offering curated services from talented personnel. 
-                  Each product comes with detailed descriptions and authenticity assurances.
-                </p>
-                <div className="contact-info">
-                  <p className="text-amber-300 mb-2">Phone: +256 755062613</p>
-                  <p className="text-amber-300">Email: laubenwalukagga256@gmail.com</p>
-                </div>
-              </div>
-            </div>
+  {/* =========CONTACT ME===================== */}
+  <div className="bg-slate-950 text-white" id="contacts">
+<div className="">
+<div className="row">
+<div className="col-lg-12">
+<div className="section-title text-center">
+<h2 className="title">Contact  Us On: </h2>
+</div>
+</div>
+</div>
+<div className="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm">
+<div className="col-lg-5">
+<div className="contact-about-area">
+<div className="thumbnail">
+<img src={All_Images.contacts} alt="contact-img" />
+</div>
+<div className="title-area">
+<h4 className="title">MINIFY||GADGETS</h4>
+<span className='text-amber-300 font-emphasis text-3xl'>Discover Gadgets That Speaks to Your Soul</span>
+</div>
+<div className="description">
+<p> We prioritize quality by offering curated services from talented personnels. Each product is accompanied by detailed descriptions, dimensions, and authenticity assurances, ensuring you are well-informed about your potential investment.
+</p>
+<span className="phone 'text-amber-300 font-emphasis text-3xl text-amber-300 my-3">Phone: <a href="#">+256 755062613</a></span>
+<span className="mail 'text-amber-300 font-emphasis text-3xl text-amber-300 my-3">Email: <a href="mailto:laubenwalukagga256@gmail.com">laubenwalukagga256@gmail.com</a></span>
+</div>
 
-            <div className="col-md-7">
-              <form onSubmit={HandleSubmit} className="contact-form">
-                <div className="row">
-                  <div className="col-md-6 mb-4">
-                    <label htmlFor="contact-name" className="form-label">Your Name</label>
-                    <input type="text" className="form-control" id="contact-name" name="name" required />
-                  </div>
-                  
-                  <div className="col-md-6 mb-4">
-                    <label htmlFor="contact-phone" className="form-label">Phone Number</label>
-                    <input type="tel" className="form-control" id="contact-phone" name="phonenumber" required />
-                  </div>
-                </div>
+</div>
+</div>
+<div data-aos-delay="600" className="col-lg-7 contact-input">
+<div className="contact-form-wrapper">
+<div className="introduce">
 
-                <div className="mb-4">
-                  <label htmlFor="contact-email" className="form-label">Email</label>
-                  <input type="email" className="form-control" id="contact-email" name="email" required />
-                </div>
+<form className="rnt-contact-form rwt-dynamic-form row " id="contacts" onSubmit={HandleSubmit}>
 
-                <div className="mb-4">
-                  <label htmlFor="subject" className="form-label">Subject</label>
-                  <input type="text" className="form-control" id="subject" name="subject" required />
-                </div>
+<div className="col-lg-6">
+<div className="form-group">
+<label htmlFor="contact-name">Your Name</label>
+<input className="form-control form-control-lg" name="contact-name" id="contact-fullnames" type="text" required />
+</div>
+</div>
 
-                <div className="mb-4">
-                  <label htmlFor="message" className="form-label">Your Message</label>
-                  <textarea className="form-control" id="message" name="message" rows="4" required></textarea>
-                </div>
+<div className="col-lg-6">
+<div className="form-group">
+<label htmlFor="contact-phone">Phone Number</label>
+<input className="form-control" name="contact-phone" id="contact-phone" type="text" required />
+</div>
+</div>
 
-                <button 
-                  type="submit" 
-                  className="btn btn-primary w-100"
-                  disabled={sendingMessage}
-                >
-                  {sendingMessage ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+<div className="col-lg-12">
+<div className="form-group">
+<label htmlFor="contact-email">Email</label>
+<input className="form-control form-control-sm" id="contact-email" name="contact-email" type="email" required />
+</div>
+</div>
 
-      {/* Footer Section */}
-      <Footer className="bg-slate-950">
-        <div className="container mx-auto px-4">
-          <div className="row">
-            <div className="col-md-4 mb-6">
-              <Footer.Title title="MENU" className="text-amber-400" />
-              <Footer.LinkGroup col>
-                {NavLinks.map((link, index) => (
-                  <Footer.Link 
-                    key={index}
-                    href={`/#${link}`}
-                    className={activemenu === index ? "text-amber-300" : ""}
-                  >
-                    {link}
-                  </Footer.Link>
-                ))}
-              </Footer.LinkGroup>
-            </div>
+<div className="col-lg-12">
+<div className="form-group">
+<label htmlFor="subject">subject</label>
+<input className="form-control form-control-sm" id="subject" name="subject" type="text"  required/>
+</div>
+</div>
 
-            <div className="col-md-4 mb-6">
-              <Footer.Title title="CONTACT" className="text-amber-400" />
-              <Footer.LinkGroup col>
-                {['Facebook', 'Instagram', 'WhatsApp', 'Email', 'Twitter', 'Call Us'].map((method, i) => (
-                  <Footer.Link key={i} href="#">{method}</Footer.Link>
-                ))}
-              </Footer.LinkGroup>
-            </div>
+<div className="col-lg-12">
+<div className="form-group">
+<label htmlFor="contact-message">Your Message</label>
+<textarea name="contact-message" id="contact-message" cols="30" rows="10" required></textarea>
+</div>
+</div>
 
-            <div className="col-md-4 mb-6">
-              <Footer.Title title="LEGAL" className="text-amber-400" />
-              <Footer.LinkGroup col>
-                {['Privacy Policy', 'Terms & Conditions', 'Licenses'].map((item, i) => (
-                  <Footer.Link key={i} href="#">{item}</Footer.Link>
-                ))}
-              </Footer.LinkGroup>
-            </div>
-          </div>
+<div className="col-lg-12">
+<button name="submit" type="submit" id="submit" className={sendingMessage ? "rn-btn btn-diabled" :"rn-btn"}>
+{sendingMessage ? <span className="border-spinner-lg">Sending....</span> : <span>SEND MESSAGE</span>}
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ {/* ================FOOTER================= */}
+   <Footer className='bg-slate-950 rounded pt-3'>
+<div className = 'w-full px-4 lg:px-24'>
+<div className = 'w-full grid grid-cols-2 gap-8 px-3 py-8 md:grid-cols-3 font-emphasis font-bold text-[20px] text-slate-400'>
+  {/* ..menu..... */}
+<div>
+  <Footer.Title title='MENU' className='text-4xl text-amber-400'/>
+<Footer.LinkGroup col className='gap-3'>
+{NavLinks.map((each,index) => (<Footer.Link href={`/${each}`} key={index} className = {activemenu === index ? " hover:underline text-amber-300 underline" : "hover:underline  hover:text-amber-300 no-underline"} >
+{each}
+  </Footer.Link>))}
 
-          <div className="footer-bottom text-center py-4 border-t border-gray-700">
-            <Footer.Copyright 
-              href="/" 
-              by="MINIFY||GADGETS" 
-              year={2024}
-              className="text-white"
-            />
-            <div className="social-icons mt-3">
-              {/* Social media icons here */}
-            </div>
-          </div>
-        </div>
-      </Footer>
-    </>
+</Footer.LinkGroup>
+</div>
+
+{/* ...help desk.. */}
+<div>
+  <Footer.Title title='CONTACT US'  className='text-4xl text-amber-400'/>
+<Footer.LinkGroup col className='gap-3'>
+  <Footer.Link href='/'>
+Facebook
+  </Footer.Link>
+
+  <Footer.Link href='/'>
+Instagram
+  </Footer.Link>
+
+  <Footer.Link href='/'>
+Whatsapp
+  </Footer.Link>
+
+  <Footer.Link href='/'>
+Email
+  </Footer.Link>
+
+  <Footer.Link href='/'>
+Twitter
+  </Footer.Link>
+
+  <Footer.Link href='/'>
+Call Us
+  </Footer.Link>
+</Footer.LinkGroup>
+</div>
+
+{/* ...legal.. */}
+<div>
+  <Footer.Title title='LEGAL'  className='text-4xl text-amber-400'/>
+<Footer.LinkGroup col className='gap-3'>
+  <Footer.Link href=''>
+Privacy Policy
+  </Footer.Link>
+
+  <Footer.Link href=''>
+Terms and Conditions
+  </Footer.Link>
+
+  <Footer.Link href=''>
+Licences
+  </Footer.Link>
+
+
+</Footer.LinkGroup>
+</div>
+  
+</div>
+{/* copyright and icons */}
+<div className="w-full rounded bg-gray-700 px-4 py-6 flex-col justify-between flex sm:flex-row ">
+<Footer.Copyright by=' MINIFY||GADGETS' href= '/' year={2024} className='text-[23px]'/>
+<div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-between ">
+ <div className="flex gap-5 ">
+
+{/* mail */}
+<a href="mailto:laubenwalukagga256@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+ {/* telephone  */}
+ <a href="#">
+ <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+ </a>
+ </div>
+</div>
+</div>
+</div>
+
+
+   </Footer>
+   </>
   )
 }
 
