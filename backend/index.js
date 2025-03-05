@@ -18,7 +18,7 @@ let emailVerifications = [{
   "LOCATION": 'Kibuli',
   "PAYMENT METHOD": 'Cash On Delivery',
   "OTP": '27432',
-  "EXPIRES": Date.now().toString() // assuming result.expiry is a timestamp
+  "EXPIRES": (Date.now()-Date.now()).toString() // assuming result.expiry is a timestamp
 }];
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
@@ -90,7 +90,7 @@ app.post('/submitorder', (req, res) => {
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
   emailVerifications.push(otpInfo)
-  res.json({message: 'sent'})
+  res.json({message: 'sent',data: emailVerifications})
    }else{
     res.json({message: 'not sent'})
    }

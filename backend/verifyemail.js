@@ -1,10 +1,32 @@
 const nodemailer = require("nodemailer");
 require('dotenv').config()
 
+function getCurrentTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+function addTenMinutes() {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() + 10); // Add 10 minutes
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+// Usage
+console.log("Current Time:", getCurrentTime()); // E.g., "Current Time: 14:35:09"
+console.log("Time after adding 10 minutes:", addTenMinutes()); // E.g., "Time after adding 10 minutes: 14:45:09"
+
+
 const generateOTP = () => {
   // Generate a random 6 digit number
   const password = Math.floor(1000 + Math.random() * 900000);
-  const expiry = Date.now() + 10 * 60 * 1000; 
+  const expiry = getCurrentTime() 
   let otpData = { password, expiry }; 
 return otpData; 
 }
