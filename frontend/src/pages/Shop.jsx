@@ -58,7 +58,7 @@ const Shop = () => {
                 whileInView={{ x: 0, opacity: 1 }}
               >
                 <Swiper
-                  spaceBetween={10}
+                  spaceBetween={2}
                   pagination={{
                     clickable: true,
                   }}
