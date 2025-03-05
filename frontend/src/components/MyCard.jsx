@@ -13,7 +13,7 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
 
     return (
         <motion.div className='py-4'>
-            <Card className="md:max-w-2xl max-w-lg max-h-max shadow-card cursor-pointer relative">
+            <Card className="md:max-w-2xl max-w-lg max-h-max shadow-card cursor-pointer relative bg-gray-300">
                 <div className="grid grid-rows-1 grid-cols-1">
                     <div className="bg-blue-100 mb-2">
                         <Link to={`/veiwproduct/${id}`} className='max-h-96'>
