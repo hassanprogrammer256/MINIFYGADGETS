@@ -30,7 +30,7 @@ className="border p-1 rounded text-black font-black quantity"
 />
 </div>
 </td>
-<td>{(price * (quantity[id] )|| 0).toFixed(2)}</td>
+<td>{(price * (quantity[id] )|| 0).toFixed(0)}</td>
 <td>
 <FaTrash 
 size={20} 
