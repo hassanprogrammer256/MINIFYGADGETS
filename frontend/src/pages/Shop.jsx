@@ -7,9 +7,10 @@ import MyCarousel from '../components/MyCarousel';
 import { AppContext } from '../components/AppContext';
 import Shop_Hero from '../components/Shop_Hero';
 import MyCard from '../components/MyCard';
+import { All_Images } from '../../public';
 
 const Shop = () => {
-  const { API_URL, active_Product, setactive_Product, active_Brand, setactive_Brand, currentLocation, searchTerm, setsearchTerm, products } = useContext(AppContext);
+  const { STANDARD_UGX_RATE,API_URL, active_Product, setactive_Product, active_Brand, setactive_Brand, currentLocation, searchTerm, setsearchTerm, products } = useContext(AppContext);
 
   const pdtData = [];
 
@@ -91,9 +92,9 @@ const Shop = () => {
                         id={e.id}
                         description={e.description.length > 50 ? e.description.substring(0, 50) + '...' : e.description}
                         name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
-                        price={Number((e.price * 1000).toFixed(0)).toLocaleString('en-US')} // Assuming STANDARD_UGX_RATE is 1000
+                        price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} 
                         shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
-                        img={e.image ? e.image : '/path/to/default/image.png'} // Provide a valid default image path
+                        img={e.image ? e.image : All_Images.min_logo} 
                       />
                     </SwiperSlide>
                   ))}
