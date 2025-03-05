@@ -16,8 +16,8 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
             <Card className="md:max-w-2xl max-w-lg max-h-max shadow-card cursor-pointer relative bg-blue-100">
                 <div className="grid grid-rows-1 grid-cols-1">
                     <div className="bg-blue-100 mb-2 ">
-                        <Link to={`/veiwproduct/${id}`} className='max-h-96 image-container '>
-                            <img src={img} alt="" className='rounded cursor-pointer scale-95 hover:scale-100 transition-all shadow-card relative  max-w-[40%]:' />
+                        <Link to={`/veiwproduct/${id}`} className='image-container '>
+                            <img src={img} alt="" className='rounded cursor-pointer scale-95 hover:scale-100 transition-all shadow-card' />
                         </Link>
                     </div>
 
