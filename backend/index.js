@@ -4,12 +4,19 @@ const Dummy = require('./data.json')
 const mongoose = require('mongoose');
 const sendingotp = require('./verifyemail')
 const sendingfeedback = require('./sendfeedbk')
-const getCurrentTime = require('./verifyemail')
 const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials:true}))
+
+function getCurrentTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+}
 
 let emailVerifications = [
   {

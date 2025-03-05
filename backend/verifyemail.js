@@ -93,4 +93,4 @@ return otp;
     catch(e){console.log("UNABLE TO SEND EMAIL");return false}
 }
 module.exports=sendingotp;
-module.exports=getCurrentTime;
+
