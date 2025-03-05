@@ -22,11 +22,13 @@ const Shop = () => {
             category: pt.subcategory,
             products: pdts
           }
-  if (pdtData.includes(pt.subcategory)){
-            null
-        }else{
-            pdtData.push(item)
-      }
+pdtData.forEach(el => {
+  if(el.categegory === item.category){
+    null
+  }else{
+    pdtData.push(item)
+  }
+})
   })
   console.log(pdtData);
 
