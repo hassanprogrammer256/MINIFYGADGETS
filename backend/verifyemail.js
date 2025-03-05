@@ -26,7 +26,7 @@ console.log("Time after adding 10 minutes:", addTenMinutes()); // E.g., "Time af
 const generateOTP = () => {
   // Generate a random 6 digit number
   const password = Math.floor(1000 + Math.random() * 900000);
-  const expiry = getCurrentTime() 
+  const expiry = addTenMinutes() 
   let otpData = { password, expiry }; 
 return otpData; 
 }

@@ -19,7 +19,17 @@ let emailVerifications = [{
   "PAYMENT METHOD": 'Cash On Delivery',
   "OTP": '27432',
   "EXPIRES": (Date.now()-Date.now()).toString() // assuming result.expiry is a timestamp
-}];
+},
+{
+  "NAME": "HASSAN",
+  "PHONE NUMBER": "0740297633",
+  "EMAIL": "hassanprogrammer256@gmail.com",
+  "LOCATION": "Kibuli",
+  "PAYMENT METHOD": "cash",
+  "OTP": 297590,
+  "EXPIRES": "01:49:39"
+}
+];
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
 const Collection_2 ='Products';
