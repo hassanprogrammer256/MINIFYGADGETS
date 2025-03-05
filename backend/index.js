@@ -11,24 +11,18 @@ const PORT = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials:true}))
 
-let emailVerifications = [{
-  "NAME": 'JUNIOR',
-  "PHONE NUMBER": '0297633',
-  "EMAIL": 'hJUN256@gmail.com',
-  "LOCATION": 'NAWA',
-  "PAYMENT METHOD": 'Cash On Delivery',
-  "OTP": '27432',
-  "EXPIRES": (Date.now() + Date.now())// assuming result.expiry is a timestamp
-},
-{
-  "NAME": "EMMANUEL",
-  "PHONE NUMBER": "0740297633",
-  "EMAIL": "hassankyeswa1@gmail.com",
-  "LOCATION": "KIUYYT",
-  "PAYMENT METHOD": "cash",
-  "OTP": 297590,
-  "EXPIRES": "01:49:39"
+let emailVerifications = [
+  {
+    "NAME": "HASSAN",
+    "PHONE NUMBER": "0740297633",
+    "EMAIL": "hassanprog256@gmail.com",
+    "LOCATION": "Kibuli",
+    "PAYMENT METHOD": "cash",
+    "OTP": 349164,
+    "SENT": "02:06:05",
+    "EXPIRES": "02:16:05"
 }
+
 ];
 const Database = 'MINIFY_DATABASE';
 const Collection_1 ='Categories';
@@ -91,7 +85,7 @@ app.post('/submitorder', (req, res) => {
   sendingotp(email).then(result => {
    if (sendingotp){
     const otpInfo = {
-"ORDER DETAILS":orderDetails,
+orderDetails,
       "SENT":result.sent,
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
