@@ -24,7 +24,7 @@ let emailVerifications = [
             "iphone"
         ]
     },
-    " OTP": 141721,
+    "OTP": 141721,
     "SENT": "02:16:42",
     "EXPIRES": "02:26:42"
 },{
@@ -110,7 +110,7 @@ app.post('/submitorder', (req, res) => {
    if (sendingotp){
     const otpInfo = {
 orderDetails,
-" OTP":result.password,
+"OTP":result.password,
       "SENT":result.sent,
       "EXPIRES": result.expiry // assuming result.expiry is a timestamp
   };
