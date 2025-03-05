@@ -68,8 +68,6 @@ else{
 </div>
 <div data-aos-delay="600" className="col-lg-7 contact-input">
 <div className="contact-form-wrapper">
-<div className="">
-
 <form className="rnt-contact-form rwt-dynamic-form row " id="contacts" onSubmit={HandleSubmit}>
 
 <div className="col-lg-6">
@@ -113,7 +111,6 @@ else{
 </button>
 </div>
 </form>
-</div>
 </div>
 </div>
 </div>
