@@ -21,7 +21,7 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
                         </Link>
                     </div>
 
-                    <div className="flex flex-col text-start px-2 lg:px-4 text-wrap text-ellipsis break-words mb-1">
+                    <div className="flex flex-col text-start px-2 lg:px-4 text-wrap text-ellipsis break-words fixed-div mb-1">
                         <h5 className="text-2xl lg:text-4xl font-black text-black">{name}</h5>
                         <h6 className="text-xl lg:text-3xl font-semibold text-gray-700 text-start">{description}</h6>
                     </div>
