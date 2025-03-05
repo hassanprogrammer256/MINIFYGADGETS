@@ -53,8 +53,8 @@ const CardGroup = () => {
            <SwiperSlide key={index} className="swiper-slide-custom">
            <Mycard
                id={e.id}
-               description={(e.description).length > 50 ? (e.description).substring(0, 50) + '...' : e.description}
-               name={(e.name).length > 20 ? (e.name).substring(0, 20) + '...' : e.name}
+               description={e.description}
+               name={e.name}
                price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting price with commas
                shipping_fee={Number((e.shipping * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting shipping fee with commas
                img={e.image ? e.image : All_Images.min_logo}
