@@ -16,14 +16,14 @@ const Shop = () => {
    const pdtData = []
   
   products.forEach(pt =>{
-      if (pdtData.includes(pt.subcategory)){
-          null
-      }else{
           let pdts = products.filter(obj => obj.subcategory === pt.subcategory)
           const item = {
             category: pt.subcategory,
             products: pdts
           }
+  if (pdtData.includes(pdts.category)){
+            null
+        }else{
             pdtData.push(item)
       }
   })
@@ -74,7 +74,7 @@ const Shop = () => {
       }}
       className="mySwiper py-5"
     >
-      {pdts.slice(0,10).map((e, index) => (
+      {pdtData.slice(0,10).map((e, index) => (
        <SwiperSlide key={index} className="swiper-slide-custom">
        <Mycard
            id={e.id}
