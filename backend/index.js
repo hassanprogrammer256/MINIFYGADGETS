@@ -12,19 +12,19 @@ app.use(express.json());
 app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials:true}))
 
 let emailVerifications = [{
-  "NAME": 'HASSAN',
-  "PHONE NUMBER": '0740297633',
-  "EMAIL": 'hassanprogrammer256@gmail.com',
-  "LOCATION": 'Kibuli',
+  "NAME": 'JUNIOR',
+  "PHONE NUMBER": '0297633',
+  "EMAIL": 'hJUN256@gmail.com',
+  "LOCATION": 'NAWA',
   "PAYMENT METHOD": 'Cash On Delivery',
   "OTP": '27432',
   "EXPIRES": (Date.now() + Date.now())// assuming result.expiry is a timestamp
 },
 {
-  "NAME": "HASSAN",
+  "NAME": "EMMANUEL",
   "PHONE NUMBER": "0740297633",
-  "EMAIL": "hassanprogrammer256@gmail.com",
-  "LOCATION": "Kibuli",
+  "EMAIL": "hassankyeswa1@gmail.com",
+  "LOCATION": "KIUYYT",
   "PAYMENT METHOD": "cash",
   "OTP": 297590,
   "EXPIRES": "01:49:39"
