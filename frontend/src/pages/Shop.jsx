@@ -6,7 +6,6 @@ import MyCarousel from '../components/MyCarousel'
 import { AppContext } from '../components/AppContext';
 import Shop_Hero from '../components/Shop_Hero';
 import Mycard from './MyCard';
-import { AppContext } from './AppContext';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { All_Images,} from "../../public/index";
