@@ -10,7 +10,7 @@ import MyCard from '../components/MyCard';
 import { All_Images } from '../../public';
 
 const Shop = () => {
-  const { STANDARD_UGX_RATE, API_URL, active_Product, setactive_Product, active_Brand, setactive_Brand, currentLocation, searchTerm, setsearchTerm, products } = useContext(AppContext);
+  const { STANDARD_UGX_RATE, API_URL, currentLocation, products } = useContext(AppContext);
 
   const pdtData = [];
 
@@ -64,7 +64,7 @@ const Shop = () => {
                   }}
                   breakpoints={{
                     300: {
-                      slidesPerView: 2,
+                      slidesPerView: 1,
                       spaceBetween: 10
                     },
                     576: {
@@ -82,16 +82,13 @@ const Shop = () => {
                   }}
                   className="mySwiper py-5"
                 >
-                  {/* Create SwiperSlides for each group of up to 10 products */}
+                  {/* Group products in sets of 10 per SwiperSlide */}
                   {Array.from({ length: Math.ceil(el.products.length / 10) }).map((_, groupIndex) => {
-                    const start = groupIndex * 10;
-                    const end = start + 10;
-                    const group = el.products.slice(start, end); // Get the current group of products
-                    
+                    const groupProducts = el.products.slice(groupIndex * 10, groupIndex * 10 + 10);
                     return (
                       <SwiperSlide key={groupIndex} className="swiper-slide-custom">
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"> {/* Create a grid layout */}
-                          {group.map((e) => (
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"> {/* Control the responsive layout */}
+                          {groupProducts.map((e) => (
                             <MyCard
                               key={e.id}
                               id={e.id}
