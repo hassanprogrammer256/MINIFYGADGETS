@@ -14,7 +14,7 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
     return (
         <motion.div className='py-4'>
             <Card className="md:max-w-sm max-w-lg max-h-max shadow-card cursor-pointer relative bg-blue-100">
-                <div className="grid grid-rows-1 grid-cols-1">
+                <div className="">
                     <div className="bg-blue-100 mb-2 w-full">
                         <Link to={`/veiwproduct/${id}`} className='image-container '>
                             <img src={img} alt="" className='rounded cursor-pointer scale-95 hover:scale-100 transition-all shadow-card' />
