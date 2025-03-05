@@ -82,29 +82,30 @@ const Shop = () => {
                   }}
                   className="mySwiper py-5"
                 >
-                  {/* Group products in rows of up to 10 */}
-                  {el.products.reduce((acc, curr, index) => {
-                    // Create groups of 10 products
-                    if (index % 10 === 0) acc.push([curr]); // Start a new group
-                    else acc[acc.length - 1].push(curr); // Push to current group
-                    return acc;
-                  }, []).map((group, groupIndex) => (
-                    <SwiperSlide key={groupIndex} className="swiper-slide-custom">
-                      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"> {/* Control the responsive layout */}
-                        {group.map((e) => (
-                          <MyCard
-                            key={e.id}
-                            id={e.id}
-                            description={e.description.length > 50 ? e.description.substring(0, 50) + '...' : e.description}
-                            name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
-                            price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} 
-                            shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
-                            img={e.image ? e.image : All_Images.min_logo} 
-                          />
-                        ))}
-                      </div>
-                    </SwiperSlide>
-                  ))}
+                  {/* Create SwiperSlides for each group of up to 10 products */}
+                  {Array.from({ length: Math.ceil(el.products.length / 10) }).map((_, groupIndex) => {
+                    const start = groupIndex * 10;
+                    const end = start + 10;
+                    const group = el.products.slice(start, end); // Get the current group of products
+                    
+                    return (
+                      <SwiperSlide key={groupIndex} className="swiper-slide-custom">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"> {/* Create a grid layout */}
+                          {group.map((e) => (
+                            <MyCard
+                              key={e.id}
+                              id={e.id}
+                              description={e.description.length > 50 ? e.description.substring(0, 50) + '...' : e.description}
+                              name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
+                              price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} 
+                              shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
+                              img={e.image ? e.image : All_Images.min_logo} 
+                            />
+                          ))}
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
                 </Swiper>
               </motion.div>
             </div>
