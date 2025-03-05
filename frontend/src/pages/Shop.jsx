@@ -7,6 +7,7 @@ import {Pagination} from "swiper/modules";
 import MyCarousel from '../components/MyCarousel'
 import { AppContext } from '../components/AppContext';
 import Shop_Hero from '../components/Shop_Hero';
+import Mycard from '../components/MyCard';
 
 
 
@@ -21,13 +22,13 @@ const Shop = () => {
             category: pt.subcategory,
             products: pdts
           }
-  if (pdtData.includes(pdts.category)){
+  if (pdtData.includes(pt.subcategory)){
             null
         }else{
             pdtData.push(item)
       }
   })
-  console.log(pdtData)
+  console.log(pdtData);
 
   return (
     <div >
