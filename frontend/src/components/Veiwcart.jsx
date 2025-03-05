@@ -31,7 +31,7 @@ animate={{y:veiwcart ? 0 : -500,opacity:veiwcart ? 1 : 0,visibility:veiwcart ? '
         </div>
 
 <div
-    className = "table-responsive px-4"
+    className = "table-responsive px-4 table-light"
 >
 <table className="table table-light rounded-lg">
             <thead>
