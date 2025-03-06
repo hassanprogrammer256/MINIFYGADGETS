@@ -23,7 +23,7 @@ whileInView={{x:0,opacity:1}}
 initial = {{y:-200,opacity: 0}}
 whileInView={{y:0,opacity: 1}}
 transition={{type:'spring', duration:.8,bounce:.2}}
-className="text-gray-100 font-normal text-3xl leading-10">Explore the Latest Phones,Electronics and Gadgets designed for you. Upgrade to Smarter living with compact and powerful devices. Experience Innovation redefined with gadgets designed for you. Simplify your tec and Elevate your life. we are the best in modern electronics delivered to your finger tips</motion.p>
+className="text-gray-400 font-normal text-3xl leading-10">Explore the Latest Phones,Electronics and Gadgets designed for you. Upgrade to Smarter living with compact and powerful devices. Experience Innovation redefined with gadgets designed for you. Simplify your tec and Elevate your life. we are the best in modern electronics delivered to your finger tips</motion.p>
 
 <a href="/shop"> <div className="hidden sm:flex gap-4 py-5 text-center">
     

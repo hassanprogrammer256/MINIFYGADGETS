@@ -60,7 +60,7 @@ const Shop = () => {
   return (
     <div>
       {currentLocation === '/' ? (
-        <h1 className="text-center font-black text-ellipsis break-words text-wrap text-white lg:text-6xl uppercase mb-0 sm:text-5xl text-3xl">
+        <h1 className=" mt-10 text-center font-black text-ellipsis break-words text-wrap text-white lg:text-6xl uppercase mb-3 sm:text-5xl text-3xl">
           WE OFFER VARIETY OF PRODUCTS
         </h1>
       ) : (
