@@ -69,7 +69,7 @@ const Shop = () => {
 <MyCarousel />
       {isLoading ? (
         <div className="flex items-center justify-center ">
-          <div className="animate-spin rounded-full h-20 w-20 border-3 border-t-8 border-green-500 border-t-transparent"></div>
+          <div className="animate-spin rounded-full h-20 w-20 border-4 border-t-8 border-green-500 border-t-transparent"></div>
         </div>
       ) : (
         <>
