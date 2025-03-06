@@ -69,7 +69,7 @@ const Shop = () => {
 <MyCarousel />
       {isLoading ? (
         <div className="flex items-center justify-center ">
-          <div className="animate-spin rounded-full h-20 w-20 border-8 border-t-8 border-green-500 border-t-transparent"></div>
+          <div className="animate-spin rounded-full h-20 w-20 border-3 border-t-8 border-green-500 border-t-transparent"></div>
         </div>
       ) : (
         <>
@@ -126,7 +126,7 @@ const Shop = () => {
                             name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
                             price={Number((e.price * STANDARD_UGX_RATE).toFixed(0))} 
                             shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
-                            img={All_Images.headphones_100} 
+                            img={e.image} 
                           />
                         </SwiperSlide>
                       ))}
