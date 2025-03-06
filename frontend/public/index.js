@@ -15,9 +15,6 @@ import home_appliances_icon from '/images/icons/home.jpg'
 
 import banner_bg from '/images/NiceImages/herobg.png'
 
-export const Brands = ["iPhone","Samsung","Tecno","Realme","Google","Infinix","Oppo","Hisense","Speakers","Console","Covers"]
-export const Categories = ['All','UK-Used','Best Deals','Trending','Brand-New']
-
 export const NavLinks = ['home','shop']
 
 export  const All_Images = {min_logo,headphones_1,banner_bg,contacts,headphones_100,hassan,tab_icon,tv_icon,repair_icon,speakers_icon,laptop_icon,gamepad_icon,accessories_icon,home_appliances_icon}
@@ -30,10 +27,6 @@ export const Products = [
 {
     name:'Televisions',
     image: tv_icon
-},
-{
-    name:'Repair Spare',
-    image: repair_icon
 },
 {
     name:'Systems',
@@ -50,10 +43,6 @@ export const Products = [
 {
     name:'Gaming',
     image: gamepad_icon
-},
-{
-    name:'Home Appliances',
-    image: home_appliances_icon
 },
 {
     name:'Accessories',
