@@ -60,7 +60,7 @@ const Shop = () => {
   return (
     <div>
       {currentLocation === '/' ? (
-        <h1 className=" mt-10 text-center font-black text-ellipsis break-words text-wrap text-white lg:text-6xl uppercase mb-3 sm:text-5xl text-3xl">
+        <h1 className=" mt-10 text-center font-black text-ellipsis break-words text-wrap text-gray-300 lg:text-6xl uppercase mb-3 sm:text-5xl text-3xl">
           WE OFFER VARIETY OF PRODUCTS
         </h1>
       ) : (
@@ -84,7 +84,7 @@ const Shop = () => {
                   <motion.h2 
                     initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className="text-left font-extrabold text-white text-3xl lg:text-5xl px-2 lg:px-4">
+                    className="text-left font-extrabold text-gray-300 text-3xl lg:text-5xl px-2 lg:px-4">
                     {el.category}
                   </motion.h2>
                   <motion.div

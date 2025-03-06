@@ -13,7 +13,7 @@ const Review_group = () => {
     initial ={{y:50,opacity:0}}
     transition={{type:'tween',duration:.8}}
     whileInView={{y:0,opacity:1}}
-    className='bg-blue-100 py-2'>
+    className='bg-blue-100 py-2 my-8'>
       <div className="flex justify-center">
 <h2 className="text-center font-black text-black text-5xl md:text-7xl">WHAT OTHERS SAY</h2>
       </div>
