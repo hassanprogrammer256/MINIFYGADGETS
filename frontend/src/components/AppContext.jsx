@@ -42,7 +42,6 @@ const [customer_email, setcustomer_email] = useState('')
 
 const getData = async () => {
   try {
-    setfullpageloading(true);
     
     const response = await fetch(`${API_URL}/allproducts`, {
       method: 'POST',
@@ -63,7 +62,6 @@ const getData = async () => {
   } catch (err) {
     console.error('Error fetching data:', err);
   } finally {
-    setfullpageloading(false);
   }
 };
 
