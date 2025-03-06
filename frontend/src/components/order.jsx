@@ -3,7 +3,6 @@ import { AppContext } from './AppContext';
 import { motion } from 'framer-motion';
 import { X } from 'react-feather';
 import axios from 'axios';
-import Loading from './Loading';
 
 
 const Order = () => {

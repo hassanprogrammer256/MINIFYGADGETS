@@ -11,7 +11,7 @@ import Order from './components/order'
 import Confirmorder from './components/confirmpayment'
 import Note from './components/Alert'
 import { AppContext } from './components/AppContext'
-import Loading from './components/Loading'
+
 
 
 
@@ -36,7 +36,6 @@ const App =() => {
     )
   }
 /><Veiwcart /><Order /><Confirmorder /><Note message={alert ? 'Item already in Cart' : 'Operation not succesfull, please try again'} />
-{fullpageloading ?<Loading />:null}
   </>
   )
 }

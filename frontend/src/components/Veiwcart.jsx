@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { AppContext } from './AppContext'
 import { X } from 'react-feather'
 import {motion} from "framer-motion";
-import {FaTrash} from "react-icons/fa";
 import Cartitem from './Item';
 
 const Veiwcart = () => {
@@ -13,8 +12,9 @@ const Veiwcart = () => {
     return cartItems.reduce((acc, item) => {
         const qtty = quantity[item.id] || 0;
         return acc + (item.price * qtty);
-    }, 0).toFixed(2);}
-    const totalPrice = calculateTotal();
+       
+    }, 0);}
+    const totalPrice = calculateTotal()
   return (
     <motion.div 
     initial={{y:500,opacity:0,visibility:'hidden'}}
@@ -43,11 +43,11 @@ animate={{y:veiwcart ? 0 : -500,opacity:veiwcart ? 1 : 0,visibility:veiwcart ? '
                 </tr>
             </thead>
             <tbody>
-{cartItems.map((e) => (<Cartitem id={e.id} name={e.name} price={e.price} key={e.id}/>))}
+{cartItems.map((e) => (<Cartitem id={e.id} name={e.name} price= {e.price} key={e.id}/>))}
                 <tr>
                     <td className="font-black">TOTAL</td>
                     <td className='font-black'></td>
-                    <td className='font-black'>UGX: {totalPrice}</td>
+                    <td className='font-black'>UGX: {totalPrice.toLocaleString('en-US')}</td>
                 </tr>
             </tbody>
         </table>

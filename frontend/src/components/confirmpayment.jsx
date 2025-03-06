@@ -8,7 +8,7 @@ const {customer_email, setcustomer_email,getData,API_URL,setemailVerified, setve
 const handleSubmit = async(e) => {
   e.preventDefault(); // Prevent the form from submitting the traditional way
           
-            const code = document.getElementById('code').value;
+            let code = document.getElementById('code').value;
             const email = customer_email
 
           await axios.post(`${API_URL}/confirmcode`, {code,email})

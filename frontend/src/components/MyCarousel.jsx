@@ -25,8 +25,7 @@ const MyCarousel = () => {
     };
     
     return (
-        <>
-            <motion.div 
+        <> <motion.div 
                 initial={{ y: 100, opacity: 0 }}
                 transition={{ type: 'tween', duration: .8 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -67,12 +66,6 @@ const MyCarousel = () => {
                 </Swiper>
             </motion.div>
 
-            {/* Loading Spinner */}
-            {isLoading && (
-                <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
-                    <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-blue-600"></div>
-                </div>
-            )}
         </>
     );
 }

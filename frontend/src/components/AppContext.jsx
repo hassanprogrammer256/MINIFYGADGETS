@@ -10,7 +10,8 @@ export const AppContext = createContext();
 // CONTEXT FUNCTION
 const AppContextProvider = (props) => {
   const API_URL = 'https://minifygadgets.vercel.app'
-  const STANDARD_UGX_RATE = 4648.7483
+  // const API_URL = 'http://localhost:3000'
+  const STANDARD_UGX_RATE = 3672
 
 // ======START OF ALL CONSTANTS AND VARIABLES DECLARED======
 const currentLocation = useLocation().pathname
@@ -40,34 +41,7 @@ const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 // ====== END OF ALL USESTATES=====
 
-const getData = async () => {
-  try {
-    
-    const response = await fetch(`${API_URL}/allproducts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        q: Products[active_Product].name, // Send search term in the body
-      })
-    });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json(); // Parse the JSON response
-    setproducts(data); // Set products with the fetched data
-  } catch (err) {
-    console.error('Error fetching data:', err);
-  } finally {
-  }
-};
-
-useEffect(() => {
-  getData();
-}, [active_Product]);
 
 // ====== START OF ALL FUNCTIONS=====
 const ToggleOverflow = () => {
@@ -95,20 +69,24 @@ const decreaseqtty = (id)=> {
 }
 
 const AddItems = (name, id, price) => {
-  setaddingitem(true)
-const item = {
-      id:id,
-      name: name, 
-      price: price,
-  };
-if (cartItems.find(obj => obj.id === item.id)) {
-setalert(true)
-}else{
-  setcartItems(prevItems => [...prevItems, item]);
-  setistoast(true);}
-  setaddingitem(false)
+  setaddingitem(true); // Set loading state
 
-  
+  const item = {
+      id: id,
+      name: name, 
+      price: price, 
+  };
+
+  // Check if the item already exists in the cart
+  if (cartItems.find(obj => obj.id === item.id)) {
+      setalert(true); // Set alert if item exists
+  } else {
+      // Add new item to cart
+      setcartItems(prevItems => [...prevItems, item]); 
+      setistoast(true); // Notify that item was added
+  }
+
+  setaddingitem(false); // Reset loading state
 };
 
 const RemoveItem = (id) => {
@@ -141,7 +119,7 @@ const SubmittingOrder = () => {
 
 // ALL CONTEXT VALUES
 
-const AppContextValues = {STANDARD_UGX_RATE,getData,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alert,setalert,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,emailVerified, setemailVerified}
+const AppContextValues = {STANDARD_UGX_RATE,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alert,setalert,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,emailVerified, setemailVerified}
 
 
 // RETURNING AND EXPORTING THE REQUIRED MODULES

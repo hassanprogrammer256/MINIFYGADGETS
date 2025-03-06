@@ -13,7 +13,6 @@ const Cartitem = ({id,name,price}) => {
     cartItems.forEach(element => {
         setQuantity(prev => ({ ...prev, [id]: value }));
     });
-    console.log(quantity)
 };
 return (
 
@@ -31,12 +30,12 @@ className="border p-1 rounded text-black font-black quantity"
 />
 </div>
 </td>
-<td>{(price * (quantity[id] )|| 0).toFixed(0)}</td>
+<td>{(price * (quantity[id] || 0)).toLocaleString('en-US')}</td>
 <td>
 <FaTrash 
 size={20} 
 className='text-red-500 cursor-pointer hover:text-red-400 max-w-xs font-black text-2xl' 
-onClick={() => { RemoveItem(id) }} 
+onClick={() => {RemoveItem(id) }} 
 />
 </td>
 </tr>
