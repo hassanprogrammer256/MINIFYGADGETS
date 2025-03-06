@@ -11,7 +11,7 @@ const Veiwcart = () => {
      
   const calculateTotal = () => {
     return cartItems.reduce((acc, item) => {
-        const qtty = quantity[item.id] || 0; // default to 0 if not set
+        const qtty = quantity[item.id] || 0;
         return acc + (item.price * qtty);
     }, 0).toFixed(2);}
     const totalPrice = calculateTotal();

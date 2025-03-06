@@ -13,6 +13,7 @@ const Cartitem = ({id,name,price}) => {
     cartItems.forEach(element => {
         setQuantity(prev => ({ ...prev, [id]: value }));
     });
+    console.log(quantity)
 };
 return (
 
