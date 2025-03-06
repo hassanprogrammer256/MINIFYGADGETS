@@ -85,8 +85,8 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 app.post('/confirmcode', (req, res) => {
-  const { code, email } = req.body;
-
+  const {code,email} = req.body;
+  console.log('Received request for /confirmcode', req.body);
   // Find the verification entry for the provided email
 const verification = emailVerifications.find(obj => obj.orderDetails.EMAIL === email);
 try {
@@ -109,7 +109,8 @@ try {
     res.json({ message: "No verification found for this email" });
 } 
 } catch (error) {
-  res.status(500).send('Failed to send OTP: '+ error.message);
+  console.error('Error processing request:', error); // Debugging line
+    res.status(500).send('Failed to send OTP: ' + error.message)
 }
 });
 
@@ -117,39 +118,43 @@ app.post('/submitorder', (req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
 
   const orderDetails = {
-      "NAME": name,
-      "PHONE NUMBER": number,
-      "EMAIL": email,
-      "LOCATION": location,
-      "PAYMENT METHOD": paymentMethod,
-      "CUSTOMER ORDER": CustomerOrder
+    "NAME": name,
+    "PHONE NUMBER": number,
+    "EMAIL": email,
+    "LOCATION": location,
+    "PAYMENT METHOD": paymentMethod,
+    "CUSTOMER ORDER": CustomerOrder
   };
 
   sendingotp(email).then(result => {
-   if (sendingotp){
-    const otpInfo = {
-orderDetails,
-"OTP":result.password,
-      "SENT":result.sent,
-      "EXPIRES": result.expiry // assuming result.expiry is a timestamp
-  };
-  emailVerifications.push(otpInfo)
-  res.json({message: 'sent',data: emailVerifications})
-   }else{
-    res.json({message: 'not sent'})
-   }
+    // Ensure `otpInfo` is defined regardless of sendingotp result
+    let otpInfo = null;
+    
+    // Check if sendingotp was successful
+    if (result && result.password && result.sent) {
+      otpInfo = {
+        orderDetails,
+        "OTP": result.password,
+        "SENT": result.sent,
+        "EXPIRES": result.expiry // assuming result.expiry is a timestamp
+      };
 
       // Store the OTP information in the emailVerifications array
       emailVerifications.push(otpInfo);
-
+      
       // Respond with the order details and OTP (but not the OTP value for security reasons)
-      res.json({
-          message: "OTP sent",
-          orderDetails: orderDetails
+      return res.json({
+        message: "OTP sent",
+        orderDetails: orderDetails,
+        // Optionally return the emailVerifications if needed
+        data: emailVerifications
       });
+    } else {
+      return res.json({ message: 'OTP not sent' });
+    }
   }).catch(err => {
-      console.error("Error sending OTP:", err);
-      res.status(500).json({ message: "Error sending OTP" });
+    console.error("Error sending OTP:", err);
+    return res.status(500).json({ message: "Error sending OTP" });
   });
 });
 

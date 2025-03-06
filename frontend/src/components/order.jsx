@@ -8,6 +8,7 @@ import axios from 'axios';
 const Order = () => {
   const {setfullpageloading,
     customer_email,
+setordernotsent,
     setcustomer_email,
     API_URL,
     CustomerOrder,
@@ -16,15 +17,14 @@ const Order = () => {
     ToggleOverflow,
     payment,
     setpayment,
-    setconfirmpayment,
-    isLoading,
-    setisLoading,
+    setconfirmpayment,settblcheck
   } = useContext(AppContext);
 
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const [locations, setLocations] = useState([]); // Store fetched locations
+const [isLoading,setisLoading] = useState(false)
 
   const fetchLocations = async (query) => {
     try {
@@ -98,28 +98,38 @@ const Order = () => {
 
     if (name && email && location && paymentMethod && number) {
       try {
-        setfullpageloading(true);
+        setisLoading(true);
         const res = await axios.post(`${API_URL}/submitorder`, { name, number, email, location, paymentMethod, CustomerOrder });
-        if (res.status === 200) {
-          alert('Order placed successfully');
+        if (res.data.message === "OTP sent") {
           setcustomer_email(email);
           setCustomerOrder([]);
           setveiwcart(false);
           ToggleOverflow();
-          setconfirmpayment(true);
-        }} catch (err) {console.error('some thing went wrong');
+         setconfirmpayment(true);
+
+        }else{
+        setisLoading(false)
+        settblcheck(false)
+         setordernotsent(true)
+        
+        }
+      
+      } catch (err) {
+        setisLoading(false)
+        setordernotsent(true)
+       
       } finally {
-        setfullpageloading(false);
+        setisLoading(false);
       }
     } 
   };
 
   return (
-    isLoading ? <Loading /> : <motion.div 
+    <motion.div 
       initial={{ y: 500, opacity: 0, visibility: 'hidden' }}
       animate={{ y: payment ? 0 : -500, opacity: payment ? 1 : 0, visibility: payment ? 'visible' : 'hidden' }}
       transition={{ type: 'tween', duration: .5 }}
-      className='fixed top-0 w-full h-full end-0 bg-modal z-30 bg-red-800 overflow-y-scroll'>
+      className='fixed top-0 w-full h-full end-0 bg-modal z-30 overflow-y-scroll'>
       
       <div className="flex justify-center py-4">
         <div className="flex flex-col justify-center bg-gray-900 md:w-[70%] pt-40 pb-5 px-2">
@@ -127,6 +137,14 @@ const Order = () => {
             <h1 className="text-white text-center font-bold text-5xl mb-4">MINIFY GADGETS</h1>
             <X size={30} className='hover:text-white cursor-pointer' onClick={() => { setpayment(false); ToggleOverflow(); }} />
           </div>
+          {isLoading ? (
+             <div className="flex flex-col justify-items-center justify-center fixed h-full w-full bg-modal z-50">
+<div className="flex justify-center"><div className="animate-spin rounded-full h-32 w-32 border-8 border-t-8 border-green-500 border-t-transparent"></div>
+</div>
+<div className="flex justify-center my-20"><h1 className="font-black text-gray-200 text-4xl">PLEASE WAIT.....</h1></div>
+   
+         </div>
+            ):
           <form className="rnt-contact-form rwt-dynamic-form row md:px-4 px-2" id="contact-form" method='POST' onSubmit={HandleSubmit}>
 
             <div className="col-lg-6">
@@ -192,7 +210,7 @@ const Order = () => {
                       onClick={() => { setpayment(false); ToggleOverflow(); }}>DISCARD</button>
               <button type="submit" className='bg-green-900 hover:bg-green-500 cursor-pointer text-center font-black text-white rounded-2xl'>SUBMIT</button>
             </div>
-          </form>
+          </form>}
         </div>
       </div>
     </motion.div>

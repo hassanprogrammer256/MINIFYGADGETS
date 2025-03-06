@@ -90,7 +90,7 @@ async function sendingotp(reciever) {
 return otp;
   
   }
-    catch(e){console.log("UNABLE TO SEND EMAIL");return false}
+    catch(e){;return false}
 }
 module.exports=sendingotp;
 

@@ -16,7 +16,7 @@ import { AppContext } from './components/AppContext'
 
 
 const App =() => {
-  const {addingitem, setaddingitem,alert,fullpageloading, messagesent, setmessagesent,istoast,setistoast} = useContext(AppContext)
+  const {addingitem, setaddingitem,alerting,fullpageloading,ordernotsent, messagesent,qttycheck,tblcheck, setmessagesent,istoast,settblcheck,setistoast} = useContext(AppContext)
   return (
   <>
   <div className="bg-web">
@@ -35,7 +35,7 @@ const App =() => {
       messagesent ? '' : 'View Cart'
     )
   }
-/><Veiwcart /><Order /><Confirmorder /><Note message={alert ? 'Item already in Cart' : 'Operation not succesfull, please try again'} />
+/><Veiwcart /><Order /><Confirmorder /><Note message={alerting ? 'Item already in Cart': qttycheck ? 'fill all the quantity fields':ordernotsent? 'Something Went Wrong': tblcheck ? 'No Item Added' : '' } />
   </>
   )
 }

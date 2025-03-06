@@ -19,7 +19,7 @@ const currentLocation = useLocation().pathname
 // ====== START OF ALL USESTATES=====
 const [active_Brand, setactive_Brand] = useState(0)
 const [active_Product, setactive_Product] = useState(0)
-const [alert,setalert] = useState(false)
+const [alerting,setalerting] = useState(false)
 const [searchTerm, setsearchTerm] = useState("phones")
 const [products, setproducts] = useState([])
 const [categories, setcategories] = useState([])
@@ -39,6 +39,12 @@ const [cartItems, setcartItems] = useState([])
  const [emailVerified, setemailVerified] = useState(false);
 const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
+const [qttycheck, setqttycheck] = useState(false)
+const [tblcheck, settblcheck] = useState(false)
+const [ordernotsent,setordernotsent] = useState(false)
+const [OTPexpired,setOTPexpired] = useState(false)
+const [OTPIncorrect,setOTPIncorrect] = useState(false)
+const [OTPcorrect,setOTPcorrect] = useState(false)
 // ====== END OF ALL USESTATES=====
 
 
@@ -79,7 +85,7 @@ const AddItems = (name, id, price) => {
 
   // Check if the item already exists in the cart
   if (cartItems.find(obj => obj.id === item.id)) {
-      setalert(true); // Set alert if item exists
+      setalerting(true); // Set alert if item exists
   } else {
       // Add new item to cart
       setcartItems(prevItems => [...prevItems, item]); 
@@ -95,9 +101,10 @@ const RemoveItem = (id) => {
 };
 
 const SubmittingOrder = () => {
-  if (cartItems.length > 0) {
+  if (cartItems.length > 0 ) {
       const oneOrder = []
       cartItems.forEach(element => {
+
         const item = {
               itemId: element.id,
               itemName: element.name,
@@ -105,21 +112,19 @@ const SubmittingOrder = () => {
               Unit_Price: element.price,
               TotalAmount:quantity[element.id] * element.price
           }
-          oneOrder.push(item)
-          setveiwcart(false)
+        if (isNaN(item.Quantity_Bought)){
+   setqttycheck(true);
+        }else{
+          oneOrder.push(item);
+          setveiwcart(false);
           setpayment(true);
-          setCustomerOrder(oneOrder)
-      });
-  return CustomerOrder;
-  }else{alert('No Items Selected')}
-      
-  }
+          setCustomerOrder(oneOrder);}});return CustomerOrder;}else{settblcheck(true)}}
 
 // ====== END OF ALL FUNCTIONS=====
 
 // ALL CONTEXT VALUES
 
-const AppContextValues = {STANDARD_UGX_RATE,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alert,setalert,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,emailVerified, setemailVerified}
+const AppContextValues = {STANDARD_UGX_RATE,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alerting,setalerting,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,emailVerified, setemailVerified,qttycheck,setqttycheck,tblcheck,settblcheck,setordernotsent,ordernotsent,OTPcorrect,setOTPcorrect,OTPIncorrect,setOTPIncorrect,OTPexpired,setOTPexpired}
 
 
 // RETURNING AND EXPORTING THE REQUIRED MODULES

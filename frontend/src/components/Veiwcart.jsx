@@ -6,7 +6,7 @@ import Cartitem from './Item';
 
 const Veiwcart = () => {
      
-    const {veiwcart, setveiwcart,ToggleOverflow,setpayment,cartItems,decreaseqtty,increaseqtty,RemoveItem,SubmittingOrder,quantity, setQuantity} = useContext(AppContext)
+    const {veiwcart, setveiwcart,ToggleOverflow,setpayment,cartItems,decreaseqtty,increaseqtty,RemoveItem,SubmittingOrder,quantity, setQuantity,settblcheck,setqttycheck} = useContext(AppContext)
      
   const calculateTotal = () => {
     return cartItems.reduce((acc, item) => {
@@ -27,7 +27,7 @@ animate={{y:veiwcart ? 0 : -500,opacity:veiwcart ? 1 : 0,visibility:veiwcart ? '
         <h1 className="text-white text-center font-bold text-5xl mb-4">
     MINIFY GADGETS 
 </h1>
-<X size={30} className='hover:text-white cursor-pointer' onClick={() => {setveiwcart(false);ToggleOverflow()}}/>
+<X size={30} className='hover:text-white cursor-pointer' onClick={() => {settblcheck(false);setqttycheck(false);setveiwcart(false);ToggleOverflow()}}/>
         </div>
 
 <div

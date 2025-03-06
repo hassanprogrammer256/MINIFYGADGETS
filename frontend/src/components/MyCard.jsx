@@ -7,7 +7,7 @@ import { ShoppingCart } from 'react-feather';
 import { Link } from 'react-router-dom';
 
 const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
-    const { cartItems, AddItems, alert, setalert, addingitem } = useContext(AppContext);
+    const { cartItems, AddItems, alerting, setalerting, addingitem } = useContext(AppContext);
     
     let alreadyincart = cartItems.map(element => element.id).includes(id);
 
@@ -49,7 +49,7 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
                                 </span>
                             <button
                                 className="rounded-lg bg-cyan-700 lg:px-5 px-2 md:py-2.5 m-2 text-center font-medium text-white hidden lg:flex hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 text-xl lg:text-2xl"
-                                onClick={() => { alreadyincart ? setalert(true) : AddItems(name, id, price); }}>
+                                onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }}>
                                 {addingitem ? 'Adding...' : alreadyincart ? 'Added to cart' : 'Add to Cart'}
                             </button>
                         </div>
@@ -58,8 +58,8 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
                     <div className="flex justify-between absolute top-0 end-0 w-full lg:hidden">
                         <div className="rounded-lg bg-blue-700 p-2 cursor-pointer ">
                             {alreadyincart ? 
-                                <FaCheckCircle size={20} onClick={() => { alreadyincart ? setalert(true) : AddItems(name, id, price); }} /> : 
-                                <ShoppingCart size={20} onClick={() => { alreadyincart ? setalert(true) : AddItems(name, id, price); }} />
+                                <FaCheckCircle size={20} onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }} /> : 
+                                <ShoppingCart size={20} onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }} />
                             }
                         </div>
                     </div>
