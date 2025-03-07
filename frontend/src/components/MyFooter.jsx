@@ -6,8 +6,14 @@ import Review_group from './Review_group.jsx'
 import axios from 'axios'
 
 const MyFooter = () => {
-  const {API_URL,activemenu, setactivemenu,messagesent, setmessagesent,setistoast} = useContext(AppContext)
+  const {API_URL,activemenu, setactivemenu,messagesent, setmessagesent,setistoast,setordernotsent} = useContext(AppContext)
+  const [name, setname] = useState('')
+  const [phonenumber, setphonenumber] = useState('')
+  const [email, setemail] = useState('')
+  const [subject, setsubject] = useState('')
+  const [message, setmessage] = useState('')
   const [sendingMessage, setsendingMessage] = useState(false)
+
   const HandleSubmit = async(event) => {
 event.preventDefault();
 const name  = document.getElementById('contact-fullnames').value;
@@ -16,15 +22,22 @@ const email  = document.getElementById('contact-email').value;
 const subject  = document.getElementById('subject').value;
 const message  = document.getElementById('contact-message').value;
 
+
 if (name && phonenumber && subject && email && message) {
   try {
     setsendingMessage(true)
     const res = await axios.post(`${API_URL}/sendfeedback`, {name, phonenumber, email, message, subject});
-    console.log({name, phonenumber, email, message, subject})
     if (res.status === 200) {
-setistoast(true)}
+setistoast(true)
+setphonenumber('')
+setname('')
+setemail('')
+setsubject('')
+setmessage('')
+
+}
 else{
-  seta;
+  setordernotsent(true)
       }
     } catch (err) {console.error(err);
   }finally {
@@ -70,35 +83,38 @@ else{
 <div className="col-lg-6">
 <div className="form-group">
 <label htmlFor="contact-name">Your Name</label>
-<input className="form-control form-control-lg" name="contact-name" id="contact-fullnames" type="text" required />
+<input className="form-control form-control-lg" name="contact-name" id="contact-fullnames" type="text" required value={name} onChange={(e) => { 
+  if (/^[A-Za-z\s!@#$%^&*()_+={}\[\]:;"'<>,.?/\\|-]*$/.test(e.target.value)) {
+            setname(e.target.value); 
+        }else{null} }} />
 </div>
 </div>
 
 <div className="col-lg-6">
 <div className="form-group">
 <label htmlFor="contact-phone">Phone Number</label>
-<input className="form-control" name="contact-phone" id="contact-phone" type="text" required />
+<input className="form-control" name="contact-phone" id="contact-phone" type="text" required value={phonenumber} onChange={(e) => setphonenumber(e.target.value)} />
 </div>
 </div>
 
 <div className="col-lg-12">
 <div className="form-group">
 <label htmlFor="contact-email">Email</label>
-<input className="form-control form-control-sm" id="contact-email" name="contact-email" type="email" required />
+<input className="form-control form-control-sm" id="contact-email" name="contact-email" type="email" required value={email} onChange={(e) => setemail(e.target.value)} />
 </div>
 </div>
 
 <div className="col-lg-12">
 <div className="form-group">
 <label htmlFor="subject">subject</label>
-<input className="form-control form-control-sm" id="subject" name="subject" type="text"  required/>
+<input className="form-control form-control-sm" id="subject" name="subject" type="text"  required value={subject} onChange={(e) => setsubject(e.target.value)} />
 </div>
 </div>
 
 <div className="col-lg-12">
 <div className="form-group">
 <label htmlFor="contact-message">Your Message</label>
-<textarea name="contact-message" id="contact-message" cols="30" rows="10" required></textarea>
+<textarea name="contact-message" id="contact-message" cols="30" rows="10" required value={message} onChange={(e) => setmessage(e.target.value)} ></textarea>
 </div>
 </div>
 

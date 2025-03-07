@@ -9,7 +9,7 @@ require('dotenv').config()
 const PORT = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({origin:process.env.FRONTEND_URL,methods:['POST','GET'],credentials:true}))
-// app.use(cors({origin:'http://localhost:5173',methods:['POST','GET'],credentials:true}))
+
 
 function getCurrentTime() {
   const now = new Date();
@@ -19,53 +19,10 @@ function getCurrentTime() {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-let emailVerifications = [
-  {
-    "orderDetails": {
-        "NAME": "SHEENA",
-        "PHONE NUMBER": "074843214",
-        "EMAIL": "sheenapro@gmail.com",
-        "LOCATION": "mbale",
-        "PAYMENT METHOD": "mobile money",
-        "CUSTOMER ORDER": [
-            "laptop",
-            "iphone"
-        ]
-    },
-    "OTP": 141721,
-    "SENT": "02:16:42",
-    "EXPIRES": "02:26:42"
-},{
-  "orderDetails": {
-      "NAME": "SARAH",
-      "PHONE NUMBER": "0876544432",
-      "EMAIL": "saraxxxxxxx@gmail.com",
-      "LOCATION": "kibuye",
-      "PAYMENT METHOD": "cash",
-      "CUSTOMER ORDER": [
-          "charger",
-          "speaker"
-      ]
-  },
-  "OTP": 883809,
-  "SENT": "02:20:25",
-  "EXPIRES": "02:30:25"
-},{
-  "orderDetails": {
-      "NAME": "joshan",
-      "PHONE NUMBER": "0783432264",
-      "EMAIL": "hassanprogrammer256@gmail.com",
-      "LOCATION": "kinaawa",
-      "PAYMENT METHOD": "cash"
-  },
-  "OTP": 453210,
-  "SENT": "02:56:35",
-  "EXPIRES": "03:06:35"
-}
+let emailVerifications = [];
 
-];
 const Database = 'MINIFY_DATABASE';
-const Collection_1 ='Categories';
+const Collection_1 ='Customer_Orders';
 const Collection_2 ='Products';
 
 const { MongoClient, ServerApiVersion,ObjectId } = require('mongodb');
@@ -85,38 +42,28 @@ res.send("WELCOME TO MINIFY GADGETS SERVER")
 })
 
 app.post('/confirmcode', (req, res) => {
-  const {code,email} = req.body;
-  console.log('Received request for /confirmcode', req.body);
-  // Find the verification entry for the provided email
-const verification = emailVerifications.find(obj => obj.orderDetails.EMAIL === email);
-try {
+  const { code, email } = req.body;
+  const verification = emailVerifications.find(obj => obj.orderDetails.EMAIL == email);
   if (verification) {
-    // Check if the code matches and is still valid
-    if (verification.OTP === code) {
-        if (verification.EXPIRES >= getCurrentTime()) {
-            // OTP accepted
-            res.status(200).json({message:'OTP accepted'});
-        } else {
-            // OTP expired
-            res.status(500).json({message:'OTP expired'});
-        }
-    } else {
-        // Incorrect OTP
-        res.status(404).json({message:'OTP is Incorrect'});
-    }
-} else {
-    // No verification found for the provided email
-    res.json({ message: "No verification found for this email" });
-} 
-} catch (error) {
-  console.error('Error processing request:', error); // Debugging line
-    res.status(500).send('Failed to send OTP: ' + error.message)
-}
+      // Check if the code matches and if it's still valid (add expiration check if required)
+      if (verification.OTP == `${code}`) {
+          return res.json({ message: 'OTP accepted',emailVerifications});
+
+      } else {
+          // Incorrect OTP
+          return res.json({ message: 'OTP is Incorrect',emailVerifications});
+      }
+  } else {
+      // No verification found for the provided email
+      return res.json({ message: "No verification found for this email" });
+  }
 });
 
-app.post('/submitorder', (req, res) => {
+app.post('/submitorder', async(req, res) => {
   const { name, number, email, location, paymentMethod, CustomerOrder } = req.body;
-
+await client.connect();
+const db = client.db(Database);
+const collection = db.collection(Collection_1);
   const orderDetails = {
     "NAME": name,
     "PHONE NUMBER": number,
@@ -126,35 +73,30 @@ app.post('/submitorder', (req, res) => {
     "CUSTOMER ORDER": CustomerOrder
   };
 
-  sendingotp(email).then(result => {
+ sendingotp(email,name).then(result => {
     // Ensure `otpInfo` is defined regardless of sendingotp result
     let otpInfo = null;
-    
-    // Check if sendingotp was successful
-    if (result && result.password && result.sent) {
+    if (result) {
       otpInfo = {
         orderDetails,
         "OTP": result.password,
         "SENT": result.sent,
-        "EXPIRES": result.expiry // assuming result.expiry is a timestamp
-      };
+        "EXPIRES": result.expiry }
 
       // Store the OTP information in the emailVerifications array
       emailVerifications.push(otpInfo);
-      
       // Respond with the order details and OTP (but not the OTP value for security reasons)
       return res.json({
         message: "OTP sent",
         orderDetails: orderDetails,
-        // Optionally return the emailVerifications if needed
-        data: emailVerifications
+        data: emailVerifications,
       });
     } else {
-      return res.json({ message: 'OTP not sent' });
+      return res.json({ message: 'OTP not sent'});
     }
   }).catch(err => {
     console.error("Error sending OTP:", err);
-    return res.status(500).json({ message: "Error sending OTP" });
+    return res.json({ message: "Error sending OTP" });
   });
 });
 

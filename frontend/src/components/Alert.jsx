@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { AppContext } from './AppContext';
 
 const Note = ({message}) => {
-    const { alerting,setalerting,setistoast,qttycheck,setqttycheck,tblcheck,settblcheck,ordernotsent,setordernotsent} = useContext(AppContext);
+    const { alerting,setalerting,setistoast,qttycheck,setqttycheck,tblcheck,OTPcorrect,setOTPcorrect,OTPIncorrect,setOTPIncorrect,OTPexpired,setOTPexpired,settblcheck,ordernotsent,setordernotsent} = useContext(AppContext);
     const [progressWidth, setProgressWidth] = useState(0);
     const duration = 5000; // Duration for the timer (5 seconds)
 
@@ -32,15 +32,15 @@ const Note = ({message}) => {
 
     return (
                    <motion.div
-            initial={{ y: alerting ? -400 : qttycheck ? 700 : tblcheck ? 500: ordernotsent ? -400 :0, opacity: alerting ? 0 :qttycheck ? 0 :tblcheck ? 0 :ordernotsent ? 0 :  1, visibility: 'hidden' }}
-            animate={{ y: alerting ? 0: qttycheck ? 0 : tblcheck ? 0:ordernotsent ? 0 : 700, opacity: alerting ? 1 : qttycheck ? 1 :tblcheck ? 1: ordernotsent ? 1 : 0, visibility: alerting ? 'visible':qttycheck ?'visible' : tblcheck ? 'visible' : ordernotsent ? 'visible' : 'hidden'}}
+            initial={{ y: alerting ? -400 : qttycheck || OTPIncorrect ||OTPexpired ? 700 : tblcheck ? 500: ordernotsent ? -400 :0, opacity: alerting ? 0 :qttycheck ? 0 :tblcheck ? 0 :ordernotsent ? 0 :  1, visibility: 'hidden' }}
+            animate={{ y: alerting ? 0: qttycheck || OTPIncorrect || OTPexpired? 0 : tblcheck ? 0:ordernotsent ? 0 : 700, opacity: alerting ? 1 : qttycheck ? 1 :tblcheck || OTPIncorrect || OTPexpired? 1: ordernotsent ? 1 : 0, visibility: alerting ? 'visible':qttycheck ?'visible' : tblcheck || OTPIncorrect || OTPexpired? 'visible' : ordernotsent ? 'visible' : 'hidden'}}
             transition={{ type: 'tween', delay: 0, duration: .5 }}
             className='fixed top-[20%] md:w-[70%] xs:w-[90%] lg:w-[40%] z-50 bg-amber-400 end-0 rounded-s-2xl '
         >
             <div className="md:text-4xl text-end flex justify-between items-center py-2 text-white font-normal px-4">
                 <span>{message}</span>
               
-                <X size={20} className='cursor-pointer hover:text-black font-black mt-2' onClick={() => { setalerting(false) || setqttycheck(false)|| settblcheck(false) || setordernotsent(false)}} />
+                <X size={20} className='cursor-pointer hover:text-black font-black mt-2' onClick={() => { setalerting(false) || setqttycheck(false)|| settblcheck(false) || setordernotsent(false) || setOTPIncorrect(false) || setOTPexpired(false)}} />
             </div>
 
             {/* Progress Bar */}

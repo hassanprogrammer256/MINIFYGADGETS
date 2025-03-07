@@ -10,7 +10,7 @@ export const AppContext = createContext();
 // CONTEXT FUNCTION
 const AppContextProvider = (props) => {
   const API_URL = 'https://minifygadgets.vercel.app'
-  // const API_URL = 'http://localhost:3000'
+  // const API_URL = 'http://localhost:3000';
   const STANDARD_UGX_RATE = 3672
 
 // ======START OF ALL CONSTANTS AND VARIABLES DECLARED======
@@ -31,12 +31,11 @@ const [overflow_y, setoverflow_y] = useState(true)
 const [activeMenu, setactiveMenu] = useState(currentLocation)
 const [istoast, setistoast] = useState(false)
 const [veiwcart, setveiwcart] = useState(false)
-const [payment, setpayment] = useState(false)
-const [confirmpayment, setconfirmpayment] = useState(false)
+const [payment, setpayment] = useState(false) //form to fill to get the OTP Code
+const [confirmpayment, setconfirmpayment] = useState(false) //form for confirming the code sent to the email
 const [cartItems, setcartItems] = useState([])
  const [quantity, setQuantity] = useState({});
  const [messagesent, setmessagesent] = useState(false);
- const [emailVerified, setemailVerified] = useState(false);
 const [CustomerOrder, setCustomerOrder] = useState([])
 const [customer_email, setcustomer_email] = useState('')
 const [qttycheck, setqttycheck] = useState(false)
@@ -117,14 +116,13 @@ const SubmittingOrder = () => {
         }else{
           oneOrder.push(item);
           setveiwcart(false);
-          setpayment(true);
-          setCustomerOrder(oneOrder);}});return CustomerOrder;}else{settblcheck(true)}}
+          setpayment(true);setCustomerOrder(oneOrder);}});return CustomerOrder;}else{settblcheck(true)}}
 
 // ====== END OF ALL FUNCTIONS=====
 
 // ALL CONTEXT VALUES
 
-const AppContextValues = {STANDARD_UGX_RATE,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alerting,setalerting,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,emailVerified, setemailVerified,qttycheck,setqttycheck,tblcheck,settblcheck,setordernotsent,ordernotsent,OTPcorrect,setOTPcorrect,OTPIncorrect,setOTPIncorrect,OTPexpired,setOTPexpired}
+const AppContextValues = {STANDARD_UGX_RATE,API_URL,active_Brand,setactive_Brand,active_Product,setactive_Product,products,setmobileMenuOpen,mobileMenuOpen,ToggleMobileView,activeMenu,ToggleOverflow, setactiveMenu,isLoading,setisLoading,currentLocation,istoast, setistoast,veiwcart, setveiwcart,payment,setpayment,confirmpayment, setconfirmpayment,cartItems, setcartItems,AddItems,RemoveItem,decreaseqtty,increaseqtty,SubmittingOrder,quantity, setQuantity,CustomerOrder,setCustomerOrder,customer_email, setcustomer_email,searchTerm, setsearchTerm,alerting,setalerting,addingitem, setaddingitem,fullpageloading,setfullpageloading,messagesent, setmessagesent,qttycheck,setqttycheck,tblcheck,settblcheck,setordernotsent,ordernotsent,OTPcorrect,setOTPcorrect,OTPIncorrect,setOTPIncorrect,OTPexpired,setOTPexpired}
 
 
 // RETURNING AND EXPORTING THE REQUIRED MODULES

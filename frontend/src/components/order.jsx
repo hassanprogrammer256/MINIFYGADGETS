@@ -26,6 +26,8 @@ setordernotsent,
   const [locations, setLocations] = useState([]); // Store fetched locations
 const [isLoading,setisLoading] = useState(false)
 
+
+
   const fetchLocations = async (query) => {
     try {
       const response = await fetch(`https://nominatim.openstreetmap.org/search?country=uganda&city=${query}&format=json`);
@@ -87,7 +89,9 @@ const [isLoading,setisLoading] = useState(false)
     }
   };
 
-  const HandleSubmit = async (event) => {
+  const HandleSubmit = 
+  
+  async (event) => {
     event.preventDefault();
 
     const name = document.getElementById('name').value;

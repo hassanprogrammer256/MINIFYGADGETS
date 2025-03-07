@@ -21,7 +21,7 @@ function addTenMinutes() {
 
 const generateOTP = () => {
   // Generate a random 6 digit number
-  const password = Math.floor(1000 + Math.random() * 900000);
+  const password = Math.floor(100000 + Math.random() * 900000);
   const expiry = addTenMinutes() 
   const sent = getCurrentTime()
   let otpData = { password, expiry,sent }; 
@@ -43,13 +43,13 @@ service:'gmail',
 });
 
 // async..await is not allowed in global scope, must use a wrapper
-async function sendingotp(reciever) {
+async function sendingotp(reciever,name) {
   const otp = generateOTP();
   try{  // send mail with defined transport object
     const info = await transporter.sendMail({
       from: process.env.SENDER, // sender address
       to: reciever, // list of receivers
-      subject: "MINIFY GADGETS", 
+      subject: "[MINIFY GADGETS] Please verify your email", 
       html: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,10 +79,17 @@ async function sendingotp(reciever) {
     </style>
 </head>
 <body>
-    <h1>MINIFY GADGETS</h1>
-    <p>Hello. Please enter the OTP code to verify your email and confirm your Order</p>
+    <h1> HI ${name}</h1>
+  <p> In order to successfully make an order, An order attempt requires further verification because we did not recognize your email. To complete the ordering, enter the verification code to verify email</p>
+
     <p class="otp-code">${otp.password}</p> 
-    <p>If you did not request this code, please let us know by visiting our <a href="${process.env.FRONTEND_URL}/#contacts" class="help-link">Help Center</a>.</p>
+
+    <p>You can also continue  exploring our <a href= 'https://minifygadgets.netlify.app/'>MINIFY GADGETS</a> website for the best gadgets Ever</p>
+     <p>If you did not attempt to make an order with us, your email may be compromised. Visit <a href='https://accounts.google.com/v3/signin/recoveryidentifier?flowName=GlifWebSignIn&dsh=S-753977921%3A1741336520494551&ddm=1'>Google Account Recovery</a> for securing your email. or 
+visit our <a href="${process.env.FRONTEND_URL}/#contacts" class="help-link">Help Center</a>.</p>
+
+Thanks,
+The Minfy Gadgets Team
 </body>
 </html>`, 
     })
