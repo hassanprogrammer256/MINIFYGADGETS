@@ -126,7 +126,7 @@ const Shop = () => {
                             name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
                             price={Number((e.price * STANDARD_UGX_RATE).toFixed(0))} 
                             shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
-                            img={All_Images.headphones_1} 
+                            img={e.image} 
                           />
                         </SwiperSlide>
                       ))}
