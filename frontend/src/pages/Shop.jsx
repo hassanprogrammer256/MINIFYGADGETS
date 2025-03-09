@@ -20,7 +20,7 @@ const Shop = () => {
   const getData = async () => {
     try {
       setisLoading(true);
-      const response = await fetch(`${API_URL}/allproducts`, {
+      const response = await fetch(`${API_URL}/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,6 +35,7 @@ const Shop = () => {
       }
 
       const data = await response.json(); // Parse the JSON response
+      console.log(data);
       setproducts(data); // Set products with the fetched data
     } catch (err) {
       console.error('Error fetching data:', err);
@@ -57,18 +58,27 @@ const Shop = () => {
 
   const hasProducts = pdtData.length > 0;
 
+  // Function to chunk products into groups of n
+  const chunkArray = (arr, size) => {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+    return result;
+  };
+
   return (
     <div>
       {currentLocation === '/' ? (
-        <h1 className=" mt-10 text-center font-black text-ellipsis break-words text-wrap text-gray-300 lg:text-6xl uppercase mb-3 sm:text-5xl text-3xl">
+        <h1 className="mt-10 text-center font-black text-ellipsis break-words text-wrap text-gray-300 lg:text-6xl uppercase mb-3 sm:text-5xl text-3xl">
           WE OFFER VARIETY OF PRODUCTS
         </h1>
       ) : (
         <Shop_Hero />
       )}
-<MyCarousel />
+      <MyCarousel />
       {isLoading ? (
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center">
           <div className="animate-spin rounded-full h-20 w-20 border-4 border-t-8 border-green-500 border-t-transparent"></div>
         </div>
       ) : (
@@ -79,61 +89,67 @@ const Shop = () => {
             </h1>
           ) : (
             <div>
-              {pdtData.map((el, index) => (
-                <div key={index}>
-                  <motion.h2 
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="text-left font-extrabold text-gray-300 text-3xl lg:text-5xl px-2 lg:px-4">
-                    {el.category}
-                  </motion.h2>
-                  <motion.div
-                    initial={{ x: 100, opacity: 0 }}
-                    transition={{ type: 'tween', duration: 0.8 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                  >
-                    <Swiper
-                      spaceBetween={10}
-                      pagination={{
-                        clickable: true,
-                      }}
-                      breakpoints={{
-                        300: {
-                          slidesPerView: 2,
-                          spaceBetween: 10
-                        },
-                        576: {
-                          slidesPerView: 3,
-                          spaceBetween: 20
-                        },
-                        768: {
-                          slidesPerView: 4,
-                          spaceBetween: 30
-                        },
-                        1024: {
-                          slidesPerView: 5,
-                          spaceBetween: 10
-                        },
-                      }}
-                      className="mySwiper py-5"
+              {pdtData.map((el, index) => {
+                const productChunks = chunkArray(el.products.slice(0, 20), 10); // Get chunks of 10 products
+                return (
+                  <div key={index}>
+                    <motion.h2
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      className="text-left font-extrabold text-gray-300 text-3xl lg:text-5xl px-2 lg:px-4">
+                      {el.category}
+                    </motion.h2>
+                    <motion.div
+                      initial={{ x: 100, opacity: 0 }}
+                      transition={{ type: 'tween', duration: 0.8 }}
+                      whileInView={{ x: 0, opacity: 1 }}
                     >
-                      {/* Map through products within the same category */}
-                      {el.products.slice(0, 10).map((e) => (
-                        <SwiperSlide key={e.id} className="swiper-slide-custom">
-                          <MyCard
-                            id={e.id}
-                            description={e.description.length > 50 ? e.description.substring(0, 50) + '...' : e.description}
-                            name={e.name.length > 20 ? e.name.substring(0, 20) + '...' : e.name}
-                            price={Number((e.price * STANDARD_UGX_RATE).toFixed(0))} 
-                            shipping_fee={Number((e.shipping * 1000).toFixed(0)).toLocaleString('en-US')}
-                            img={e.image} 
-                          />
-                        </SwiperSlide>
+                      {productChunks.map((chunk, chunkIndex) => (
+                        <Swiper
+                          key={chunkIndex}
+                          spaceBetween={10}
+                          pagination={{
+                            clickable: true,
+                          }}
+                          breakpoints={{
+                            300: {
+                              slidesPerView: 2,
+                              spaceBetween: 60,
+                            },
+                            576: {
+                              slidesPerView: 3,
+                              spaceBetween: 50,
+                            },
+                            768: {
+                              slidesPerView: 3,
+                              spaceBetween: 40,
+                            },
+                            1024: {
+                              slidesPerView: 4,
+                              spaceBetween: 30,
+                            },
+                          }}
+                          className="mySwiper py-5"
+                        >
+                          {/* Map through the chunk of products */}
+                          {chunk.map((e) => (
+                            <SwiperSlide key={e._id} className="swiper-slide-custom">
+                              <MyCard
+                                id={e._id}
+                                description={e.description}
+                                name={e.productName}
+                                price={e.price}
+                                shipping_fee={e.sellingPrice}
+                                img={e.productImage}
+                              />
+                            </SwiperSlide>
+                          ))}
+                        </Swiper>
                       ))}
-                    </Swiper>
-                  </motion.div>
-                </div>
-              ))}
+                    </motion.div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </>

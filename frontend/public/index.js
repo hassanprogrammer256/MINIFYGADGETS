@@ -24,7 +24,7 @@ export  const All_Images = {min_logo,headphones_1,banner_bg,contacts,headphones_
 
 export const Products = [
 {
-    name:'Phones',
+    name:'Mobiles',
     image: headphones_1
 },
 {

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from './AppContext';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Confirmorder = () => {
     const {
@@ -47,12 +48,14 @@ const Confirmorder = () => {
                 setpayment(false);
                 setcodegiven('')
                 setcartItems([])
+                setCustomerOrder([]);
+                window.location.href = '/shop'
                 setconfirmpayment(false);
             } else if (res.data.message === 'OTP expired') {
               console.log(res.data)
               setcodegiven('')
             } else if (res.data.message == 'OTP is Incorrect' || res.data.message == "No verification found for this email") {
-              console.log(res.data)
+              console.log(res)
           setcodegiven('')
             setordernotsent(true)
 
@@ -68,9 +71,9 @@ const Confirmorder = () => {
 
     return (
         <motion.div
-            initial={{ y: 500, opacity: 0, visibility: 'hidden' }}
-            animate={{ y: confirmpayment ? 0 : -500, opacity: confirmpayment ? 1 : 0, visibility: confirmpayment ? 'visible' : 'hidden' }}
-            transition={{ type: 'tween', duration: .5 }}
+        initial={{ y: -500, opacity: 0, visibility: 'hidden' }}
+        animate={{ y: 0, opacity: 1, visibility: 'visible' }}
+        exit={{ opacity: 0 }}
             className='fixed top-0 w-full h-full end-0 bg-modal z-30 bg-red-800 overflow-y-scroll scroll-be'>
             <div className="flex justify-center py-4">
                 <div className="flex flex-col justify-center bg-gray-900 md:w-[70%] pt-40 pb-5 px-2">
@@ -103,15 +106,15 @@ const Confirmorder = () => {
                             </div>
 
                             <div className="flex justify-between w-full my-8">
-                                <button
+                               <Link to = {'/submitorder'} className='p-3'><button
                                     type="button"
-                                    className='bg-red-900 hover:bg-red-500 cursor-pointer text-center font-black text-white rounded-2xl max-w-48'
-                                    onClick={() => {setordernotsent(false); setcodegiven(''); setconfirmpayment(false); ToggleOverflow(); }}>
+                                    className='bg-red-900 hover:bg-red-500 cursor-pointer text-center font-black text-white rounded-2xl max-w-48 p-1'
+                                    onClick={() => {setordernotsent(false); setcodegiven('');}}>
                                     DISCARD
-                                </button>
+                                </button></Link> 
                                 <button
                                     type="submit"
-                                    className='bg-green-900 hover:bg-green-500 cursor-pointer text-center font-black text-white rounded-2xl'>
+                                    className='bg-green-900 hover:bg-green-500 cursor-pointer text-center font-black text-white rounded-2xl' onClick={() => setordernotsent(false)}>
                                     SUBMIT
                                 </button>
                             </div>

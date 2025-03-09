@@ -36,7 +36,7 @@ const App =() => {
       messagesent ? '' : 'View Cart'
     )
   }
-/><Veiwcart /><Order /><Confirmorder /><Note message={alerting ? 'Item already in Cart': qttycheck ? 'fill all the quantity fields':ordernotsent ? 'Something Went Wrong': tblcheck ? 'No Item Added' : OTPIncorrect ? 'Incorect code': OTPexpired ?  'Code Expired' : '' } />
+/><Note message={alerting ? 'Item already in Cart': qttycheck ? 'fill all the quantity fields':ordernotsent ? 'Something Went Wrong': tblcheck ? 'No Item Added' : OTPIncorrect ? 'Incorect code': OTPexpired ?  'Code Expired' : '' } />
 <OtpCorrect />
   </>
   )
