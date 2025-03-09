@@ -14502,7 +14502,7 @@ body.white-version {
 
 .image-container {
   width: 100%; /* Set the desired width of the container */
-  height: 300px; /* Set the desired height of the container */
+  height: 900px; /* Set the desired height of the container */
   overflow: hidden; /* Ensure the image doesn't overflow the container */
   display: flex;
   justify-content: center;
@@ -14513,6 +14513,6 @@ body.white-version {
   max-width: 100%; /* Limit the width to the container's width */
   max-height: 100%; /* Limit the height to the container's height */
   width: auto; /* Maintain aspect ratio */
-  height: 500px; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
   object-fit: cover; /* Ensure the image covers the container without distortion */
 }
