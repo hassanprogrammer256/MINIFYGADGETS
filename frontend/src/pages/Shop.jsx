@@ -114,19 +114,19 @@ const Shop = () => {
                           breakpoints={{
                             300: {
                               slidesPerView: 2,
-                              spaceBetween: 60,
+                              spaceBetween: 10,
                             },
                             576: {
                               slidesPerView: 3,
-                              spaceBetween: 50,
+                              spaceBetween: 10,
                             },
                             768: {
                               slidesPerView: 3,
-                              spaceBetween: 40,
+                              spaceBetween: 10,
                             },
                             1024: {
                               slidesPerView: 4,
-                              spaceBetween: 30,
+                              spaceBetween: 10,
                             },
                           }}
                           className="mySwiper py-5"
