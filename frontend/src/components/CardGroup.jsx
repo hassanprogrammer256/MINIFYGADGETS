@@ -55,7 +55,7 @@ const CardGroup = ({pdtsarr}) => {
                id={e._id}
                description={(e.description).length > 50 ? (e.description).substring(0, 50) + '...' : e.description}
                name={(e.productName)}
-               price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting 
+               price={Number((e.price * STANDARD_UGX_RATE).toFixed(0))} // Formatting 
                img={e.productImage}
            />
        </SwiperSlide>

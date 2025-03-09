@@ -42,7 +42,7 @@ const Mycard = ({ name, description, price, id, img }) => {
 
                         <div className="flex items-center flex-col mt-9">
                             <span className="md:text-2xl text-xl lg:text-4xl font-bold text-gray-900 flex flex-col lg:flex-row">
-                                UGX: {price.toLocaleString('en-US')}
+                                UGX: {price}
                             </span>
                             {/* <span className='bg-[#07ED00] font-medium text-red-600 rounded-3xl mb-3 hover:bg-green-600 transition-all p-2 text-lg'>
                                     + shipping fee: UGX{shipping_fee}
