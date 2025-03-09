@@ -56,7 +56,7 @@ const CardGroup = ({pdtsarr}) => {
                description={(e.description).length > 50 ? (e.description).substring(0, 50) + '...' : e.description}
                name={(e.productName)}
                price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting 
-               img={e.image}
+               img={e.productImage}
            />
        </SwiperSlide>
           ))}

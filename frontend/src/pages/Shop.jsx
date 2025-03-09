@@ -139,7 +139,7 @@ const Shop = () => {
                                description={(e.description)}
                                name={(e.productName)}
                                price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting 
-                               img={e.image}
+                               img={e.productImage}
                               />
                             </SwiperSlide>
                           ))}
