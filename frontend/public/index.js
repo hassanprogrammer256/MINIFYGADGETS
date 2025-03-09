@@ -12,6 +12,7 @@ import speakers_icon from '/images/icons/speakers.webp'
 import gamepad_icon from '/images/icons/gaming.webp'
 import accessories_icon from '/images/icons/pods.webp'
 import home_appliances_icon from '/images/icons/home.jpg'
+import phones_icon from '/images/icons/phones.webp'
 
 import banner_bg from '/images/NiceImages/herobg.png'
 
@@ -25,7 +26,7 @@ export  const All_Images = {min_logo,headphones_1,banner_bg,contacts,headphones_
 export const Products = [
 {
     name:'Mobiles',
-    image: headphones_1
+    image: phones_icon
 },
 {
     name:'Televisions',
