@@ -7,7 +7,7 @@ import { AppContext } from './AppContext';
 const MyToast = ({message,action}) => {
     const { istoast, setistoast, setveiwcart, ToggleOverflow,messagesent, setmessagesent} = useContext(AppContext);
     const [progressWidth, setProgressWidth] = useState(0);
-    const duration = 5000; // Duration for the timer (5 seconds)
+    const duration = 500; // Duration for the timer (5 seconds)
 
     useEffect(() => {
         let progressInterval;

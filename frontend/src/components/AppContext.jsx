@@ -11,6 +11,7 @@ export const AppContext = createContext();
 
 // CONTEXT FUNCTION
 const AppContextProvider = (props) => {
+  // const API_URL ='http://localhost:3000';
   const API_URL ='https://minifygadgets.vercel.app';
   const STANDARD_UGX_RATE = 3672
 
@@ -117,25 +118,81 @@ const decreaseqtty = (id)=> {
   if(item.qtty > 1) item.qtty -= 1;
 }
 
-const AddItems = (name, id, price) => {
+
+// Add Items Function
+const AddItems = (name, id, price, image) => {
   setaddingitem(true); // Set loading state
 
   const item = {
       id: id,
-      name: name, 
-      price: price, 
+      name: name,
+      price: price,
+      image: image,
   };
 
   // Check if the item already exists in the cart
-  if (cartItems.find(obj => obj.id === item.id)) {
+  const existingItem = cartItems.find(obj => obj.id === item.id);
+  
+  if (existingItem) {
       setalerting(true); // Set alert if item exists
+      // Optionally, ask if you want to increase the quantity instead
+      setQuantity(prev => ({ ...prev, [id]: (prev[id] || 0) + 1 })); // Increase quantity
   } else {
       // Add new item to cart
-      setcartItems(prevItems => [...prevItems, item]); 
+      setcartItems(prevItems => [...prevItems, item]);
+      setQuantity(prev => ({ ...prev, [id]: 1 })); // Default quantity to 1
       setistoast(true); // Notify that item was added
   }
 
   setaddingitem(false); // Reset loading state
+};
+
+// Submitting Order Function
+const SubmittingOrder = () => {
+  // Check if cart is not empty
+  if (cartItems.length === 0) {
+      settblcheck(true);
+      return; // Exit early if there are no items
+  }
+
+  // Create an array to hold the order items
+  let hasInvalidQuantity = false;
+  let Details = [];
+  
+  // Iterate over the cart items
+  cartItems.forEach(element => {
+      // Get the quantity and ensure it's a number
+      const quantityBought = quantity[element.id] === undefined ? 0 : Number(quantity[element.id]);
+
+      const expandeditem = {
+          itemId: element.id,
+          itemName: element.name,
+          Quantity_Bought: quantityBought,
+          Unit_Price: element.price,
+          TotalAmount: quantityBought * element.price,
+          itemImage: element.image,
+      };
+      console.log('EXPANDED ITEMS:', expandeditem);
+
+      // Check for invalid quantity and set the flag
+      if (isNaN(expandeditem.Quantity_Bought) || expandeditem.Quantity_Bought <= 0) {
+          hasInvalidQuantity = true;
+      } else {
+          Details.push(expandeditem);
+      }
+  });
+
+  // Set the quantity check if invalid quantity found
+  if (hasInvalidQuantity) {
+      setqttycheck(true);
+  } else {
+      // Update cart items to only valid items
+      setcartItems(Details);
+      
+      // Set customer order and navigate to the submit page
+      sessionStorage.setItem('customerOrder', JSON.stringify(Details));
+      window.location.href = '/submitorder'; // Redirect to submit order
+  }
 };
 
 const RemoveItem = (id) => {
@@ -143,24 +200,7 @@ const RemoveItem = (id) => {
   setcartItems(prevItems => prevItems.filter(element => element.id !== id));
 };
 
-const SubmittingOrder = () => {
-  if (cartItems.length > 0 ) {
-      const oneOrder = []
-      cartItems.forEach(element => {
 
-        const item = {
-              itemId: element.id,
-              itemName: element.name,
-              Quantity_Bought:quantity[element.id] ==='' ? 0 : Number(quantity[element.id]),
-              Unit_Price: element.price,
-              TotalAmount:quantity[element.id] * element.price
-          }
-        if (isNaN(item.Quantity_Bought)){
-   setqttycheck(true);
-        }else{
-          oneOrder.push(item);
-          window.location.href = '/submitorder'
-          setCustomerOrder(oneOrder);}});return CustomerOrder;}else{settblcheck(true)}}
 
 // ====== END OF ALL FUNCTIONS=====
 

@@ -4,11 +4,14 @@ import { motion } from 'framer-motion';
 import { X } from 'react-feather';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { FaCashRegister } from 'react-icons/fa';
+
+
 
 const Order = () => {
+
   const {
     setfullpageloading,
-    customer_email,
     setordernotsent,
     setcustomer_email,
     RequestQueue,
@@ -19,16 +22,21 @@ const Order = () => {
     ToggleOverflow,
     payment,
     lastLocation,
+    cartItems,
     setpayment,
     setconfirmpayment,
     settblcheck
   } = useContext(AppContext);
-
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const [locations, setLocations] = useState([]);
   const [isLoading, setisLoading] = useState(false);
+
+const [name, setname] = useState('')
+const [email, setemail] = useState('')
+const [number, setnumber] = useState('')
+
 
   const orderQueue = new RequestQueue();
 
@@ -38,6 +46,7 @@ const Order = () => {
       const data = await response.json();
       const locationNames = data.map(location => location.display_name);
       setLocations(locationNames);
+      
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
@@ -94,20 +103,17 @@ const Order = () => {
 
   const HandleSubmit = async (event) => {
     event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const number = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-    const location = document.getElementById('location').value;
-    const paymentMethod = document.getElementById('payment-method').value;
-
-    if (name && email && location && paymentMethod && number) {
+let customerorder = sessionStorage.getItem('customerOrder')
+let paymentmethod = document.getElementById('payment-method').value;
+    if (name && email && location && paymentmethod && number,customerorder) {
       const request = async() => {
         setisLoading(true);
         try {
-          const res = await axios.post(`${API_URL}/submitorder`, { name, number, email, location, paymentMethod, CustomerOrder });
-          if (res.data.message === "OTP sent") {
-            setcustomer_email(email);
+          let customerLocation= inputValue
+          const res = await axios.post(`${API_URL}/submitorder`, { name, number, email, customerLocation, paymentmethod, customerorder });
+          console.log(res.data)
+          if (res.data.message === "OTP SENT") {
+            sessionStorage.setItem('customerEmail',email)
            window.location.href = '/confirmcode'
           } else {
             settblcheck(false);
@@ -151,6 +157,7 @@ const Order = () => {
             className="rnt-contact-form rwt-dynamic-form row md:px-4 px-2" 
             id="contact-form" 
             method='POST' 
+            autoComplete="on"
             onSubmit={HandleSubmit}
             style={{ pointerEvents: isLoading ? 'none' : 'auto' }} // Disable interaction
           >
@@ -158,6 +165,8 @@ const Order = () => {
               <div className="form-group">
                 <label htmlFor="contact-name">Full Name</label>
                 <input 
+                value={name}
+                onChange={(e) => {setname(e.target.value);setordernotsent(false)}}
                   className="form-control form-control-sm" 
                   name="name" 
                   id="name" 
@@ -172,10 +181,13 @@ const Order = () => {
               <div className="form-group">
                 <label htmlFor="contact-phone">Phone Number</label>
                 <input 
+                value={number}
+                onChange={(e) => {setnumber((e.target.value.split('+').length - 1) > 1 ? e.target.value.replace(/\+/g, '') : e.target.value.replace(/[^0-9+]/g, ''));setordernotsent(false)}}
                   className="form-control" 
                   name="phone" 
                   id="phone" 
                   type="text" 
+                  maxLength={15}
                   required 
                   disabled={isLoading} // Disable input during loading
                 />
@@ -186,6 +198,8 @@ const Order = () => {
               <div className="form-group">
                 <label htmlFor="contact-email">Email</label>
                 <input 
+                value={email}
+                onChange={(e) => {setemail(e.target.value);setordernotsent(false)}}
                   className="form-control form-control-sm" 
                   id="email" 
                   name="email" 
@@ -228,12 +242,13 @@ const Order = () => {
 
             <div className="col-lg-12">
               <div className="form-group">
-                <label htmlFor="contact-message">Payment Method</label>
+                <label htmlFor="contact-method">Payment Method</label>
                 <div className="mb-3">
                   <select 
                     className="form-select form-select-lg" 
                     name="payment-method" 
                     id="payment-method" 
+                    
                     disabled={isLoading} // Disable input during loading
                   >
                     <option>CASH ON DELIVERY</option>

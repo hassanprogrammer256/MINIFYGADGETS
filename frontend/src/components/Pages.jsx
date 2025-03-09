@@ -7,13 +7,13 @@ import PagenotFound from '../pages/PagenotFound'
 import Order from './order'
 import Veiwcart from './Veiwcart'
 import Confirmorder from './confirmpayment'
-
+import { AnimatePresence } from 'framer-motion';
 
 const Pages = () => {
   return (
   <>
-
-    <Routes>
+ <AnimatePresence exitBeforeEnter>
+    <Routes >
     <Route path="/shop" element={<Shop />} />
     <Route path="/" element={  <Home />} />
     <Route path="/veiwproduct/:id" element={  <ViewProduct />} />
@@ -22,6 +22,7 @@ const Pages = () => {
     <Route path="/submitorder" element={<Order />} />
     <Route path="/confirmcode" element={<Confirmorder />} />
     </Routes> 
+    </AnimatePresence>
   </>
  
   )

@@ -58,3 +58,12 @@ export const Products = [
 ]
 
 export const NavMenu= [{description:'Home',Link:'/'},{description:'Shop',Link:'/shop'}];
+
+
+
+export const pageTransition = {
+    initial: { scale: 1, rotateY: 0 },
+    animate: { scale: 1, rotateY: 0 },
+    exit: { scale: 0.9, rotateY: 90 },
+    transition: { duration: 3 }
+  };

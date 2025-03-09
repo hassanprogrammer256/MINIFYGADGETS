@@ -10,6 +10,15 @@ const Mycard = ({ name, description, price, id, img }) => {
     const { cartItems, AddItems, alerting, setalerting, addingitem } = useContext(AppContext);
     
     let alreadyincart = cartItems.map(element => element.id).includes(id);
+    function formatToUGX(amount) {
+        return new Intl.NumberFormat('en-UG', {
+            style: 'currency',
+            currency: 'UGX',
+            minimumFractionDigits: 0, // Ugandan Shillings typically do not have decimal places
+            maximumFractionDigits: 0
+        }).format(amount);
+    }
+
 
     return (
         <motion.div className='py-4'>
@@ -42,15 +51,14 @@ const Mycard = ({ name, description, price, id, img }) => {
 
                         <div className="flex items-center flex-col mt-9">
                             <span className="md:text-2xl text-xl lg:text-4xl font-bold text-gray-900 flex flex-col lg:flex-row">
-                                UGX: {price}
+                                {formatToUGX(price)}
                             </span>
-                            {/* <span className='bg-[#07ED00] font-medium text-red-600 rounded-3xl mb-3 hover:bg-green-600 transition-all p-2 text-lg'>
-                                    + shipping fee: UGX{shipping_fee}
-                                </span> */}
                             <button
                                 className="rounded-lg bg-cyan-700 lg:px-5 px-2 md:py-2.5 m-2 text-center font-medium text-white hidden lg:flex hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 text-xl lg:text-2xl"
                                 onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }}>
-                                {addingitem ? 'Adding...' : alreadyincart ? 'Added to cart' : 'Add to Cart'}
+                                {addingitem ? (<div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Adding...</span>
+                </div>): alreadyincart ? 'Added to cart' : 'Add to Cart'}
                             </button>
                         </div>
                     </div>
@@ -58,8 +66,8 @@ const Mycard = ({ name, description, price, id, img }) => {
                     <div className="flex justify-between absolute top-0 end-0 w-full lg:hidden">
                         <div className="rounded-lg bg-blue-700 p-2 cursor-pointer ">
                             {alreadyincart ? 
-                                <FaCheckCircle size={20} onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }} /> : 
-                                <ShoppingCart size={20} onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }} />
+                                <FaCheckCircle size={20} onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price,img); }} /> : 
+                                <ShoppingCart size={20} onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price,img); }} />
                             }
                         </div>
                     </div>

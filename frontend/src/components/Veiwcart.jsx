@@ -30,7 +30,7 @@ animate={{y:0,opacity:
         <h1 className="text-white text-center font-bold text-5xl mb-4">
     MINIFY GADGETS 
 </h1>
-<Link to={'/shop'}><X size={30} className='hover:text-white cursor-pointer' onClick={() => {settblcheck(false);setqttycheck(false);ToggleOverflow()}}/></Link>
+<Link to={'/#logo'}><X size={30} className='hover:text-white cursor-pointer' onClick={() => {settblcheck(false);setqttycheck(false);ToggleOverflow()}}/></Link>
         </div>
 
 <div

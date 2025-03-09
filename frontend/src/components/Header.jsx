@@ -12,7 +12,7 @@ const Header = () => {
       <div className="container:lg flex flex-col">
         <div className="upper flex justify-between mb-0 pb-0 ">
   
-  <img src={All_Images.min_logo} className='cursor-pointer max-w-80 lg:max-w-96 max-h-20 lg:max-h-28'/>
+  <img src={All_Images.min_logo} className='cursor-pointer max-w-80 lg:max-w-96 max-h-20 lg:max-h-28' id='logo'/>
 
         {/* <Search /> */}
         <div className="flex gap-5 md:gap-5 px-4">

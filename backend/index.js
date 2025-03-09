@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const sendingotp = require('./verifyemail');
 const sendingfeedback = require('./sendfeedbk');
+const sendingOrder = require('./SendOrder.jsx');
 require('dotenv').config();
 
 const app = express();
@@ -37,21 +38,94 @@ app.get('/', (req, res) => {
     res.send("WELCOME TO MINIFY GADGETS SERVER");
 });
 
+app.post('/forwardorder',(req,res) => {
+// const {code} = req.body
+res.send('HELLO')
+// let verification = emailVerifications.find(obj => obj.OTP === code);
+// if (verification){
+//     try {
+// let forwardingOrder = sendingOrder();
+// if (forwardingOrder){
+//     res.send("sent")
+// }else{res.send("failed")}
+
+
+//     } catch (error) {
+//       console.log(error)  
+//     }
+// }
+
+
+
+
+// 
+}
+)
+
+// =======================USER=======================
+
+app.post('/submitorder',(req,res) => {
+    const { name, number, email, customerLocation, paymentMethod, CustomerOrder } = req.body;
+
+    if (name == '' || email == '' || customerLocation == '' || paymentMethod == ''|| number == ''){
+        res.json({error:'Please fill all the required form feilds','DATA':req.body})}else{
+            sendingotp(email,name).then(result => {
+                if (result){
+                  emailVerifications.push({'CUSTOMER': req.body,'OTP':result.password,'SENT':result.sent,'EXPIRES': result.expiry})
+                  res.json({message:'OTP SENT',emailVerifications})
+                }else{
+                    res.json({message:'OTP NOT SENT',emailVerifications})
+                }
+            })
+        }
+})
 // Endpoint to confirm OTP code
 app.post('/confirmcode', (req, res) => {
-    const { code, email } = req.body;
-    const verification = emailVerifications.find(obj => obj.orderDetails.EMAIL === email);
-    
-    if (verification) {
-        if (verification.OTP === `${code}`) {
-            return res.json({ message: 'OTP accepted', emailVerifications });
-        } else {
-            return res.json({ message: 'OTP is Incorrect', emailVerifications });
+    const { code, customeremail } = req.body;
+
+    try {
+        // Step 1: Find the verification object based on the customer email
+        const verification = emailVerifications.find(obj => obj.CUSTOMER.email === customeremail);
+
+        // Step 2: Check if a verification object was found
+        if (!verification) {
+            return res.json({
+                message: "No verification found for this email",
+                emailVerifications // Optionally return the current state of emailVerifications
+            });
         }
-    } else {
-        return res.json({ message: "No verification found for this email", emailVerifications });
+
+        // Step 3: Check if the OTP has expired
+        const currentTime = Date.now();
+        if (currentTime > verification.expiry) {
+            return res.json({
+                message: 'OTP EXPIRED',
+                emailVerifications // Optionally return the current state of emailVerifications
+            });
+        }
+
+        // Step 4: Convert both the provided code and the stored OTP to strings for comparison
+        const storedOTP = verification.OTP.toString(); // Convert stored OTP to string
+        const inputCode = code.toString(); // Convert input code to string
+
+        // Step 5: Compare the values without considering type
+        if (inputCode === storedOTP) {
+            return res.json({
+                message: 'OTP accepted',
+                emailVerifications // Optionally return the current state of emailVerifications
+            });
+        } else {
+            return res.json({
+                message: 'OTP is incorrect',
+                emailVerifications // Optionally return the current state of emailVerifications
+            });
+        }
+    } catch (error) {
+        console.error("ERROR: ", error); // Error is logged for debugging
+        return res.status(500).json({ message: "An error occurred", error: error.message });
     }
 });
+// ======================PRODUCT=========================
 
 // Function to handle product routes
 async function setupProductRoutes(productsCollection) {

@@ -35,7 +35,6 @@ const Shop = () => {
       }
 
       const data = await response.json(); // Parse the JSON response
-      console.log(data);
       setproducts(data); // Set products with the fetched data
     } catch (err) {
       console.error('Error fetching data:', err);
@@ -68,7 +67,12 @@ const Shop = () => {
   };
 
   return (
-    <div>
+    <motion.div
+    initial={{ opacity: 0, scale: .2 }} // Start scaling down and fully transparent
+      animate={{ opacity: 1, scale: 1 }} // Scale back to normal and fully opaque
+      exit={{ opacity: 0, scale: 0 }} // Scale down and become transparent when exiting
+      transition={{ duration: 1,type:'spring', bounce:.2 }} // Duration of the transition
+    >
       {currentLocation === '/' ? (
         <h1 className="mt-10 text-center font-black text-ellipsis break-words text-wrap text-gray-300 lg:text-6xl uppercase mb-3 sm:text-5xl text-3xl">
           WE OFFER VARIETY OF PRODUCTS
@@ -138,7 +142,7 @@ const Shop = () => {
                                id={e._id}
                                description={(e.description)}
                                name={(e.productName)}
-                               price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting 
+                               price={Number((e.price * STANDARD_UGX_RATE).toFixed(0))}
                                img={e.productImage}
                               />
                             </SwiperSlide>
@@ -153,7 +157,7 @@ const Shop = () => {
           )}
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
-import {Footer} from 'flowbite-react'
-import { All_Images, NavLinks } from '../../public/index.js'
+import {Footer, Pagination} from 'flowbite-react'
+import { All_Images, NavLinks, pageTransition } from '../../public/index.js'
 import { AppContext } from './AppContext.jsx'
 import Review_group from './Review_group.jsx'
 import axios from 'axios'
+import { motion } from "framer-motion";
 
 const MyFooter = () => {
   const {API_URL,activemenu, setactivemenu,messagesent, setmessagesent,setistoast,setordernotsent} = useContext(AppContext)
@@ -51,14 +52,17 @@ else{
 <Review_group />
 
   {/* =========CONTACT ME===================== */}
-  <div className="bg-slate-950 text-white" id="contacts">
-<div className="row">
-<div className="col-lg-12">
-<div className="section-title text-center">
+  <motion.div 
+  variants={pageTransition}
+  initial = {{opacity:0}}
+  whileInView={{opacity:1}}
+  transition={{type:'tween',duration:1}}
+  className="bg-slate-950 text-white" id="contacts">
+<div className="section-title text-center my-5">
 <h2 className="title">Contact  Us On: </h2>
 </div>
+<div className="md:grid grid-cols-[40%_60%]">
 <div className="row mt--50 mt_md--40 mt_sm--40 mt-contact-sm">
-<div className="col-lg-5">
 <div className="contact-about-area">
 <div className="thumbnail">
 <img src={All_Images.contacts} alt="contact-img" />
@@ -76,6 +80,8 @@ else{
 
 </div>
 </div>
+
+
 <div data-aos-delay="600" className="col-lg-7 contact-input">
 <div className="contact-form-wrapper">
 <form className="rnt-contact-form rwt-dynamic-form row " id="contacts" onSubmit={HandleSubmit}>
@@ -126,10 +132,16 @@ else{
 </form>
 </div>
 </div>
+
+
 </div>
-</div>
-</div>
-</div>
+
+
+
+
+
+</motion.div>
+
  {/* ================FOOTER================= */}
    <Footer className='bg-slate-950 rounded pt-3'>
 <div className = 'w-full px-4 lg:px-24'>
