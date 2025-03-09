@@ -11,8 +11,7 @@ export const AppContext = createContext();
 
 // CONTEXT FUNCTION
 const AppContextProvider = (props) => {
-  // const API_URL =process.env.VITE_APP_BACKEND_URL;
-  const API_URL = 'http://localhost:3000';
+  const API_URL =process.env.VITE_APP_BACKEND_URL;
   const STANDARD_UGX_RATE = 3672
 
 // ======START OF ALL CONSTANTS AND VARIABLES DECLARED======

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ShoppingCart } from 'react-feather';
 import { Link } from 'react-router-dom';
 
-const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
+const Mycard = ({ name, description, price, id, img }) => {
     const { cartItems, AddItems, alerting, setalerting, addingitem } = useContext(AppContext);
     
     let alreadyincart = cartItems.map(element => element.id).includes(id);
@@ -44,9 +44,9 @@ const Mycard = ({ name, description, price, id, img, shipping_fee }) => {
                             <span className="md:text-2xl text-xl lg:text-4xl font-bold text-gray-900 flex flex-col lg:flex-row">
                                 UGX: {price.toLocaleString('en-US')}
                             </span>
-                            <span className='bg-[#07ED00] font-medium text-red-600 rounded-3xl mb-3 hover:bg-green-600 transition-all p-2 text-lg'>
+                            {/* <span className='bg-[#07ED00] font-medium text-red-600 rounded-3xl mb-3 hover:bg-green-600 transition-all p-2 text-lg'>
                                     + shipping fee: UGX{shipping_fee}
-                                </span>
+                                </span> */}
                             <button
                                 className="rounded-lg bg-cyan-700 lg:px-5 px-2 md:py-2.5 m-2 text-center font-medium text-white hidden lg:flex hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 text-xl lg:text-2xl"
                                 onClick={() => { alreadyincart ? setalerting(true) : AddItems(name, id, price); }}>

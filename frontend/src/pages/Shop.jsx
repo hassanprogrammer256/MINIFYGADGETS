@@ -135,12 +135,11 @@ const Shop = () => {
                           {chunk.map((e) => (
                             <SwiperSlide key={e._id} className="swiper-slide-custom">
                               <MyCard
-                                id={e._id}
-                                description={e.description}
-                                name={e.productName}
-                                price={e.price}
-                                shipping_fee={e.sellingPrice}
-                                img={e.productImage}
+                               id={e._id}
+                               description={(e.description)}
+                               name={(e.productName)}
+                               price={Number((e.price * STANDARD_UGX_RATE).toFixed(0)).toLocaleString('en-US')} // Formatting 
+                               img={e.image}
                               />
                             </SwiperSlide>
                           ))}
